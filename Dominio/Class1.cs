@@ -1,7 +1,6 @@
-﻿namespace Dominio
-{
-    public class Class1
-    {
+﻿namespace Dominio;
 
-    }
+public class Class1
+{
+
 }
