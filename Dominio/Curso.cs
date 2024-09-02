@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Dominio
 {
-    public class Curso : BusinessEntity
+    public class Curso : EntidadNegocio
     {
         [Key]
         public int IdCurso { get; set; }

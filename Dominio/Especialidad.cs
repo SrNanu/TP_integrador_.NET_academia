@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Especialidad : BusinessEntity
+    public class Especialidad : EntidadNegocio
     {
         [Key]
         public int IdEspecialidad { get; set; }

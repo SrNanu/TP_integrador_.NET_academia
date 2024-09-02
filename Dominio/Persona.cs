@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class Persona : BusinessEntity
+    public class Persona : EntidadNegocio
     {
         //Se coloca "required adelante de cada atributo para que no salte error, se lo deja hasta que se complete el constructor."
 
