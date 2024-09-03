@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-enum TipoPersonas
+public enum TiposPersonas        // ¿Dejo el public?
 {
-    1: "Cliente",
-    2: "Profesor"
+    Alumno,     // 0
+    Profesor    // 1
 }
 
 namespace Dominio
@@ -43,8 +43,7 @@ namespace Dominio
         public required string Direccion { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public required int TipoPersona { get; set; }
+        private TiposPersonas Tipo { get; set; }
 
         [StringLength(100)]
         public string? Telefono { get; set; }
@@ -65,5 +64,8 @@ namespace Dominio
         public required string Password { get; set; }
 
         public DateTime FechaRegistro { get; set; } = DateTime.Now;
+
+        [Required]
+        public required bool Habilitado { get; set; }
     }
 }
