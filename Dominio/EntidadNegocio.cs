@@ -5,6 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+public enum State        // ¿Dejo el public?
+{
+    Guardar,     // 0
+    Crear,    // 1
+    Modificar,
+    Borrar
+}
+
 namespace Dominio
 {
     public class EntidadNegocio
@@ -15,8 +23,7 @@ namespace Dominio
         public int Id { get; set; }
 
         [Required]
-        [StringLength(150)]
-        public required string State { get; set; }
+        public required State State { get; set; }
 
     }
 }

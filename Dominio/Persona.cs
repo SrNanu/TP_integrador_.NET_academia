@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum TiposPersonas        // ¿Dejo el public?
+public enum TiposPersonas        // ¿Dejo el public? Si voy a acceder desde afuera si. Lo analizo al final.
 {
     Alumno,     // 0
     Profesor    // 1

@@ -20,20 +20,16 @@ namespace Dominio
         public int IdUusario { get; set; }
 
         [Required]
-        [StringLength(150)]
         public required bool PermiteAlta { get; set; }
 
         [Required]
-        [StringLength(150)]
         public required bool PermiteBaja { get; set; }
 
         [Required]
-        [StringLength(150)]
         public required bool PermiteConsulta { get; set; }
 
 
         [Required]
-        [StringLength(150)]
         public required bool PermiteModificacion { get; set; }
 
     }
