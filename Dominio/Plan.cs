@@ -10,8 +10,6 @@ namespace Dominio
 {
     public class Plan : EntidadNegocio
     {
-        //Se coloca "required" adelante de cada atributo para que no salte error, se lo deja hasta que se complete el constructor.
-
         [Key]
         public int IdPlan { get; set; }
 

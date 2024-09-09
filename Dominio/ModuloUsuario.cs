@@ -28,7 +28,6 @@ namespace Dominio
         [Required]
         public required bool PermiteConsulta { get; set; }
 
-
         [Required]
         public required bool PermiteModificacion { get; set; }
 
