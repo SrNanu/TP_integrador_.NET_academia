@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum State        // ¿Dejo el public?
+public enum State
 {
-    Guardar,     // 0
+    Leer,      // 0
     Crear,    // 1
     Modificar,
     Borrar

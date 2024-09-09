@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum TiposPersonas        // ¿Dejo el public? Si voy a acceder desde afuera si. Lo analizo al final.
+public enum TiposUsuarios       
 {
     Alumno,     // 0
     Profesor    // 1
@@ -14,12 +14,12 @@ public enum TiposPersonas        // ¿Dejo el public? Si voy a acceder desde afu
 
 namespace Dominio
 {
-    public class Persona : EntidadNegocio
+    public class Usuario : EntidadNegocio
     {
         //Se coloca "required" adelante de cada atributo para que no salte error, se lo deja hasta que se complete el constructor.
 
         [Key]
-        public int IdPersona { get; set; }
+        public int IdUsuario { get; set; }
 
         [ForeignKey("Plan")]
         public int IdPlan { get; set; }
@@ -43,7 +43,7 @@ namespace Dominio
         public required string Direccion { get; set; }
 
         [Required]
-        private TiposPersonas Tipo { get; set; }
+        private TiposUsuarios Tipo { get; set; }
 
         [StringLength(100)]
         public string? Telefono { get; set; }
