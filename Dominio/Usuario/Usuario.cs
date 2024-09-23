@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum TiposUsuarios       
+public enum TiposUsuarios
 {
     Alumno,     // 0
     Profesor    // 1
 }
 
-namespace Dominio
+namespace Dominio.Usuario
 {
     public class Usuario : EntidadNegocio
     {
