@@ -6,18 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+public class Plan : EntidadNegocio
 {
-    public class Plan : EntidadNegocio
-    {
-        [Key]
-        public int IdPlan { get; set; }
+    [Key]
+    public int IdPlan { get; set; }
 
-        [ForeignKey("Especialidad")]
-        public int IdEspecialidad { get; set; }
+    [ForeignKey("Especialidad")]
+    public int IdEspecialidad { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public required string Descripcion { get; set; }
-    }
+    [Required]
+    [StringLength(100)]
+    public required string Descripcion { get; set; }
 }

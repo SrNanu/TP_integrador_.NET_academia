@@ -12,21 +12,19 @@ public enum TiposCargos
     ProfesorPractica    // 1
 }
 
-namespace Dominio
+
+public class DocenteCurso : EntidadNegocio
 {
-    public class DocenteCurso : EntidadNegocio
-    {
-        [Key]
-        public int IdDocenteCurso { get; set; }
+    [Key]
+    public int IdDocenteCurso { get; set; }
 
-        [ForeignKey("Curso")]
-        public int IdCurso { get; set; }
+    [ForeignKey("Curso")]
+    public int IdCurso { get; set; }
 
-        [ForeignKey("Docente")]
-        public int IdDocente { get; set; }
+    [ForeignKey("Docente")]
+    public int IdDocente { get; set; }
 
-        [Required]
-        private TiposCargos Cargo { get; set; }
+    [Required]
+    private TiposCargos Cargo { get; set; }
 
-    }
 }

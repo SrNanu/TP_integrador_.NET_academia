@@ -6,24 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dominio
+public class Materia : EntidadNegocio
 {
-    public class Materia : EntidadNegocio
-    {
-        [Key]
-        public int IdMateria { get; set; }
+    [Key]
+    public int IdMateria { get; set; }
 
-        [Required]
-        [StringLength(100)]
-        public required string Descripcion { get; set; }
+    [Required]
+    [StringLength(100)]
+    public required string Descripcion { get; set; }
 
-        [ForeignKey("Plan")]
-        public int IdPlan { get; set; }
+    [ForeignKey("Plan")]
+    public int IdPlan { get; set; }
 
-        [Required]
-        public required int HsSemanales { get; set; }
+    [Required]
+    public required int HsSemanales { get; set; }
 
-        [Required]
-        public required int HsTotales { get; set; }
-    }
+    [Required]
+    public required int HsTotales { get; set; }
 }

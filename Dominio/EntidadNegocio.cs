@@ -13,14 +13,12 @@ public enum State
     Borrar      //3
 }
 
-namespace Dominio
-{
-    public class EntidadNegocio
-    {
-        [Key]
-        public int Id { get; set; }
 
-        [Required]
-        public required State State { get; set; }
-    }
+public class EntidadNegocio
+{
+    [Key]
+    public int Id { get; set; }
+
+    [Required]
+    public required State State { get; set; }
 }

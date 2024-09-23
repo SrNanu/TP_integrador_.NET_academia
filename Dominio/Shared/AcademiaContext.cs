@@ -2,7 +2,6 @@
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using Dominio.Usuario;
 
 public class AcademiaContext : DbContext
 {
