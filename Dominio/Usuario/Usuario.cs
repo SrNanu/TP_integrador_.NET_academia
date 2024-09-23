@@ -43,7 +43,7 @@ namespace Dominio.Usuario
         public required string Direccion { get; set; }
 
         [Required]
-        private TiposUsuarios Tipo { get; set; }
+        public TiposUsuarios Tipo { get; set; }
 
         [StringLength(100)]
         public string? Telefono { get; set; }

@@ -9,8 +9,8 @@ public enum State
 {
     Leer,      // 0
     Crear,    // 1
-    Modificar,
-    Borrar
+    Modificar, //2
+    Borrar      //3
 }
 
 namespace Dominio
@@ -22,6 +22,5 @@ namespace Dominio
 
         [Required]
         public required State State { get; set; }
-
     }
 }
