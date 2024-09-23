@@ -9,7 +9,8 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        CrearUsuario(1, "Juan Cruz", "Mondino", 12345, "Urquiza 123");
+        CrearUsuario(1, 1, "Juan Cruz", "Mondino", new DateTime(2000, 10, 23), "Urquiza 123", "3364592427",
+                 12345, "juan.mondino@example.com", "juan.c", "contraseñaSegura");
 
         LeerUsuario(12345);
 
@@ -20,8 +21,8 @@ public class Program
         EliminarUsuario(12345);
     }
 
-    public static void CrearUsuario(int id, int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion, string telefono
-                                    int legajo, string correo, string nombreUser, string contra)
+    public static void CrearUsuario(int id, int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion, 
+                                    string telefono, int legajo, string correo, string nombreUser, string contra)
     {
         using (var context = new AcademiaContext())
         {
