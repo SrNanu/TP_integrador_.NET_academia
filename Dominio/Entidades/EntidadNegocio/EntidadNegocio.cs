@@ -6,13 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public enum State
-{
-    Leer,      // 0
-    Crear,    // 1
-    Modificar, //2
-    Borrar      //3
-}
 
 
 public abstract class EntidadNegocio
@@ -22,5 +15,4 @@ public abstract class EntidadNegocio
     public int Id { get; set; }
 
     [Required]
-    public required State State { get; set; }
 }
