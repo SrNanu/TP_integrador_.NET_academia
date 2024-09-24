@@ -15,8 +15,12 @@ public enum TiposCargos
 
 public class DocenteCurso : EntidadNegocio
 {
-    [Key]
-    public int IdDocenteCurso { get; set; }
+    [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD
+    public int IdDocenteCurso
+    {
+        get { return this.Id; }
+        set { this.Id = value; }
+    }
 
     [ForeignKey("Curso")]
     public int IdCurso { get; set; }

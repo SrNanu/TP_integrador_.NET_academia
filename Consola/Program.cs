@@ -8,8 +8,8 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        // CRUD Usuario
-        UsuarioController.CrearUsuario(1, 1, "Juan Cruz", "Mondino", new DateTime(2000, 10, 23), "Urquiza 123", "3364592427",
+        // ** CRUD Usuario **
+        UsuarioController.CrearUsuario(/*1,*/ 1, "Juan Cruz", "Mondino", new DateTime(2000, 10, 23), "Urquiza 123", "3364592427",
                  12345, "juan.mondino@example.com", "juan.c", "contraseñaSegura");
         UsuarioController.LeerUsuario(12345);
         UsuarioController.ActualizarUsuario(12345);

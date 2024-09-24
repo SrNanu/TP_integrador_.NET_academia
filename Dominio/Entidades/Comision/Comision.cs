@@ -8,8 +8,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 public class Comision : EntidadNegocio
 {
-    [Key]
-    public int IdComision { get; set; }
+    [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD
+    public int IdComision
+    {
+        get { return this.Id; }
+        set { this.Id = value; }
+    }
 
     [ForeignKey("Plan")]
     public int IdPlan { get; set; }

@@ -2,6 +2,7 @@
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Reflection;
 
 public class AcademiaContext : DbContext
 {
@@ -11,6 +12,8 @@ public class AcademiaContext : DbContext
     }
 
     public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Plan> Planes { get; set; }
+    public DbSet<Modulo> Modulos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

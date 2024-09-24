@@ -6,15 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class Plan : EntidadNegocio
+public class Especialidad : EntidadNegocio
 {
-    [Key]
-    public int IdPlan { get; set; }
-
-    [ForeignKey("Especialidad")]
-    public int IdEspecialidad { get; set; }
+    [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD
+    public int IdEspecialidad
+    {
+        get { return this.Id; }
+        set { this.Id = value; }
+    }
 
     [Required]
-    [StringLength(100)]
+    [StringLength(150)]
     public required string Descripcion { get; set; }
 }
+

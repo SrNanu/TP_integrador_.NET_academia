@@ -6,14 +6,14 @@ using System.Globalization;
 
 public class UsuarioController
 {
-    public static void CrearUsuario(int id, int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion,
+    public static void CrearUsuario(/*int id, */int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion,
                                     string telefono, int legajo, string correo, string nombreUser, string contra)
     {
         using (var context = new AcademiaContext())
         {
             var usuario = new Usuario()
             {
-                IdUsuario = id,
+                //IdUsuario = id,
                 IdPlan = idPlan,
                 Nombre = nombre,
                 Apellido = apellido,

@@ -16,8 +16,12 @@ public class Usuario : EntidadNegocio
 {
     //Se coloca "required" adelante de cada atributo para que no salte error, se lo deja hasta que se complete el constructor.
 
-    [Key]
-    public int IdUsuario { get; set; }
+    [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD
+    public int IdUsuario
+    {
+        get { return this.Id; }
+        set { this.Id = value; }
+    }
 
     [ForeignKey("Plan")]
     public int IdPlan { get; set; }
