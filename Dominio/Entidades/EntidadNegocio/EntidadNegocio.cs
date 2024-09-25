@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 /*
 public enum State
 {
@@ -14,6 +15,10 @@ public enum State
     Borrar      //3
 }
 */
+=======
+
+
+>>>>>>> 9145ed5a51bde9c7a79dd51e1719ac055ea55ab8
 
 public abstract class EntidadNegocio
 {
@@ -22,6 +27,9 @@ public abstract class EntidadNegocio
     public int Id { get; set; }
     /*
     [Required]
+<<<<<<< HEAD
     public required State State { get; set; }
     */
+=======
+>>>>>>> 9145ed5a51bde9c7a79dd51e1719ac055ea55ab8
 }
