@@ -6,8 +6,8 @@ using System.Globalization;
 
 public class Usuario_Controller
 {
-    public static void CrearUsuario(/*int id, */int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion,
-                                    string telefono, int legajo, string correo, string nombreUser, string contra)
+    public static void CrearUsuario(/*int id, */int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion, TiposUsuarios tipo, string telefono, 
+                                    int legajo, string correo, string nombreUser, string contra)
     {
         using (var context = new AcademiaContext())
         {
@@ -20,7 +20,7 @@ public class Usuario_Controller
                 Edad = DateTime.Now.Year - fechaNac.Year,
                 FechaNacimiento = fechaNac,
                 Direccion = direccion,
-                Tipo = 0,
+                Tipo = tipo,
                 Telefono = telefono,
                 Legajo = legajo,
                 Email = correo,

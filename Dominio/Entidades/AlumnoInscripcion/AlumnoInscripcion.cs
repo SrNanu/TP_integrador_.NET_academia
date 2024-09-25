@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 public class AlumnoInscripcion : EntidadNegocio
 {
     [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD

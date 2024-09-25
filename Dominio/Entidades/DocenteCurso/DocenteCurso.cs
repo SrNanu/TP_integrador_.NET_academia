@@ -12,7 +12,6 @@ public enum TiposCargos
     ProfesorPractica    // 1
 }
 
-
 public class DocenteCurso : EntidadNegocio
 {
     [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD
@@ -29,6 +28,6 @@ public class DocenteCurso : EntidadNegocio
     public int IdDocente { get; set; }
 
     [Required]
-    private TiposCargos Cargo { get; set; }
+    public TiposCargos Cargo { get; set; }
 
 }
