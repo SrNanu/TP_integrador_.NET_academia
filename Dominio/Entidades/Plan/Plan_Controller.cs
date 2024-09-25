@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class PlanController
+public class Plan_Controller
 {
     public static void CrearPlan(/*int idPLan, */int idEspecialidad, string descripcion)
     {
@@ -44,7 +44,7 @@ public class PlanController
     {
         int decision = 9;
 
-        while (decision > 9 || decision < 0)
+        while (decision > 2 || decision < 0)
         {
             Console.WriteLine("\n¿Qué propiedad desea modificar?" +
             "              \n   1- La especialidad" +

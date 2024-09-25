@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-public class ModuloController
+public class Modulo_Controller
 {
     public static void CrearModulo(/*int idModulo, */string descripcion)
     {

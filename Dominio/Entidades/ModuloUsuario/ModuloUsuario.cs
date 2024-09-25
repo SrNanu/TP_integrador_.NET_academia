@@ -19,7 +19,7 @@ public class ModuloUsuario : EntidadNegocio
     public int IdModulo { get; set; }
 
     [ForeignKey("Usuario")]
-    public int IdUusario { get; set; }
+    public int IdUsuario { get; set; }
 
     [Required]
     public required bool PermiteAlta { get; set; }
@@ -32,5 +32,4 @@ public class ModuloUsuario : EntidadNegocio
 
     [Required]
     public required bool PermiteModificacion { get; set; }
-
 }

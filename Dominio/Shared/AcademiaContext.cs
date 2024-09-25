@@ -14,6 +14,7 @@ public class AcademiaContext : DbContext
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Plan> Planes { get; set; }
     public DbSet<Modulo> Modulos { get; set; }
+    public DbSet<ModuloUsuario> ModuloUsuarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

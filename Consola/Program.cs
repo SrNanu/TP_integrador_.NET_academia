@@ -9,12 +9,12 @@ public class Program
     public static void Main(string[] args)
     {
         // ** CRUD Usuario **
-        UsuarioController.CrearUsuario(/*1,*/ 1, "Juan Cruz", "Mondino", new DateTime(2000, 10, 23), "Urquiza 123", "3364592427",
+        Usuario_Controller.CrearUsuario(/*1,*/ 1, "Juan Cruz", "Mondino", new DateTime(2000, 10, 23), "Urquiza 123", "3364592427",
                  12345, "juan.mondino@example.com", "juan.c", "contraseñaSegura");
-        UsuarioController.LeerUsuario(12345);
-        UsuarioController.ActualizarUsuario(12345);
-        UsuarioController.LeerUsuario(12345);
-        UsuarioController.EliminarUsuario(12345);
+        Usuario_Controller.LeerUsuario(12345);
+        Usuario_Controller.ActualizarUsuario(12345);
+        Usuario_Controller.LeerUsuario(12345);
+        Usuario_Controller.EliminarUsuario(12345);
         // Estará bien referenciado de esta forma? con la clase por delante
     }
     /*

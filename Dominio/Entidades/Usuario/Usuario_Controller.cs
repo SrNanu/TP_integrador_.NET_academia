@@ -4,7 +4,7 @@ using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 
-public class UsuarioController
+public class Usuario_Controller
 {
     public static void CrearUsuario(/*int id, */int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion,
                                     string telefono, int legajo, string correo, string nombreUser, string contra)
@@ -61,7 +61,7 @@ public class UsuarioController
 
     public static void ActualizarUsuario(int legajo)
     {
-        int decision = 9;
+        int decision = 10;
 
         while (decision > 9 || decision < 0)
         {
