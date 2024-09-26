@@ -28,23 +28,12 @@ public class Usuario_Controller
         }
     
 
-    public static void LeerUsuario(int legajo)
+    public static Usuario? LeerUsuario(int legajo)
     {
         using var context = new AcademiaContext();
         
-        var usuario = context.Usuarios.FirstOrDefault(u => u.Legajo == legajo);
-        if (usuario != null)
-        {
-            Console.WriteLine($"Usuario encontrado: ID: {usuario.Id}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
-                        $"Edad: {usuario.Edad}, Fecha de Nacimiento: {usuario.FechaNacimiento.ToShortDateString()}, " +
-                        $"Dirección: {usuario.Direccion}, Tipo: {usuario.Tipo}, Telefono: {usuario.Telefono}, " +
-                        $"Legajo: {usuario.Legajo}, Email: {usuario.Email}, Username: {usuario.Username}, " +
-                        $"Habilitado: {usuario.Habilitado}");
-        }
-        else
-        {
-            Console.WriteLine("Usuario no encontrado.");
-        }
+        return context.Usuarios.FirstOrDefault(u => u.Legajo == legajo);
+       
         
     }
 
