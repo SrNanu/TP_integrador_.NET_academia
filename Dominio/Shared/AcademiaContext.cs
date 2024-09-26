@@ -26,7 +26,6 @@ public class AcademiaContext : DbContext
     {
         optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=AcademiaDb");
     }
-
     //Si lo queremos en MySQL
     /*
      optionsBuilder.UseMySql("Server=localhost;Database=Academia;User=root;Password=root;",
