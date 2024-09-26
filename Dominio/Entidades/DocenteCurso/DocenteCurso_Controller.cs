@@ -7,8 +7,15 @@ using System.Threading.Tasks;
 
 public class DocenteCurso_Controller
 {
-    public static void CrearDocenteCurso(/*int id, */int idCurso, int idDocente, TiposCargos cargo)
+    public static void CrearDocenteCurso(/*int id, */int idCurso, int idDocente)
     {
+        int tipoCargo;
+        do
+        {
+            Console.Write("\nIngrese el tipo de usuario 1 para profesor de práctica y 0 para profesor de teoría: ");
+            tipoCargo = int.Parse(Console.ReadLine());
+        } while (tipoCargo != 0 || tipoCargo != 1);
+
         using (var context = new AcademiaContext())
         {
             var docenteCurso = new DocenteCurso()
@@ -16,7 +23,7 @@ public class DocenteCurso_Controller
                 //IdDocenteCurso = id,
                 IdCurso = idCurso,
                 IdDocente = idDocente,
-                Cargo = cargo
+                Cargo = (TiposCargos)tipoCargo
             };
 
             context.DocenteCursos.Add(docenteCurso);
