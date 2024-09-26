@@ -24,7 +24,6 @@ public class AcademiaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseMySql("Server=localhost;Database=Academia;User=root;Password=root;",
-            ServerVersion.AutoDetect("Server=localhost;Database=Academia;User=root;Password=root;"));
+        optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=AcademiaDb");
     }
 }
