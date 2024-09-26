@@ -7,31 +7,30 @@ using System.Threading.Tasks;
 
 public class Plan_Controller
 {
-    public static void CrearPlan(/*int idPLan, */int idEspecialidad, string descripcion)
+    public static void CrearPlan(int idEspecialidad, string descripcion)
     {
         using (var context = new AcademiaContext())
         {
             var plan = new Plan()
             {
-                //IdPlan = id,
                 IdEspecialidad = idEspecialidad,
                 Descripcion = descripcion
             };
 
             context.Planes.Add(plan);
             context.SaveChanges();
-            Console.WriteLine($"Plan creado: ID: {plan.IdPlan}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
+            Console.WriteLine($"Plan creado: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
         }
     }
 
-    public static void LeerPlan(int idPlan)
+    public static void LeerPlan(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var plan = context.Planes.FirstOrDefault(p => p.IdPlan == idPlan);
+            var plan = context.Planes.FirstOrDefault(p => p.Id == id);
             if (plan != null)
             {
-                Console.WriteLine($"Plan creado: ID: {plan.IdPlan}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
+                Console.WriteLine($"Plan leido: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
             }
             else
             {
@@ -40,7 +39,7 @@ public class Plan_Controller
         }
     }
 
-    public static void ActualizarPlan(int idPlan)
+    public static void ActualizarPlan(int id)
     {
         int decision = 9;
 
@@ -58,7 +57,7 @@ public class Plan_Controller
         {
             using (var context = new AcademiaContext())
             {
-                var plan = context.Planes.FirstOrDefault(p => p.IdPlan == idPlan);
+                var plan = context.Planes.FirstOrDefault(p => p.Id == id);
                 if (plan != null)
                 {
                     switch (decision)
@@ -74,7 +73,7 @@ public class Plan_Controller
                             break;
                     }
                     context.SaveChanges();
-                    Console.WriteLine($"Plan creado: ID: {plan.IdPlan}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
+                    Console.WriteLine($"Plan actualizado: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
                 }
                 else
                 {
@@ -84,16 +83,16 @@ public class Plan_Controller
         }
     }
 
-    public static void EliminarPlan(int idPlan)
+    public static void EliminarPlan(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var plan = context.Planes.FirstOrDefault(p => p.IdPlan == idPlan);
+            var plan = context.Planes.FirstOrDefault(p => p.Id == id);
             if (plan != null)
             {
                 context.Planes.Remove(plan);
                 context.SaveChanges();
-                Console.WriteLine($"Plan creado: ID: {plan.IdPlan}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
+                Console.WriteLine($"Plan eliminado: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
             }
             else
             {

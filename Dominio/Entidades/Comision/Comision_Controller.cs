@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 public class Comision_Controller
 {
-    public static void CrearComision(/*int id, */int idPlan, string descripcion, int anioEspecialidad)
+    public static void CrearComision(int idPlan, string descripcion, int anioEspecialidad)
     {
         using (var context = new AcademiaContext())
         {
             var comision = new Comision()
             {
-                //IdComision = id,
                 IdPlan = idPlan,
                 Descripcion = descripcion,
                 AnioEspecialidad = anioEspecialidad
@@ -21,19 +20,19 @@ public class Comision_Controller
 
             context.Comisiones.Add(comision);
             context.SaveChanges();
-            Console.WriteLine($"Comisión creada: ID: {comision.IdComision}, ID Plan: {comision.IdPlan}, " +
+            Console.WriteLine($"Comisión creada: ID: {comision.Id}, ID Plan: {comision.IdPlan}, " +
                               $"Descripción: {comision.Descripcion}, Año Especialidad: {comision.AnioEspecialidad}");
         }
     }
 
-    public static void LeerComision(int idComision)
+    public static void LeerComision(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var comision = context.Comisiones.FirstOrDefault(c => c.IdComision == idComision);
+            var comision = context.Comisiones.FirstOrDefault(c => c.Id == id);
             if (comision != null)
             {
-                Console.WriteLine($"Comisión creada: ID: {comision.IdComision}, ID Plan: {comision.IdPlan}, " +
+                Console.WriteLine($"Comisión encontrada: ID: {comision.Id}, ID Plan: {comision.IdPlan}, " +
                                   $"Descripción: {comision.Descripcion}, Año Especialidad: {comision.AnioEspecialidad}");
 
             }
@@ -44,7 +43,7 @@ public class Comision_Controller
         }
     }
 
-    public static void ActualizarComision(int idComision)
+    public static void ActualizarComision(int id)
     {
         int decision = 10;
 
@@ -63,7 +62,7 @@ public class Comision_Controller
         {
             using (var context = new AcademiaContext())
             {
-                var comision = context.Comisiones.FirstOrDefault(c => c.IdComision == idComision);
+                var comision = context.Comisiones.FirstOrDefault(c => c.Id == id);
                 if (comision != null)
                 {
                     switch (decision)
@@ -84,7 +83,7 @@ public class Comision_Controller
                             break;
                     }
                     context.SaveChanges();
-                    Console.WriteLine($"Comisión creada: ID: {comision.IdComision}, ID Plan: {comision.IdPlan}, " +
+                    Console.WriteLine($"Comisión actualizada: ID: {comision.Id}, ID Plan: {comision.IdPlan}, " +
                                       $"Descripción: {comision.Descripcion}, Año Especialidad: {comision.AnioEspecialidad}");
 
                 }
@@ -96,16 +95,16 @@ public class Comision_Controller
         }
     }
 
-    public static void EliminarComision(int idComision)
+    public static void EliminarComision(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var comision = context.Comisiones.FirstOrDefault(c => c.IdComision == idComision);
+            var comision = context.Comisiones.FirstOrDefault(c => c.Id == id);
             if (comision != null)
             {
                 context.Comisiones.Remove(comision);
                 context.SaveChanges();
-                Console.WriteLine($"Comisión creada: ID: {comision.IdComision}, ID Plan: {comision.IdPlan}, " +
+                Console.WriteLine($"Comisión eliminada: ID: {comision.Id}, ID Plan: {comision.IdPlan}, " +
                                   $"Descripción: {comision.Descripcion}, Año Especialidad: {comision.AnioEspecialidad}");
 
             }

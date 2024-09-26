@@ -6,30 +6,29 @@ using System.Threading.Tasks;
 
 public class Especialidad_Controller
 {
-    public static void CrearEspecialidad(/*int idEspecialidad, */string descripcion)
+    public static void CrearEspecialidad(string descripcion)
     {
         using (var context = new AcademiaContext())
         {
             var especialidad = new Especialidad()
             {
-                //IdEspecialidad = id,
                 Descripcion = descripcion
             };
 
             context.Especialidades.Add(especialidad);
             context.SaveChanges();
-            Console.WriteLine($"Especialidad creado: ID: {especialidad.IdEspecialidad}, Descripcion: {especialidad.Descripcion}");
+            Console.WriteLine($"Especialidad creado: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
         }
     }
 
-    public static void LeerEspecialidad(int idEspecialidad)
+    public static void LeerEspecialidad(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var especialidad = context.Especialidades.FirstOrDefault(e => e.IdEspecialidad == idEspecialidad);
+            var especialidad = context.Especialidades.FirstOrDefault(e => e.Id == id);
             if (especialidad != null)
             {
-                Console.WriteLine($"Especialidad creado: ID: {especialidad.IdEspecialidad}, Descripcion: {especialidad.Descripcion}");
+                Console.WriteLine($"Especialidad encontrada: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
             }
             else
             {
@@ -38,18 +37,18 @@ public class Especialidad_Controller
         }
     }
 
-    public static void ActualizarEspecialidad(int idEspecialidad)
+    public static void ActualizarEspecialidad(int id)
     {
 
         using (var context = new AcademiaContext())
         {
-            var especialidad = context.Especialidades.FirstOrDefault(e => e.IdEspecialidad == idEspecialidad);
+            var especialidad = context.Especialidades.FirstOrDefault(e => e.Id == id);
             if (especialidad != null)
             {
                 Console.Write("\nIngrese la nueva descripción: ");
                 especialidad.Descripcion = Console.ReadLine();
                 context.SaveChanges();
-                Console.WriteLine($"Especialidad creado: ID: {especialidad.IdEspecialidad}, Descripcion: {especialidad.Descripcion}");
+                Console.WriteLine($"Especialidad actualizada: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
             }
             else
             {
@@ -59,16 +58,16 @@ public class Especialidad_Controller
 
     }
 
-    public static void EliminarEspecialidad(int idEspecialidad)
+    public static void EliminarEspecialidad(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var especialidad = context.Especialidades.FirstOrDefault(e => e.IdEspecialidad == idEspecialidad);
+            var especialidad = context.Especialidades.FirstOrDefault(e => e.Id == id);
             if (especialidad != null)
             {
                 context.Especialidades.Remove(especialidad);
                 context.SaveChanges();
-                Console.WriteLine($"Especialidad creado: ID: {especialidad.IdEspecialidad}, Descripcion: {especialidad.Descripcion}");
+                Console.WriteLine($"Especialidad eliminada: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
             }
             else
             {

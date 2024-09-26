@@ -6,7 +6,7 @@ using System.Globalization;
 
 public class Usuario_Controller
 {
-    public static void CrearUsuario(/*int id, */int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion, string telefono, 
+    public static void CrearUsuario(int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion, string telefono,
                                     int legajo, string correo, string nombreUser, string contra)
     {
         int tipoUsuario;
@@ -14,13 +14,12 @@ public class Usuario_Controller
         {
             Console.Write("\nIngrese el tipo de usuario 1 para profesor y 0 para alumno: ");
             tipoUsuario = int.Parse(Console.ReadLine());
-        } while (tipoUsuario != 0 || tipoUsuario != 1);
+        } while (tipoUsuario != 0 && tipoUsuario != 1);
 
         using (var context = new AcademiaContext())
         {
             var usuario = new Usuario()
             {
-                //IdUsuario = id,
                 IdPlan = idPlan,
                 Nombre = nombre,
                 Apellido = apellido,
@@ -38,7 +37,7 @@ public class Usuario_Controller
 
             context.Usuarios.Add(usuario);
             context.SaveChanges();
-            Console.WriteLine($"Usuario creado: ID: {usuario.IdUsuario}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
+            Console.WriteLine($"Usuario creado: ID: {usuario.Id}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
                           $"Edad: {usuario.Edad}, Fecha de Nacimiento: {usuario.FechaNacimiento.ToShortDateString()}, " +
                           $"Dirección: {usuario.Direccion}, Tipo: {usuario.Tipo}, Telefono: {usuario.Telefono}, " +
                           $"Legajo: {usuario.Legajo}, Email: {usuario.Email}, Username: {usuario.Username}, " +
@@ -53,7 +52,7 @@ public class Usuario_Controller
             var usuario = context.Usuarios.FirstOrDefault(u => u.Legajo == legajo);
             if (usuario != null)
             {
-                Console.WriteLine($"Usuario encontrado: ID: {usuario.IdUsuario}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
+                Console.WriteLine($"Usuario encontrado: ID: {usuario.Id}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
                           $"Edad: {usuario.Edad}, Fecha de Nacimiento: {usuario.FechaNacimiento.ToShortDateString()}, " +
                           $"Dirección: {usuario.Direccion}, Tipo: {usuario.Tipo}, Telefono: {usuario.Telefono}, " +
                           $"Legajo: {usuario.Legajo}, Email: {usuario.Email}, Username: {usuario.Username}, " +
@@ -150,7 +149,7 @@ public class Usuario_Controller
                             break;
                     }
                     context.SaveChanges();
-                    Console.WriteLine($"Usuario actualizado: ID: {usuario.IdUsuario}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
+                    Console.WriteLine($"Usuario actualizado: ID: {usuario.Id}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
                           $"Edad: {usuario.Edad}, Fecha de Nacimiento: {usuario.FechaNacimiento.ToShortDateString()}, " +
                           $"Dirección: {usuario.Direccion}, Tipo: {usuario.Tipo}, Telefono: {usuario.Telefono}, " +
                           $"Legajo: {usuario.Legajo}, Email: {usuario.Email}, Username: {usuario.Username}, " +
@@ -173,7 +172,7 @@ public class Usuario_Controller
             {
                 context.Usuarios.Remove(usuario);
                 context.SaveChanges();
-                Console.WriteLine($"Usuario eliminado: ID: {usuario.IdUsuario}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
+                Console.WriteLine($"Usuario eliminado: ID: {usuario.Id}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
                           $"Edad: {usuario.Edad}, Fecha de Nacimiento: {usuario.FechaNacimiento.ToShortDateString()}, " +
                           $"Dirección: {usuario.Direccion}, Tipo: {usuario.Tipo}, Telefono: {usuario.Telefono}, " +
                           $"Legajo: {usuario.Legajo}, Email: {usuario.Email}, Username: {usuario.Username}, " +

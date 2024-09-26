@@ -8,13 +8,12 @@ using System.Threading.Tasks;
 
 public class ModuloUsuario_Controller
 {
-    public static void CrearModuloUsuario(/*int id, */int idModulo, int idUsuario)
+    public static void CrearModuloUsuario(int idModulo, int idUsuario)
     {
         using (var context = new AcademiaContext())
         {
             var ModuloUsuario = new ModuloUsuario()
             {
-                //IdModuloUsuario = id,
                 IdModulo = idModulo,
                 IdUsuario = idUsuario,
                 PermiteAlta = false,
@@ -25,21 +24,21 @@ public class ModuloUsuario_Controller
 
             context.ModuloUsuarios.Add(ModuloUsuario);
             context.SaveChanges();
-            Console.WriteLine($"ModuloUsuario creado: ID Módulo Usuario: {ModuloUsuario.IdModuloUsuario}, ID Módulo: {ModuloUsuario.IdModulo}, " +
+            Console.WriteLine($"ModuloUsuario creado: ID Módulo Usuario: {ModuloUsuario.Id}, ID Módulo: {ModuloUsuario.IdModulo}, " +
                               $"ID Usuario: {ModuloUsuario.IdUsuario}, Permite Alta: {ModuloUsuario.PermiteAlta}, Permite Baja: {ModuloUsuario.PermiteBaja}, " +
                               $"Permite Consulta: {ModuloUsuario.PermiteConsulta}, Permite Modificación: {ModuloUsuario.PermiteModificacion}");
 
         }
     }
 
-    public static void LeerModuloUsuario(int idModuloUsuario)
+    public static void LeerModuloUsuario(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var ModuloUsuario = context.ModuloUsuarios.FirstOrDefault(mu => mu.IdModuloUsuario == idModuloUsuario);
+            var ModuloUsuario = context.ModuloUsuarios.FirstOrDefault(mu => mu.Id == id);
             if (ModuloUsuario != null)
             {
-                Console.WriteLine($"ModuloUsuario creado: ID Módulo Usuario: {ModuloUsuario.IdModuloUsuario}, ID Módulo: {ModuloUsuario.IdModulo}, " +
+                Console.WriteLine($"ModuloUsuario leido: ID Módulo Usuario: {ModuloUsuario.Id}, ID Módulo: {ModuloUsuario.IdModulo}, " +
                                   $"ID Usuario: {ModuloUsuario.IdUsuario}, Permite Alta: {ModuloUsuario.PermiteAlta}, Permite Baja: {ModuloUsuario.PermiteBaja}, " +
                                   $"Permite Consulta: {ModuloUsuario.PermiteConsulta}, Permite Modificación: {ModuloUsuario.PermiteModificacion}");
             }
@@ -50,7 +49,7 @@ public class ModuloUsuario_Controller
         }
     }
 
-    public static void ActualizarModuloUsuario(int idModuloUsuario)
+    public static void ActualizarModuloUsuario(int id)
     {
         int decision = 9;
 
@@ -62,7 +61,8 @@ public class ModuloUsuario_Controller
             "              \n   3- Permite Alta" +
             "              \n   4- Permite Baja" +
             "              \n   5- Permite Consulta" +
-            "              \n   6- Permite Modificación");
+            "              \n   6- Permite Modificación" +
+            "              \n   0- Salir");
             Console.Write("\nIngrese su decisión: ");
             decision = int.Parse(Console.ReadLine());
         }
@@ -71,7 +71,7 @@ public class ModuloUsuario_Controller
         {
             using (var context = new AcademiaContext())
             {
-                var ModuloUsuario = context.ModuloUsuarios.FirstOrDefault(mu => mu.IdModuloUsuario == idModuloUsuario);
+                var ModuloUsuario = context.ModuloUsuarios.FirstOrDefault(mu => mu.Id == id);
                 if (ModuloUsuario != null)
                 {
                     switch (decision)
@@ -92,7 +92,7 @@ public class ModuloUsuario_Controller
                             {
                                 Console.Write("\nIngrese 1 para permitir el alta y 0 para no hacerlo: ");
                                 decision1 = int.Parse(Console.ReadLine());
-                            } while (decision1 != 0 || decision1 != 1);
+                            } while (decision1 != 0 && decision1 != 1);
 
                             if (decision1 == 1)
                             {
@@ -110,7 +110,7 @@ public class ModuloUsuario_Controller
                             {
                                 Console.Write("\nIngrese 1 para permitir la baja y 0 para no hacerlo: ");
                                 desicion2 = int.Parse(Console.ReadLine());
-                            } while (desicion2 != 0 || desicion2 != 1);
+                            } while (desicion2 != 0 && desicion2 != 1);
 
                             if (desicion2 == 1)
                             {
@@ -128,7 +128,7 @@ public class ModuloUsuario_Controller
                             {
                                 Console.Write("\nIngrese 1 para permitir la consulta y 0 para no hacerlo: ");
                                 desicion3 = int.Parse(Console.ReadLine());
-                            } while (desicion3 != 0 || desicion3 != 1);
+                            } while (desicion3 != 0 && desicion3 != 1);
 
                             if (desicion3 == 1)
                             {
@@ -146,7 +146,7 @@ public class ModuloUsuario_Controller
                             {
                                 Console.Write("\nIngrese 1 para permitir la modificación y 0 para no hacerlo: ");
                                 desicion4 = int.Parse(Console.ReadLine());
-                            } while (desicion4 != 0 || desicion4 != 1);
+                            } while (desicion4 != 0 && desicion4 != 1);
 
                             if (desicion4 == 1)
                             {
@@ -159,7 +159,7 @@ public class ModuloUsuario_Controller
                             break;
                     }
                     context.SaveChanges();
-                    Console.WriteLine($"ModuloUsuario creado: ID Módulo Usuario: {ModuloUsuario.IdModuloUsuario}, ID Módulo: {ModuloUsuario.IdModulo}, " +
+                    Console.WriteLine($"ModuloUsuario actualizado: ID Módulo Usuario: {ModuloUsuario.Id}, ID Módulo: {ModuloUsuario.IdModulo}, " +
                                       $"ID Usuario: {ModuloUsuario.IdUsuario}, Permite Alta: {ModuloUsuario.PermiteAlta}, Permite Baja: {ModuloUsuario.PermiteBaja}, " +
                                       $"Permite Consulta: {ModuloUsuario.PermiteConsulta}, Permite Modificación: {ModuloUsuario.PermiteModificacion}");
                 }
@@ -171,16 +171,16 @@ public class ModuloUsuario_Controller
         }
     }
 
-    public static void EliminarModuloUsuario(int idModuloUsuario)
+    public static void EliminarModuloUsuario(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var ModuloUsuario = context.ModuloUsuarios.FirstOrDefault(mu => mu.IdModuloUsuario == idModuloUsuario);
+            var ModuloUsuario = context.ModuloUsuarios.FirstOrDefault(mu => mu.Id == id);
             if (ModuloUsuario != null)
             {
                 context.ModuloUsuarios.Remove(ModuloUsuario);
                 context.SaveChanges();
-                Console.WriteLine($"ModuloUsuario creado: ID Módulo Usuario: {ModuloUsuario.IdModuloUsuario}, ID Módulo: {ModuloUsuario.IdModulo}, " +
+                Console.WriteLine($"ModuloUsuario eliminado: ID Módulo Usuario: {ModuloUsuario.Id}, ID Módulo: {ModuloUsuario.IdModulo}, " +
                                   $"ID Usuario: {ModuloUsuario.IdUsuario}, Permite Alta: {ModuloUsuario.PermiteAlta}, Permite Baja: {ModuloUsuario.PermiteBaja}, " +
                                   $"Permite Consulta: {ModuloUsuario.PermiteConsulta}, Permite Modificación: {ModuloUsuario.PermiteModificacion}");
             }

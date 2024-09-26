@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 public class Materia_Controller
 {
-    public static void CrearMateria(/*int id, */string descripcion, int idPlan, int hs_semanales, int hs_totales)
+    public static void CrearMateria(string descripcion, int idPlan, int hs_semanales, int hs_totales)
     {
         using (var context = new AcademiaContext())
         {
             var materia = new Materia()
             {
-                //IdMateria = id,
                 Descripcion = descripcion,
                 IdPlan = idPlan,
                 HsSemanales = hs_semanales,
@@ -22,20 +21,20 @@ public class Materia_Controller
 
             context.Materias.Add(materia);
             context.SaveChanges();
-            Console.WriteLine($"Materia creada: ID: {materia.IdMateria}, Descripción: {materia.Descripcion}, " +
+            Console.WriteLine($"Materia creada: ID: {materia.Id}, Descripción: {materia.Descripcion}, " +
                               $"ID Plan: {materia.IdPlan}, Horas Semanales: {materia.HsSemanales}, Horas Totales: {materia.HsTotales}");
 
         }
     }
 
-    public static void LeerMateria(int idMateria)
+    public static void LeerMateria(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var materia = context.Materias.FirstOrDefault(m => m.IdMateria == idMateria);
+            var materia = context.Materias.FirstOrDefault(m => m.Id == id);
             if (materia != null)
             {
-                Console.WriteLine($"Materia creada: ID: {materia.IdMateria}, Descripción: {materia.Descripcion}, " +
+                Console.WriteLine($"Materia encontrada: ID: {materia.Id}, Descripción: {materia.Descripcion}, " +
                               $"ID Plan: {materia.IdPlan}, Horas Semanales: {materia.HsSemanales}, Horas Totales: {materia.HsTotales}");
             }
             else
@@ -45,7 +44,7 @@ public class Materia_Controller
         }
     }
 
-    public static void ActualizarMateria(int idMateria)
+    public static void ActualizarMateria(int id)
     {
         int decision = 10;
 
@@ -65,7 +64,7 @@ public class Materia_Controller
         {
             using (var context = new AcademiaContext())
             {
-                var materia = context.Materias.FirstOrDefault(m => m.IdMateria == idMateria);
+                var materia = context.Materias.FirstOrDefault(m => m.Id == id);
                 if (materia != null)
                 {
                     switch (decision)
@@ -91,7 +90,7 @@ public class Materia_Controller
                             break;
                     }
                     context.SaveChanges();
-                    Console.WriteLine($"Materia creada: ID: {materia.IdMateria}, Descripción: {materia.Descripcion}, " +
+                    Console.WriteLine($"Materia actualizada: ID: {materia.Id}, Descripción: {materia.Descripcion}, " +
                               $"ID Plan: {materia.IdPlan}, Horas Semanales: {materia.HsSemanales}, Horas Totales: {materia.HsTotales}");
                 }
                 else
@@ -102,16 +101,16 @@ public class Materia_Controller
         }
     }
 
-    public static void EliminarMateria(int idMateria)
+    public static void EliminarMateria(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var materia = context.Materias.FirstOrDefault(m => m.IdMateria == idMateria);
+            var materia = context.Materias.FirstOrDefault(m => m.Id == id);
             if (materia != null)
             {
                 context.Materias.Remove(materia);
                 context.SaveChanges();
-                Console.WriteLine($"Materia creada: ID: {materia.IdMateria}, Descripción: {materia.Descripcion}, " +
+                Console.WriteLine($"Materia eliminada: ID: {materia.Id}, Descripción: {materia.Descripcion}, " +
                               $"ID Plan: {materia.IdPlan}, Horas Semanales: {materia.HsSemanales}, Horas Totales: {materia.HsTotales}");
             }
             else

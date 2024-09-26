@@ -8,13 +8,6 @@ using System.Threading.Tasks;
 
 public class Materia : EntidadNegocio
 {
-    [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD
-    public int IdMateria
-    {
-        get { return this.Id; }
-        set { this.Id = value; }
-    }
-    
     [Required]
     [StringLength(100)]
     public required string Descripcion { get; set; }

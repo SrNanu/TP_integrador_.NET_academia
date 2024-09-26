@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 public class Curso_Controller
 {
-    public static void CrearCurso(/*int id, */int idComision, int idMateria, int cupo, int anioCalendario, string descripcion)
+    public static void CrearCurso(int idComision, int idMateria, int cupo, int anioCalendario, string descripcion)
     {
         using (var context = new AcademiaContext())
         {
             var curso = new Curso()
             {
-                //IdCurso = id,
                 IdComision = idComision,
                 IdMateria = idMateria,
                 Cupo = cupo,
@@ -23,20 +22,20 @@ public class Curso_Controller
 
             context.Cursos.Add(curso);
             context.SaveChanges();
-            Console.WriteLine($"Curso creado: ID: {curso.IdCurso}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
+            Console.WriteLine($"Curso creado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
                               $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
 
         }
     }
 
-    public static void LeerCurso(int idCurso)
+    public static void LeerCurso(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var curso = context.Cursos.FirstOrDefault(c => c.IdCurso == idCurso);
+            var curso = context.Cursos.FirstOrDefault(c => c.Id == id);
             if (curso != null)
             {
-                Console.WriteLine($"Curso creado: ID: {curso.IdCurso}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
+                Console.WriteLine($"Curso encontrado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
                                   $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
 
             }
@@ -47,7 +46,7 @@ public class Curso_Controller
         }
     }
 
-    public static void ActualizarCurso(int idCurso)
+    public static void ActualizarCurso(int id)
     {
         int decision = 10;
 
@@ -68,7 +67,7 @@ public class Curso_Controller
         {
             using (var context = new AcademiaContext())
             {
-                var curso = context.Cursos.FirstOrDefault(c => c.IdCurso == idCurso);
+                var curso = context.Cursos.FirstOrDefault(c => c.Id == id);
                 if (curso != null)
                 {
                     switch (decision)
@@ -99,7 +98,7 @@ public class Curso_Controller
                             break;
                     }
                     context.SaveChanges();
-                    Console.WriteLine($"Curso creado: ID: {curso.IdCurso}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
+                    Console.WriteLine($"Curso actualizado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
                                       $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
 
                 }
@@ -111,16 +110,16 @@ public class Curso_Controller
         }
     }
 
-    public static void EliminarCurso(int idCurso)
+    public static void EliminarCurso(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var curso = context.Cursos.FirstOrDefault(c => c.IdCurso == idCurso);
+            var curso = context.Cursos.FirstOrDefault(c => c.Id == id);
             if (curso != null)
             {
                 context.Cursos.Remove(curso);
                 context.SaveChanges();
-                Console.WriteLine($"Curso creado: ID: {curso.IdCurso}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
+                Console.WriteLine($"Curso eliminado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
                                   $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
 
             }

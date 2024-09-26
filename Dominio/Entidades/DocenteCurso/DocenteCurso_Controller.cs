@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 public class DocenteCurso_Controller
 {
-    public static void CrearDocenteCurso(/*int id, */int idCurso, int idDocente)
+    public static void CrearDocenteCurso(int idCurso, int idDocente)
     {
         int tipoCargo;
         do
         {
             Console.Write("\nIngrese el tipo de usuario 1 para profesor de práctica y 0 para profesor de teoría: ");
             tipoCargo = int.Parse(Console.ReadLine());
-        } while (tipoCargo != 0 || tipoCargo != 1);
+        } while (tipoCargo != 0 && tipoCargo != 1);
 
         using (var context = new AcademiaContext())
         {
             var docenteCurso = new DocenteCurso()
             {
-                //IdDocenteCurso = id,
                 IdCurso = idCurso,
                 IdDocente = idDocente,
                 Cargo = (TiposCargos)tipoCargo
@@ -28,20 +27,20 @@ public class DocenteCurso_Controller
 
             context.DocenteCursos.Add(docenteCurso);
             context.SaveChanges();
-            Console.WriteLine($"DocenteCurso creado: ID: {docenteCurso.IdDocenteCurso}, ID Curso: {docenteCurso.IdCurso}, " +
+            Console.WriteLine($"DocenteCurso creado: ID: {docenteCurso.Id}, ID Curso: {docenteCurso.IdCurso}, " +
                               $"ID Docente: {docenteCurso.IdDocente}, Cargo: {docenteCurso.Cargo}");
 
         }
     }
 
-    public static void LeerDocenteCurso(int idDocenteCurso)
+    public static void LeerDocenteCurso(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var docenteCurso = context.DocenteCursos.FirstOrDefault(dc => dc.IdDocenteCurso == idDocenteCurso);
+            var docenteCurso = context.DocenteCursos.FirstOrDefault(dc => dc.Id == id);
             if (docenteCurso != null)
             {
-                Console.WriteLine($"DocenteCurso creado: ID: {docenteCurso.IdDocenteCurso}, ID Curso: {docenteCurso.IdCurso}, " +
+                Console.WriteLine($"DocenteCurso leido: ID: {docenteCurso.Id}, ID Curso: {docenteCurso.IdCurso}, " +
                                   $"ID Docente: {docenteCurso.IdDocente}, Cargo: {docenteCurso.Cargo}");
 
             }
@@ -52,7 +51,7 @@ public class DocenteCurso_Controller
         }
     }
 
-    public static void ActualizarDocenteCurso(int idDocenteCurso)
+    public static void ActualizarDocenteCurso(int id)
     {
         int decision = 10;
 
@@ -71,7 +70,7 @@ public class DocenteCurso_Controller
         {
             using (var context = new AcademiaContext())
             {
-                var docenteCurso = context.DocenteCursos.FirstOrDefault(dc => dc.IdDocenteCurso == idDocenteCurso);
+                var docenteCurso = context.DocenteCursos.FirstOrDefault(dc => dc.Id == id);
                 if (docenteCurso != null)
                 {
                     switch (decision)
@@ -92,7 +91,7 @@ public class DocenteCurso_Controller
                             {
                                 Console.Write("\nIngrese 0 para indicar que el profesor es de teoría y 1 para indicar que el profesor es de práctica: ");
                                 decisionCargo = int.Parse(Console.ReadLine());
-                            } while (decisionCargo != 0 || decisionCargo != 1);
+                            } while (!(decisionCargo == 0 && decisionCargo == 1));
 
                             if (decisionCargo == 1)
                             {
@@ -105,7 +104,7 @@ public class DocenteCurso_Controller
                             break;
                     }
                     context.SaveChanges();
-                    Console.WriteLine($"DocenteCurso creado: ID: {docenteCurso.IdDocenteCurso}, ID Curso: {docenteCurso.IdCurso}, " +
+                    Console.WriteLine($"DocenteCurso actualizado: ID: {docenteCurso.Id}, ID Curso: {docenteCurso.IdCurso}, " +
                                       $"ID Docente: {docenteCurso.IdDocente}, Cargo: {docenteCurso.Cargo}");
 
                 }
@@ -117,16 +116,16 @@ public class DocenteCurso_Controller
         }
     }
 
-    public static void EliminarDocenteCurso(int idDocenteCurso)
+    public static void EliminarDocenteCurso(int id)
     {
         using (var context = new AcademiaContext())
         {
-            var docenteCurso = context.DocenteCursos.FirstOrDefault(dc => dc.IdDocenteCurso == idDocenteCurso);
+            var docenteCurso = context.DocenteCursos.FirstOrDefault(dc => dc.Id == id);
             if (docenteCurso != null)
             {
                 context.DocenteCursos.Remove(docenteCurso);
                 context.SaveChanges();
-                Console.WriteLine($"DocenteCurso creado: ID: {docenteCurso.IdDocenteCurso}, ID Curso: {docenteCurso.IdCurso}, " +
+                Console.WriteLine($"DocenteCurso eliminado: ID: {docenteCurso.Id}, ID Curso: {docenteCurso.IdCurso}, " +
                                   $"ID Docente: {docenteCurso.IdDocente}, Cargo: {docenteCurso.Cargo}");
 
             }

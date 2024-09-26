@@ -8,13 +8,6 @@ using System.Threading.Tasks;
 
 public class Plan : EntidadNegocio
 {
-    [NotMapped] // Evita que esta propiedad se trate como una columna nueva en la BD
-    public int IdPlan
-    {
-        get { return this.Id; }
-        set { this.Id = value; }
-    }
-
     [ForeignKey("Especialidad")]
     public int IdEspecialidad { get; set; }
 
