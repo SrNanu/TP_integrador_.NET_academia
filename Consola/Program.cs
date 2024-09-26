@@ -3,19 +3,36 @@ using System.Linq;
 using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Diagnostics.Contracts;
 
 public class Program
 {
     public static void Main(string[] args)
     {
         // ** CRUD Usuario **
-        Usuario_Controller.CrearUsuario(/*1,*/ 1, "Juan Cruz", "Mondino", new DateTime(2000, 10, 23), "Urquiza 123", "3364592427",
-                 12345, "juan.mondino@example.com", "juan.c", "contraseñaSegura");
+        var usuario = new Usuario()
+        {
+            IdPlan = 1,
+            Nombre = "Juan Cruz",
+            Apellido = "Mondino",
+            Edad = DateTime.Now.Year - new DateTime(2000, 10, 23).Year,
+            FechaNacimiento = new DateTime(2000, 10, 23),
+            Direccion = "Urquiza 123",
+            Telefono = "3364592427",
+            Legajo = 12345,
+            Email = "juan.mondino@example.com",
+            Username = "juan.c",
+            Password = "contraseñaSegura",
+            Habilitado = false
+        };
+        Usuario_Controller.CrearUsuario(usuario);
         Usuario_Controller.LeerUsuario(12345);
         Usuario_Controller.ActualizarUsuario(12345);
         Usuario_Controller.LeerUsuario(12345);
         // Estará bien referenciado de esta forma? con la clase por delante
 
+    /*
         // ** CRUD Plan **
         Plan_Controller.CrearPlan(1, "Ingeniería en Sistemas");
         Plan_Controller.LeerPlan(1);
@@ -91,5 +108,6 @@ public class Program
         Curso_Controller.EliminarCurso(1);
         Comision_Controller.EliminarComision(1);
         AlumnoInscripcion_Controller.EliminarAlumnoInscripcion(1);
+    */
     }
 }

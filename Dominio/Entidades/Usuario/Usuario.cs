@@ -36,7 +36,6 @@ public class Usuario : EntidadNegocio
     [StringLength(200)]
     public required string Direccion { get; set; }
 
-    [Required]
     public TiposUsuarios Tipo { get; set; }
 
     [StringLength(100)]

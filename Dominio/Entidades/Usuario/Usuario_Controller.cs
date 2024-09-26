@@ -6,8 +6,7 @@ using System.Globalization;
 
 public class Usuario_Controller
 {
-    public static void CrearUsuario(int idPlan, string nombre, string apellido, DateTime fechaNac, string direccion, string telefono,
-                                    int legajo, string correo, string nombreUser, string contra)
+    public static void CrearUsuario(Usuario usuario)
     {
         int tipoUsuario;
         do
@@ -15,9 +14,10 @@ public class Usuario_Controller
             Console.Write("\nIngrese el tipo de usuario 1 para profesor y 0 para alumno: ");
             tipoUsuario = int.Parse(Console.ReadLine());
         } while (tipoUsuario != 0 && tipoUsuario != 1);
-
+        
         using (var context = new AcademiaContext())
         {
+            /*
             var usuario = new Usuario()
             {
                 IdPlan = idPlan,
@@ -34,7 +34,8 @@ public class Usuario_Controller
                 Password = contra,
                 Habilitado = false
             };
-
+            */
+            usuario.Tipo = (TiposUsuarios)tipoUsuario;
             context.Usuarios.Add(usuario);
             context.SaveChanges();
             Console.WriteLine($"Usuario creado: ID: {usuario.Id}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
