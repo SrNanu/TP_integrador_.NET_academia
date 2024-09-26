@@ -19,6 +19,7 @@ public class Program
             Edad = DateTime.Now.Year - new DateTime(2000, 10, 23).Year,
             FechaNacimiento = new DateTime(2000, 10, 23),
             Direccion = "Urquiza 123",
+            Tipo= TiposUsuarios.Alumno, // esta harcodeado pero la eleccion se hace o con boton o escrita
             Telefono = "3364592427",
             Legajo = 12345,
             Email = "juan.mondino@example.com",
