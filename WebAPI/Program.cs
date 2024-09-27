@@ -16,62 +16,59 @@ namespace WebAPI
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-                //Falta configurar de manera correcta        
-                app.UseHttpLogging();
-            }
+            
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            //Falta configurar de manera correcta        
+            app.UseHttpLogging();
+            
+
             app.UseHttpsRedirection();
 
 
             //Actualmente estamos usando los objetos del Domain Model, deberiamos usar ViewModels o DTOs 
 
-            app.MapGet("/clientes/{id}", (int id) =>
+            app.MapGet("/usuarios/{legajo}", (int legajo) =>
             {
-                
 
-                return Usuario_Controller.LeerUsuario(id);
+
+                return Usuario_Controller.LeerUsuario(legajo);
             })
-            .WithName("GetCliente")
-            .WithOpenApi();
+            .WithName("LeerUsuario");
+            //.WithOpenApi();
 
-            app.MapGet("/clientes", () =>
+            app.MapGet("/usuarios", () =>
             {
-                ClienteService clienteService = new ClienteService();
 
-                return clienteService.GetAll();
+
+                return Usuario_Controller.GetAll();
             })
-            .WithName("GetAllClientes")
-            .WithOpenApi();
+            .WithName("GetAllUsuarios");
+            //.WithOpenApi();
 
-            app.MapPost("/clientes", (Cliente cliente) =>
+            app.MapPost("/usuarios", (Usuario usuario) =>
             {
-                ClienteService clienteService = new ClienteService();
 
-                clienteService.Add(cliente);
+                Usuario_Controller.CrearUsuario(usuario);
             })
-            .WithName("AddCliente")
-            .WithOpenApi();
+            .WithName("CrearUsuario");
+            //.WithOpenApi();
 
-            app.MapPut("/clientes", (Cliente cliente) =>
+            app.MapPut("/usuarios", (Usuario usuario) =>
             {
-                ClienteService clienteService = new ClienteService();
 
-                clienteService.Update(cliente);
+                Usuario_Controller.ActualizarUsuario(usuario);
             })
-            .WithName("UpdateCliente")
-            .WithOpenApi();
+            .WithName("ActualizarUsuario");
+            //.WithOpenApi();
 
-            app.MapDelete("/clientes/{id}", (int id) =>
+            app.MapDelete("/usuarios/{legajo}", (int legajo) =>
             {
-                ClienteService clienteService = new ClienteService();
 
-                clienteService.Delete(id);
+                Usuario_Controller.EliminarUsuario(legajo);
             })
-            .WithName("DeleteCliente")
-            .WithOpenApi();
+            .WithName("EliminarUsuario");
+            //.WithOpenApi();
 
 
             app.UseStaticFiles();

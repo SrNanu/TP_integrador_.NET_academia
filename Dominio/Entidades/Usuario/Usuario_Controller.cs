@@ -26,6 +26,13 @@ public class Usuario_Controller
         
     }
 
+    public static IEnumerable<Usuario> GetAll()
+    {
+        using var context = new AcademiaContext();
+
+        return context.Usuarios.ToList();
+    }
+
     public static void ActualizarUsuario(Usuario usuario)
     {
         
@@ -65,15 +72,6 @@ public class Usuario_Controller
         {
             context.Usuarios.Remove(usuario);
             context.SaveChanges();
-            Console.WriteLine($"Usuario eliminado: ID: {usuario.Id}, Nombre: {usuario.Nombre}, Apellido: {usuario.Apellido}, " +
-                        $"Edad: {usuario.Edad}, Fecha de Nacimiento: {usuario.FechaNacimiento.ToShortDateString()}, " +
-                        $"Dirección: {usuario.Direccion}, Tipo: {usuario.Tipo}, Telefono: {usuario.Telefono}, " +
-                        $"Legajo: {usuario.Legajo}, Email: {usuario.Email}, Username: {usuario.Username}, " +
-                        $"Habilitado: {usuario.Habilitado}");
-        }
-        else
-        {
-            Console.WriteLine("Usuario no encontrado.");
         }
         
     }
