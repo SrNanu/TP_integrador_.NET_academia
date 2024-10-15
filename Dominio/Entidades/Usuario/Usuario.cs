@@ -8,15 +8,16 @@ using System.Threading.Tasks;
 
 public enum TiposUsuarios
 {
-    Alumno,     // 0
-    Profesor    // 1
+    Alumno,         // 0
+    Profesor,       // 1
+    Administrativo  // 2
 }
 
 public class Usuario : EntidadNegocio
 {
     //Se coloca "required" adelante de cada atributo para que no salte error, se lo deja hasta que se complete el constructor.
     [ForeignKey("Plan")]
-    public int IdPlan { get; set; }
+    public int IdPlan { get; set; } //SE QUEDA? PORQUE CUANDO CREA UN USUARIO DE UN ADMINISTRATIVO O PROFESOR NO INTERESA EL PLAN.
 
     [Required]
     [StringLength(100)]
