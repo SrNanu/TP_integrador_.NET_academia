@@ -65,7 +65,7 @@ namespace Interfaz
 
         private void SetUsuario()
         {
-            this.txtbNombre.Text = this.Usuario.Nombre;
+            //this.txtbNombre.Text = this.Usuario.Nombre;
         }
 
         private bool ValidateUsuario()
