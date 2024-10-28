@@ -19,46 +19,36 @@ public class Usuario : EntidadNegocio
     [ForeignKey("Plan")]
     public int IdPlan { get; set; } //SE QUEDA? PORQUE CUANDO CREA UN USUARIO DE UN ADMINISTRATIVO O PROFESOR NO INTERESA EL PLAN.
 
-    [Required]
     [StringLength(100)]
-    public required string Nombre { get; set; }
+    public  string Nombre { get; set; }
 
-    [Required]
     [StringLength(100)]
-    public required string Apellido { get; set; }
+    public  string Apellido { get; set; }
 
-    [Required]
     public float? Edad { get; set; }
 
-    [Required]
     public DateTime FechaNacimiento { get; set; }
 
-    [Required]
     [StringLength(200)]
-    public required string Direccion { get; set; }
+    public  string Direccion { get; set; }
 
     public TiposUsuarios Tipo { get; set; }
 
     [StringLength(100)]
     public string? Telefono { get; set; }
 
-    [Required]
-    public required int Legajo { get; set; }
+    public  int Legajo { get; set; }
 
-    [Required]
     [StringLength(150)]
-    public required string Email { get; set; }
+    public  string Email { get; set; }
 
-    [Required]
     [StringLength(50)]
-    public required string Username { get; set; }
+    public  string Username { get; set; }
 
-    [Required]
     [StringLength(20)]
-    public required string Password { get; set; }
+    public  string Password { get; set; }
 
     public DateTime FechaRegistro { get; set; } = DateTime.Now;
 
-    [Required]
-    public required bool Habilitado { get; set; }
+    public  bool Habilitado { get; set; }
 }

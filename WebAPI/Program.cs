@@ -26,7 +26,7 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
 
-            //Actualmente estamos usando los objetos del Domain Model, deberiamos usar ViewModels o DTOs 
+            //CRUD USUARIO
 
             app.MapGet("/usuarios/{legajo}", (int legajo) =>
             {
@@ -70,6 +70,7 @@ namespace WebAPI
             .WithName("EliminarUsuario");
             //.WithOpenApi();
 
+            //CRUD PLAN 
 
             app.UseStaticFiles();
 

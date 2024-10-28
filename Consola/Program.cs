@@ -29,7 +29,7 @@ public class Program
         };
         Usuario_Controller.CrearUsuario(usuario);
         Usuario_Controller.LeerUsuario(12345);
-        Usuario_Controller.ActualizarUsuario(12345);
+        Usuario_Controller.ActualizarUsuario(usuario);
         Usuario_Controller.LeerUsuario(12345);
         Usuario_Controller.EliminarUsuario(12345);
         // Estará bien referenciado de esta forma? con la clase por delante
