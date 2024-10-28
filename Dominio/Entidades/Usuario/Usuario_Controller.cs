@@ -18,11 +18,11 @@ public class Usuario_Controller
         }
     
 
-    public static Usuario? LeerUsuario(int legajo)
+    public static Usuario? LeerUsuario(int id)
     {
         using var context = new AcademiaContext();
 
-        return context.Usuarios.FirstOrDefault(u => u.Legajo == legajo);
+        return context.Usuarios.Find(id);
         
     }
 
@@ -40,7 +40,7 @@ public class Usuario_Controller
         
         using var context = new AcademiaContext();
         
-        var usuarioToUpdate = context.Usuarios.FirstOrDefault(u => u.Legajo == usuario.Legajo);
+        var usuarioToUpdate = context.Usuarios.Find(usuario.Id);
 
         if (usuarioToUpdate != null)
         {
@@ -57,17 +57,18 @@ public class Usuario_Controller
             usuarioToUpdate.Username = usuario.Username;
             usuarioToUpdate.Password = usuario.Password;
             usuarioToUpdate.Habilitado = usuario.Habilitado;
+            usuarioToUpdate.Id = usuario.Id;
             context.SaveChanges();
         }
             
         
     }
 
-    public static void EliminarUsuario(int legajo)
+    public static void EliminarUsuario(int id)
     {
         using var context = new AcademiaContext();
         
-        var usuario = context.Usuarios.FirstOrDefault(u => u.Legajo == legajo);
+        var usuario = context.Usuarios.Find(id);
         if (usuario != null)
         {
             context.Usuarios.Remove(usuario);

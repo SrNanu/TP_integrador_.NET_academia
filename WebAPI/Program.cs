@@ -28,11 +28,11 @@ namespace WebAPI
 
             //CRUD USUARIO
 
-            app.MapGet("/usuarios/{legajo}", (int legajo) =>
+            app.MapGet("/usuarios/{id}", (int id) =>
             {
 
 
-                return Usuario_Controller.LeerUsuario(legajo);
+                return Usuario_Controller.LeerUsuario(id);
             })
             .WithName("LeerUsuario");
             //.WithOpenApi();
@@ -62,10 +62,10 @@ namespace WebAPI
             .WithName("ActualizarUsuario");
             //.WithOpenApi();
 
-            app.MapDelete("/usuarios/{legajo}", (int legajo) =>
+            app.MapDelete("/usuarios/{id}", (int id) =>
             {
 
-                Usuario_Controller.EliminarUsuario(legajo);
+                Usuario_Controller.EliminarUsuario(id);
             })
             .WithName("EliminarUsuario");
             //.WithOpenApi();
