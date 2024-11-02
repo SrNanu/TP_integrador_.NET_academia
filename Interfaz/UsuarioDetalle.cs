@@ -40,6 +40,20 @@ namespace Interfaz
             if (this.ValidateUsuario())
             {
                 this.Usuario.Nombre = txtbNombre.Text;
+                this.Usuario.Apellido = txtbApellido.Text;
+                this.Usuario.FechaNacimiento = dtpFechaNacimiento.Value;
+                this.Usuario.Direccion = txtbDireccion.Text;
+                this.Usuario.Telefono = txtbTelefono.Text;
+                this.Usuario.Email = txtbEmail.Text;
+                this.Usuario.Username = txtbUsuario.Text;
+                this.Usuario.Password = txtbContrasenia.Text;
+
+                // Asignar el tipo de usuario seleccionado en el ComboBox
+                this.Usuario.Tipo = (TiposUsuarios)Enum.Parse(typeof(TiposUsuarios), cmbTipo.SelectedItem.ToString());
+
+                // Asignar la edad en función de la FechaNacimiento
+                this.Usuario.Edad = (float?)((DateTime.Now - this.Usuario.FechaNacimiento).Days / 365.25);
+
 
                 //El Detalle se esta llevando la responsabilidad de llamar al servicio
                 //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
@@ -65,19 +79,88 @@ namespace Interfaz
 
         private void SetUsuario()
         {
-            //this.txtbNombre.Text = this.Usuario.Nombre;
+            this.txtbNombre.Text = this.Usuario.Nombre;
+            this.txtbApellido.Text = this.Usuario.Apellido;
+            this.dtpFechaNacimiento.Text = this.Usuario.FechaNacimiento.ToString();
+            this.txtbDireccion.Text = this.Usuario.Direccion;
+            this.txtbTelefono.Text = this.Usuario.Telefono;
+            this.txtbEmail.Text = this.Usuario.Email;
+            this.txtbUsuario.Text = this.Usuario.Username;
+            this.txtbContrasenia.Text = this.Usuario.Password;
+
+            // Marcar el tipo de usuario en el CheckedListBox
+            this.cmbTipo.SelectedItem = this.Usuario.Tipo.ToString();
+
         }
 
         private bool ValidateUsuario()
         {
             bool isValid = true;
 
-            errorProvider.SetError(txtbNombre, string.Empty);
+            // Limpiar errores previos
+            errorProvider.Clear();
 
-            if (this.txtbNombre.Text == string.Empty)
+            // Validar Nombre
+            if (string.IsNullOrWhiteSpace(txtbNombre.Text))
             {
                 isValid = false;
-                errorProvider.SetError(txtbNombre, "El Nombre es Requerido");
+                errorProvider.SetError(txtbNombre, "El Nombre es requerido.");
+            }
+
+            // Validar Apellido
+            if (string.IsNullOrWhiteSpace(txtbApellido.Text))
+            {
+                isValid = false;
+                errorProvider.SetError(txtbApellido, "El Apellido es requerido.");
+            }
+
+            // Validar Fecha de Nacimiento
+            if (dtpFechaNacimiento.Value >= DateTime.Today)
+            {
+                isValid = false;
+                errorProvider.SetError(dtpFechaNacimiento, "La Fecha de Nacimiento debe ser anterior a hoy.");
+            }
+
+            // Validar Dirección
+            if (string.IsNullOrWhiteSpace(txtbDireccion.Text))
+            {
+                isValid = false;
+                errorProvider.SetError(txtbDireccion, "La Dirección es requerida.");
+            }
+
+            // Validar Teléfono (opcional, pero puedes añadir una validación de formato)
+            if (!string.IsNullOrWhiteSpace(txtbTelefono.Text) && txtbTelefono.Text.Length < 7)
+            {
+                isValid = false;
+                errorProvider.SetError(txtbTelefono, "El Teléfono debe tener al menos 7 dígitos.");
+            }
+
+            // Validar Email
+            if (string.IsNullOrWhiteSpace(txtbEmail.Text) || !txtbEmail.Text.Contains("@"))
+            {
+                isValid = false;
+                errorProvider.SetError(txtbEmail, "El Email es requerido y debe tener un formato válido.");
+            }
+
+            // Validar Usuario (Username)
+            if (string.IsNullOrWhiteSpace(txtbUsuario.Text))
+            {
+                isValid = false;
+                errorProvider.SetError(txtbUsuario, "El Nombre de Usuario es requerido.");
+            }
+
+            // Validar Contraseña
+            if (string.IsNullOrWhiteSpace(txtbContrasenia.Text) || txtbContrasenia.Text.Length < 6)
+            {
+                isValid = false;
+                errorProvider.SetError(txtbContrasenia, "La Contraseña es requerida y debe tener al menos 6 caracteres.");
+            }
+
+            // Validar Tipo de Usuario (ComboBox)
+            if (cmbTipo.SelectedItem == null)
+            {
+                isValid = false;
+                errorProvider.SetError(cmbTipo, "Debe seleccionar un Tipo de Usuario.");
             }
 
             return isValid;

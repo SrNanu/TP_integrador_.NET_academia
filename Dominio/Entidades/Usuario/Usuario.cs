@@ -51,4 +51,5 @@ public class Usuario : EntidadNegocio
     public DateTime FechaRegistro { get; set; } = DateTime.Now;
 
     public  bool Habilitado { get; set; }
+
 }
