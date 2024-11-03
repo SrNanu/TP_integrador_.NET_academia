@@ -25,7 +25,10 @@ public class Usuario : EntidadNegocio
     [StringLength(100)]
     public  string Apellido { get; set; }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b4466414ccc64e11dad21f80793e2117dbffc2c7
     public DateTime FechaNacimiento { get; set; }
 
     [StringLength(200)]
