@@ -25,8 +25,6 @@ public class Usuario : EntidadNegocio
     [StringLength(100)]
     public  string Apellido { get; set; }
 
-    public float? Edad { get; set; }
-
     public DateTime FechaNacimiento { get; set; }
 
     [StringLength(200)]

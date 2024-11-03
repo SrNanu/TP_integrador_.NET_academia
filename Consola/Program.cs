@@ -16,7 +16,6 @@ public class Program
             IdPlan = 1,
             Nombre = "Juan Cruz",
             Apellido = "Mondino",
-            Edad = DateTime.Now.Year - new DateTime(2000, 10, 23).Year,
             FechaNacimiento = new DateTime(2000, 10, 23),
             Direccion = "Urquiza 123",
             Tipo= TiposUsuarios.Alumno, // esta harcodeado pero la eleccion se hace o con boton o escrita
