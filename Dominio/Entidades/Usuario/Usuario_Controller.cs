@@ -47,7 +47,6 @@ public class Usuario_Controller
             usuarioToUpdate.IdPlan = usuario.IdPlan;
             usuarioToUpdate.Nombre = usuario.Nombre;
             usuarioToUpdate.Apellido = usuario.Apellido;
-            usuarioToUpdate.Edad = usuario.Edad;
             usuarioToUpdate.FechaNacimiento = usuario.FechaNacimiento;
             usuarioToUpdate.Direccion = usuario.Direccion;
             usuarioToUpdate.Tipo = usuario.Tipo;

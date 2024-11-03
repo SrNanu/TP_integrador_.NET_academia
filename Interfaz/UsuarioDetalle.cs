@@ -52,7 +52,6 @@ namespace Interfaz
                 this.Usuario.Tipo = (TiposUsuarios)Enum.Parse(typeof(TiposUsuarios), cmbTipo.SelectedItem.ToString());
 
                 // Asignar la edad en función de la FechaNacimiento
-                this.Usuario.Edad = (float?)((DateTime.Now - this.Usuario.FechaNacimiento).Days / 365.25);
 
 
                 //El Detalle se esta llevando la responsabilidad de llamar al servicio

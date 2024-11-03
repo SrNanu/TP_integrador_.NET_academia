@@ -202,6 +202,7 @@
             txtbContrasenia.Location = new Point(883, 298);
             txtbContrasenia.Margin = new Padding(4, 5, 4, 5);
             txtbContrasenia.Name = "txtbContrasenia";
+            txtbContrasenia.PasswordChar = '*';
             txtbContrasenia.Size = new Size(141, 31);
             txtbContrasenia.TabIndex = 18;
             // 

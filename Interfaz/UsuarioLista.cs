@@ -29,6 +29,7 @@ namespace Interfaz
             UsuarioDetalle usuarioDetalle = new UsuarioDetalle();
 
             Usuario usuarioNuevo = new Usuario();
+            usuarioNuevo.FechaNacimiento = DateTime.Now.AddYears(-18);
 
             usuarioDetalle.Usuario = usuarioNuevo;
 
