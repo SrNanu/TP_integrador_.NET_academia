@@ -17,7 +17,7 @@ public class Usuario_Controller
         
     }
 
-    public static Usuario? LeerUsuario(int id)          //No seria mejor que se llame "GetOne"?
+    public static Usuario? GetOneUsuario(int id)
     {
         using var context = new AcademiaContext();
 
@@ -25,7 +25,7 @@ public class Usuario_Controller
         
     }
 
-    public static IEnumerable<Usuario> GetAll()
+    public static IEnumerable<Usuario> GetAllUsuario()
     {
         using var context = new AcademiaContext();
 

@@ -32,7 +32,7 @@ namespace WebAPI
             {
 
 
-                return Usuario_Controller.LeerUsuario(id);
+                return Usuario_Controller.GetOneUsuario(id);
             })
             .WithName("LeerUsuario");
             //.WithOpenApi();
@@ -41,7 +41,7 @@ namespace WebAPI
             {
 
 
-                return Usuario_Controller.GetAll();
+                return Usuario_Controller.GetAllUsuario();
             })
             .WithName("GetAllUsuarios");
             //.WithOpenApi();
