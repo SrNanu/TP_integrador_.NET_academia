@@ -40,7 +40,7 @@ public class Modulo_Controller
 
         if (moduloToUpdate != null)
         {
-            moduloToUpdate.Descripcion = moduloToUpdate.Descripcion;
+            moduloToUpdate.Descripcion = modulo.Descripcion;
             moduloToUpdate.Id = modulo.Id;
             context.SaveChanges();
         }

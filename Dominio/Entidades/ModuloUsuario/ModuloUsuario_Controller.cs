@@ -43,10 +43,10 @@ public class ModuloUsuario_Controller
         {
             moduloUsuarioToUpdate.IdModulo = moduloUsuario.IdModulo;
             moduloUsuarioToUpdate.IdUsuario = moduloUsuario.IdUsuario;
-            moduloUsuarioToUpdate.PermiteAlta = moduloUsuarioToUpdate.PermiteAlta;
-            moduloUsuarioToUpdate.PermiteBaja = moduloUsuarioToUpdate.PermiteBaja;
-            moduloUsuarioToUpdate.PermiteConsulta = moduloUsuarioToUpdate.PermiteConsulta;
-            moduloUsuarioToUpdate.PermiteModificacion = moduloUsuarioToUpdate.PermiteModificacion;
+            moduloUsuarioToUpdate.PermiteAlta = moduloUsuario.PermiteAlta;
+            moduloUsuarioToUpdate.PermiteBaja = moduloUsuario.PermiteBaja;
+            moduloUsuarioToUpdate.PermiteConsulta = moduloUsuario.PermiteConsulta;
+            moduloUsuarioToUpdate.PermiteModificacion = moduloUsuario.PermiteModificacion;
             moduloUsuarioToUpdate.Id = moduloUsuario.Id;
             context.SaveChanges();
         }

@@ -40,10 +40,10 @@ public class Materia_Controller
 
         if (materiaToUpdate != null)
         {
-            materiaToUpdate.Descripcion = materiaToUpdate.Descripcion;
-            materiaToUpdate.HsSemanales = materiaToUpdate.HsSemanales;
-            materiaToUpdate.HsTotales = materiaToUpdate.HsTotales;
-            materiaToUpdate.IdPlan = materiaToUpdate.IdPlan;
+            materiaToUpdate.Descripcion = materia.Descripcion;
+            materiaToUpdate.HsSemanales = materia.HsSemanales;
+            materiaToUpdate.HsTotales = materia.HsTotales;
+            materiaToUpdate.IdPlan = materia.IdPlan;
             materiaToUpdate.Id = materia.Id;
             context.SaveChanges();
         }

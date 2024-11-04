@@ -39,7 +39,7 @@ public class Especialidad_Controller
 
         if (especialidadToUpdate != null)
         {
-            especialidadToUpdate.Descripcion = especialidadToUpdate.Descripcion;
+            especialidadToUpdate.Descripcion = especialidad.Descripcion;
             especialidadToUpdate.Id = especialidad.Id;
             context.SaveChanges();
         }
