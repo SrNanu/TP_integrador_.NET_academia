@@ -7,97 +7,56 @@ using System.Threading.Tasks;
 
 public class Plan_Controller
 {
-    public static void CrearPlan(int idEspecialidad, string descripcion)
+    public static void CrearPlan(Plan plan)
     {
-        using (var context = new AcademiaContext())
-        {
-            var plan = new Plan()
-            {
-                IdEspecialidad = idEspecialidad,
-                Descripcion = descripcion
-            };
 
-            context.Planes.Add(plan);
+        using var context = new AcademiaContext();
+
+        context.Planes.Add(plan);
+        context.SaveChanges();
+
+    }
+
+    public static Plan? GetOnePlan(int id)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Planes.Find(id);
+
+    }
+
+    public static IEnumerable<Plan> GetAllPlan()
+    {
+        using var context = new AcademiaContext();
+
+        return context.Planes.ToList();
+    }
+
+    public static void ActualizarPlan(Plan plan)
+    {
+        using var context = new AcademiaContext();
+
+        var planToUpdate = context.Planes.Find(plan.Id);
+
+        if (planToUpdate != null)
+        {
+            planToUpdate.IdEspecialidad = plan.IdEspecialidad;
+            planToUpdate.Descripcion = plan.Descripcion;
+            planToUpdate.Id = plan.Id;
             context.SaveChanges();
-            Console.WriteLine($"Plan creado: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
-        }
-    }
-
-    public static void LeerPlan(int id)
-    {
-        using (var context = new AcademiaContext())
-        {
-            var plan = context.Planes.FirstOrDefault(p => p.Id == id);
-            if (plan != null)
-            {
-                Console.WriteLine($"Plan leido: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Plan no encontrado.");
-            }
-        }
-    }
-
-    public static void ActualizarPlan(int id)
-    {
-        int decision = 9;
-
-        while (decision > 2 || decision < 0)
-        {
-            Console.WriteLine("\n¿Qué propiedad desea modificar?" +
-            "              \n   1- La especialidad" +
-            "              \n   2- La descripción" +
-            "              \n   0- Salir");
-            Console.Write("\nIngrese su decisión: ");
-            decision = int.Parse(Console.ReadLine());
-        }
-
-        if (decision != 0)
-        {
-            using (var context = new AcademiaContext())
-            {
-                var plan = context.Planes.FirstOrDefault(p => p.Id == id);
-                if (plan != null)
-                {
-                    switch (decision)
-                    {
-                        case 1:     // Modificar esta parte, es imposible que un usuario se acuerde del idEspecialidad.
-                            Console.Write("\nIngrese el id de la nueva especialidad: ");
-                            plan.IdEspecialidad = int.Parse(Console.ReadLine());
-                            break;
-
-                        case 2:
-                            Console.Write("\nIngrese la nueva descripción: ");
-                            plan.Descripcion = Console.ReadLine();
-                            break;
-                    }
-                    context.SaveChanges();
-                    Console.WriteLine($"Plan actualizado: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
-                }
-                else
-                {
-                    Console.WriteLine("Plan no encontrado.");
-                }
-            }
         }
     }
 
     public static void EliminarPlan(int id)
     {
-        using (var context = new AcademiaContext())
+        using var context = new AcademiaContext();
+
+        var plan = context.Planes.Find(id);
+        if (plan != null)
         {
-            var plan = context.Planes.FirstOrDefault(p => p.Id == id);
-            if (plan != null)
-            {
-                context.Planes.Remove(plan);
-                context.SaveChanges();
-                Console.WriteLine($"Plan eliminado: ID: {plan.Id}, Id de especialidad: {plan.IdEspecialidad}, Descripcion: {plan.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Plan no encontrado.");
-            }
+            context.Planes.Remove(plan);
+            context.SaveChanges();
         }
+
     }
 }
