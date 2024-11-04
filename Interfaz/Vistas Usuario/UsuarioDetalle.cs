@@ -51,10 +51,6 @@ namespace Interfaz
                 // Asignar el tipo de usuario seleccionado en el ComboBox
                 this.Usuario.Tipo = (TiposUsuarios)Enum.Parse(typeof(TiposUsuarios), cmbTipo.SelectedItem.ToString());
 
-                // Asignar la edad en función de la FechaNacimiento
-
-
-
                 //El Detalle se esta llevando la responsabilidad de llamar al servicio
                 //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
                 //en la Lista o tal vez en un Presenter o Controler
