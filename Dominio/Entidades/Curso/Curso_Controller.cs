@@ -7,126 +7,59 @@ using System.Threading.Tasks;
 
 public class Curso_Controller
 {
-    public static void CrearCurso(int idComision, int idMateria, int cupo, int anioCalendario, string descripcion)
+    public static void CrearCurso(Curso curso)
     {
-        using (var context = new AcademiaContext())
-        {
-            var curso = new Curso()
-            {
-                IdComision = idComision,
-                IdMateria = idMateria,
-                Cupo = cupo,
-                AnioCalendario = anioCalendario,
-                Descripcion = descripcion
-            };
 
-            context.Cursos.Add(curso);
+        using var context = new AcademiaContext();
+
+        context.Cursos.Add(curso);
+        context.SaveChanges();
+
+    }
+
+    public static Curso? GetOneCurso(int id)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Cursos.Find(id);
+
+    }
+
+    public static IEnumerable<Curso> GetAllCurso()
+    {
+        using var context = new AcademiaContext();
+
+        return context.Cursos.ToList();
+    }
+
+    public static void ActualizarCurso(Curso curso)
+    {
+        using var context = new AcademiaContext();
+
+        var cursoToUpdate = context.Cursos.Find(curso.Id);
+
+        if (cursoToUpdate != null)
+        {
+            cursoToUpdate.IdMateria = curso.IdMateria;
+            cursoToUpdate.IdComision = curso.IdComision;
+            cursoToUpdate.AnioCalendario = curso.AnioCalendario;
+            cursoToUpdate.Descripcion = curso.Descripcion;
+            cursoToUpdate.Cupo = curso.Cupo;
+            cursoToUpdate.Id = curso.Id;
             context.SaveChanges();
-            Console.WriteLine($"Curso creado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
-                              $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
-
-        }
-    }
-
-    public static void LeerCurso(int id)
-    {
-        using (var context = new AcademiaContext())
-        {
-            var curso = context.Cursos.FirstOrDefault(c => c.Id == id);
-            if (curso != null)
-            {
-                Console.WriteLine($"Curso encontrado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
-                                  $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
-
-            }
-            else
-            {
-                Console.WriteLine("Curso no encontrado.");
-            }
-        }
-    }
-
-    public static void ActualizarCurso(int id)
-    {
-        int decision = 10;
-
-        while (decision > 5 || decision < 0)
-        {
-            Console.WriteLine("\n¿Qué propiedad desea modificar?" +
-            "              \n   1- Id de la comisión" +
-            "              \n   2- Id de la materia" +
-            "              \n   3- Cupo" +
-            "              \n   4- Año Calendario" +
-            "              \n   5- Descripción" +
-            "              \n   0- Salir");
-            Console.Write("\nIngrese su decisión: ");
-            decision = int.Parse(Console.ReadLine());
-        }
-
-        if (decision != 0)
-        {
-            using (var context = new AcademiaContext())
-            {
-                var curso = context.Cursos.FirstOrDefault(c => c.Id == id);
-                if (curso != null)
-                {
-                    switch (decision)
-                    {
-                        case 1:
-                            Console.Write("\nIngrese el nuevo id de la comisión: ");
-                            curso.IdComision = int.Parse(Console.ReadLine());
-                            break;
-
-                        case 2:
-                            Console.Write("\nIngrese el nuevo id de la materia: ");
-                            curso.IdMateria = int.Parse(Console.ReadLine());
-                            break;
-
-                        case 3:
-                            Console.Write("\nIngrese el nuevo cupo: ");
-                            curso.Cupo = int.Parse(Console.ReadLine());
-                            break;
-
-                        case 5:
-                            Console.Write("\nIngrese el nuevo año calendario: ");
-                            curso.AnioCalendario = int.Parse(Console.ReadLine());
-                            break;
-
-                        case 6:
-                            Console.Write("\nIngrese la nueva descripción: ");
-                            curso.Descripcion = Console.ReadLine();
-                            break;
-                    }
-                    context.SaveChanges();
-                    Console.WriteLine($"Curso actualizado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
-                                      $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
-
-                }
-                else
-                {
-                    Console.WriteLine("Curso no encontrado.");
-                }
-            }
         }
     }
 
     public static void EliminarCurso(int id)
     {
-        using (var context = new AcademiaContext())
-        {
-            var curso = context.Cursos.FirstOrDefault(c => c.Id == id);
-            if (curso != null)
-            {
-                context.Cursos.Remove(curso);
-                context.SaveChanges();
-                Console.WriteLine($"Curso eliminado: ID: {curso.Id}, ID Comision: {curso.IdComision}, ID Materia: {curso.IdMateria}, " +
-                                  $"Cupo: {curso.Cupo}, Año Calendario: {curso.AnioCalendario}, Descripción: {curso.Descripcion}");
+        using var context = new AcademiaContext();
 
-            }
-            else
-            {
-                Console.WriteLine("Curso no encontrado.");
-            }
+        var curso = context.Cursos.Find(id);
+        if (curso != null)
+        {
+            context.Cursos.Remove(curso);
+            context.SaveChanges();
         }
+
     }
 }

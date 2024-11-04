@@ -40,8 +40,8 @@ public class DocenteCurso_Controller
 
         if (docenteCursoToUpdate != null)
         {
-            docenteCursoToUpdate.IdCurso = docenteCursoToUpdate.IdCurso;
-            docenteCursoToUpdate.IdDocente = docenteCursoToUpdate.IdDocente;
+            docenteCursoToUpdate.IdCurso = docenteCurso.IdCurso;
+            docenteCursoToUpdate.IdDocente = docenteCurso.IdDocente;
             docenteCursoToUpdate.Id = docenteCurso.Id;
             context.SaveChanges();
         }
