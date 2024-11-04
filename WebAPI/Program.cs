@@ -35,7 +35,6 @@ namespace WebAPI
                 return Usuario_Controller.GetOneUsuario(id);
             })
             .WithName("LeerUsuario");
-            //.WithOpenApi();
 
             app.MapGet("/usuarios", () =>
             {
@@ -44,7 +43,6 @@ namespace WebAPI
                 return Usuario_Controller.GetAllUsuario();
             })
             .WithName("GetAllUsuarios");
-            //.WithOpenApi();
 
             app.MapPost("/usuarios", (Usuario usuario) =>
             {
@@ -52,7 +50,6 @@ namespace WebAPI
                 Usuario_Controller.CrearUsuario(usuario);
             })
             .WithName("CrearUsuario");
-            //.WithOpenApi();
 
             app.MapPut("/usuarios", (Usuario usuario) =>
             {
@@ -60,7 +57,6 @@ namespace WebAPI
                 Usuario_Controller.ActualizarUsuario(usuario);
             })
             .WithName("ActualizarUsuario");
-            //.WithOpenApi();
 
             app.MapDelete("/usuarios/{id}", (int id) =>
             {
@@ -68,7 +64,6 @@ namespace WebAPI
                 Usuario_Controller.EliminarUsuario(id);
             })
             .WithName("EliminarUsuario");
-            //.WithOpenApi();
 
             //CRUD PLAN 
 
