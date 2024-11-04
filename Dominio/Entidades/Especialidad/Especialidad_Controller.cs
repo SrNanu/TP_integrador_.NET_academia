@@ -6,73 +6,55 @@ using System.Threading.Tasks;
 
 public class Especialidad_Controller
 {
-    public static void CrearEspecialidad(string descripcion)
+    public static void CrearEspecialidad(Especialidad especialidad)
     {
-        using (var context = new AcademiaContext())
-        {
-            var especialidad = new Especialidad()
-            {
-                Descripcion = descripcion
-            };
 
-            context.Especialidades.Add(especialidad);
+        using var context = new AcademiaContext();
+
+        context.Especialidades.Add(especialidad);
+        context.SaveChanges();
+
+    }
+
+    public static Especialidad? GetOneEspecialidad(int id)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Especialidades.Find(id);
+
+    }
+
+    public static IEnumerable<Especialidad> GetAllEspecialidad()
+    {
+        using var context = new AcademiaContext();
+
+        return context.Especialidades.ToList();
+    }
+
+    public static void ActualizarEspecialidad(Especialidad especialidad)
+    {
+        using var context = new AcademiaContext();
+
+        var especialidadToUpdate = context.Especialidades.Find(especialidad.Id);
+
+        if (especialidadToUpdate != null)
+        {
+            especialidadToUpdate.Descripcion = especialidadToUpdate.Descripcion;
+            especialidadToUpdate.Id = especialidad.Id;
             context.SaveChanges();
-            Console.WriteLine($"Especialidad creado: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
         }
-    }
-
-    public static void LeerEspecialidad(int id)
-    {
-        using (var context = new AcademiaContext())
-        {
-            var especialidad = context.Especialidades.FirstOrDefault(e => e.Id == id);
-            if (especialidad != null)
-            {
-                Console.WriteLine($"Especialidad encontrada: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Especialidad no encontrado.");
-            }
-        }
-    }
-
-    public static void ActualizarEspecialidad(int id)
-    {
-
-        using (var context = new AcademiaContext())
-        {
-            var especialidad = context.Especialidades.FirstOrDefault(e => e.Id == id);
-            if (especialidad != null)
-            {
-                Console.Write("\nIngrese la nueva descripción: ");
-                especialidad.Descripcion = Console.ReadLine();
-                context.SaveChanges();
-                Console.WriteLine($"Especialidad actualizada: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Especialidad no encontrado.");
-            }
-        }
-
     }
 
     public static void EliminarEspecialidad(int id)
     {
-        using (var context = new AcademiaContext())
+        using var context = new AcademiaContext();
+
+        var especialidad = context.Especialidades.Find(id);
+        if (especialidad != null)
         {
-            var especialidad = context.Especialidades.FirstOrDefault(e => e.Id == id);
-            if (especialidad != null)
-            {
-                context.Especialidades.Remove(especialidad);
-                context.SaveChanges();
-                Console.WriteLine($"Especialidad eliminada: ID: {especialidad.Id}, Descripcion: {especialidad.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Especialidad no encontrado.");
-            }
+            context.Especialidades.Remove(especialidad);
+            context.SaveChanges();
         }
+
     }
 }
