@@ -28,12 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "MenuUsuario";
+            lblMenuUsuario = new Label();
+            btnInscripcionMateria = new Button();
+            SuspendLayout();
+            // 
+            // lblMenuUsuario
+            // 
+            lblMenuUsuario.AutoSize = true;
+            lblMenuUsuario.Location = new Point(330, 24);
+            lblMenuUsuario.Name = "lblMenuUsuario";
+            lblMenuUsuario.Size = new Size(100, 20);
+            lblMenuUsuario.TabIndex = 0;
+            lblMenuUsuario.Text = "Menú Usuario";
+            // 
+            // btnInscripcionMateria
+            // 
+            btnInscripcionMateria.Location = new Point(119, 95);
+            btnInscripcionMateria.Name = "btnInscripcionMateria";
+            btnInscripcionMateria.Size = new Size(94, 55);
+            btnInscripcionMateria.TabIndex = 1;
+            btnInscripcionMateria.Text = "Inscribirse a materia";
+            btnInscripcionMateria.UseVisualStyleBackColor = true;
+            // 
+            // MenuUsuario
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(btnInscripcionMateria);
+            Controls.Add(lblMenuUsuario);
+            Name = "MenuUsuario";
+            Text = "MenuUsuario";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblMenuUsuario;
+        private Button btnInscripcionMateria;
     }
 }

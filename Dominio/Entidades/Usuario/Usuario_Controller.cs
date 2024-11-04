@@ -15,10 +15,9 @@ public class Usuario_Controller
         context.Usuarios.Add(usuario);
         context.SaveChanges();
         
-        }
-    
+    }
 
-    public static Usuario? LeerUsuario(int id)
+    public static Usuario? LeerUsuario(int id)          //No seria mejor que se llame "GetOne"?
     {
         using var context = new AcademiaContext();
 
@@ -34,10 +33,7 @@ public class Usuario_Controller
     }
 
     public static void ActualizarUsuario(Usuario usuario)
-    {
-        
-
-        
+    {     
         using var context = new AcademiaContext();
         
         var usuarioToUpdate = context.Usuarios.Find(usuario.Id);
@@ -58,9 +54,7 @@ public class Usuario_Controller
             usuarioToUpdate.Habilitado = usuario.Habilitado;
             usuarioToUpdate.Id = usuario.Id;
             context.SaveChanges();
-        }
-            
-        
+        } 
     }
 
     public static void EliminarUsuario(int id)
