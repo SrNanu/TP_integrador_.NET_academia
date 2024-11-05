@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class Usuario_Controller
 {
-    public static void CrearUsuario(Usuario usuario)
+    public static void AgregarUsuario(Usuario usuario)
     {
         
         using var context = new AcademiaContext();
@@ -30,6 +30,22 @@ public class Usuario_Controller
         using var context = new AcademiaContext();
 
         return context.Usuarios.FirstOrDefault(u => u.Username == username);
+
+    }
+
+    public static Usuario? GetOneUsuarioMail(string mail)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Usuarios.FirstOrDefault(u => u.Email == mail);
+
+    }
+
+    public static Usuario? GetOneUsuarioLegajo(int legajo)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Usuarios.FirstOrDefault(u => u.Legajo == legajo);
 
     }
 

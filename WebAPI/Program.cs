@@ -49,7 +49,7 @@ namespace WebAPI
             app.MapPost("/usuarios", (Usuario usuario) =>
             {
 
-                Usuario_Controller.CrearUsuario(usuario);
+                Usuario_Controller.AgregarUsuario(usuario);
             })
             .WithName("CrearUsuario");
             //.WithOpenApi();

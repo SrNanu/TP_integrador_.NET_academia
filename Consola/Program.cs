@@ -26,7 +26,7 @@ public class Program
             Password = "contraseñaSegura",
             Habilitado = false
         };
-        Usuario_Controller.CrearUsuario(usuario);
+        Usuario_Controller.AgregarUsuario(usuario);
         Usuario_Controller.GetOneUsuarioId(12345);
         Usuario_Controller.ActualizarUsuario(usuario);
         Usuario_Controller.GetOneUsuarioId(12345);
