@@ -81,7 +81,7 @@
             lblIdPlan.Size = new Size(66, 25);
             lblIdPlan.TabIndex = 3;
             lblIdPlan.Text = "Id Plan";
-            lblIdPlan.Click += this.label2_Click;
+            //lblIdPlan.Click += this.label2_Click;
             // 
             // txtbHsSemanales
             // 
@@ -99,7 +99,7 @@
             lblHsSemanales.Size = new Size(148, 25);
             lblHsSemanales.TabIndex = 5;
             lblHsSemanales.Text = "Horas Semanales";
-            lblHsSemanales.Click += this.label2_Click_1;
+            //lblHsSemanales.Click += this.label2_Click_1;
             // 
             // txtbHsTotales
             // 
