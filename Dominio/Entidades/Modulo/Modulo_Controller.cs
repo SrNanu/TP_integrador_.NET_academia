@@ -7,73 +7,55 @@ using System.Threading.Tasks;
 
 public class Modulo_Controller
 {
-    public static void CrearModulo(string descripcion)
+    public static void CrearModulo(Modulo modulo)
     {
-        using (var context = new AcademiaContext())
-        {
-            var modulo = new Modulo()
-            {
-                Descripcion = descripcion
-            };
 
-            context.Modulos.Add(modulo);
+        using var context = new AcademiaContext();
+
+        context.Modulos.Add(modulo);
+        context.SaveChanges();
+
+    }
+
+    public static Modulo? GetOneModulo(int id)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Modulos.Find(id);
+
+    }
+
+    public static IEnumerable<Modulo> GetAllModulo()
+    {
+        using var context = new AcademiaContext();
+
+        return context.Modulos.ToList();
+    }
+
+    public static void ActualizarModulo(Modulo modulo)
+    {
+        using var context = new AcademiaContext();
+
+        var moduloToUpdate = context.Modulos.Find(modulo.Id);
+
+        if (moduloToUpdate != null)
+        {
+            moduloToUpdate.Descripcion = modulo.Descripcion;
+            moduloToUpdate.Id = modulo.Id;
             context.SaveChanges();
-            Console.WriteLine($"Modulo creado: ID: {modulo.Id}, Descripcion: {modulo.Descripcion}");
         }
-    }
-
-    public static void LeerModulo(int id)
-    {
-        using (var context = new AcademiaContext())
-        {
-            var modulo = context.Modulos.FirstOrDefault(m => m.Id == id);
-            if (modulo != null)
-            {
-                Console.WriteLine($"Modulo leido: ID: {modulo.Id}, Descripcion: {modulo.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Modulo no encontrado.");
-            }
-        }
-    }
-
-    public static void ActualizarModulo(int id)
-    {
-
-        using (var context = new AcademiaContext())
-        {
-            var modulo = context.Modulos.FirstOrDefault(m => m.Id == id);
-            if (modulo != null)
-            {
-                Console.Write("\nIngrese la nueva descripción: ");
-                modulo.Descripcion = Console.ReadLine();
-                context.SaveChanges();
-                Console.WriteLine($"Modulo actualizado: ID: {modulo.Id}, Descripcion: {modulo.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Modulo no encontrado.");
-            }
-        }
-
     }
 
     public static void EliminarModulo(int id)
     {
-        using (var context = new AcademiaContext())
+        using var context = new AcademiaContext();
+
+        var modulo = context.Modulos.Find(id);
+        if (modulo != null)
         {
-            var modulo = context.Modulos.FirstOrDefault(m => m.Id == id);
-            if (modulo != null)
-            {
-                context.Modulos.Remove(modulo);
-                context.SaveChanges();
-                Console.WriteLine($"Modulo eliminado: ID: {modulo.Id}, Descripcion: {modulo.Descripcion}");
-            }
-            else
-            {
-                Console.WriteLine("Modulo no encontrado.");
-            }
+            context.Modulos.Remove(modulo);
+            context.SaveChanges();
         }
+
     }
 }

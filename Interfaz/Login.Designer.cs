@@ -40,25 +40,28 @@
             // 
             // txtbContrasenia
             // 
-            txtbContrasenia.Location = new Point(300, 196);
+            txtbContrasenia.Location = new Point(429, 327);
+            txtbContrasenia.Margin = new Padding(4, 5, 4, 5);
             txtbContrasenia.Name = "txtbContrasenia";
-            txtbContrasenia.Size = new Size(100, 23);
+            txtbContrasenia.Size = new Size(141, 31);
             txtbContrasenia.TabIndex = 15;
             // 
             // txtbUsuario
             // 
-            txtbUsuario.Location = new Point(300, 100);
+            txtbUsuario.Location = new Point(429, 167);
+            txtbUsuario.Margin = new Padding(4, 5, 4, 5);
             txtbUsuario.Name = "txtbUsuario";
-            txtbUsuario.Size = new Size(100, 23);
+            txtbUsuario.Size = new Size(141, 31);
             txtbUsuario.TabIndex = 14;
             // 
             // btnIniciarSesion
             // 
             btnIniciarSesion.BackColor = SystemColors.HotTrack;
             btnIniciarSesion.ForeColor = SystemColors.ButtonHighlight;
-            btnIniciarSesion.Location = new Point(285, 271);
+            btnIniciarSesion.Location = new Point(407, 452);
+            btnIniciarSesion.Margin = new Padding(4, 5, 4, 5);
             btnIniciarSesion.Name = "btnIniciarSesion";
-            btnIniciarSesion.Size = new Size(121, 23);
+            btnIniciarSesion.Size = new Size(173, 38);
             btnIniciarSesion.TabIndex = 13;
             btnIniciarSesion.Text = "Iniciar sesión";
             btnIniciarSesion.UseVisualStyleBackColor = false;
@@ -66,27 +69,30 @@
             // lblContrasenia
             // 
             lblContrasenia.AutoSize = true;
-            lblContrasenia.Location = new Point(171, 196);
+            lblContrasenia.Location = new Point(244, 327);
+            lblContrasenia.Margin = new Padding(4, 0, 4, 0);
             lblContrasenia.Name = "lblContrasenia";
-            lblContrasenia.Size = new Size(67, 15);
+            lblContrasenia.Size = new Size(101, 25);
             lblContrasenia.TabIndex = 12;
             lblContrasenia.Text = "Contraseña";
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(171, 106);
+            lblUsuario.Location = new Point(244, 177);
+            lblUsuario.Margin = new Padding(4, 0, 4, 0);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(47, 15);
+            lblUsuario.Size = new Size(72, 25);
             lblUsuario.TabIndex = 11;
             lblUsuario.Text = "Usuario";
             // 
             // btnOlvideContrasenia
             // 
             btnOlvideContrasenia.BackColor = SystemColors.Info;
-            btnOlvideContrasenia.Location = new Point(151, 415);
+            btnOlvideContrasenia.Location = new Point(244, 692);
+            btnOlvideContrasenia.Margin = new Padding(4, 5, 4, 5);
             btnOlvideContrasenia.Name = "btnOlvideContrasenia";
-            btnOlvideContrasenia.Size = new Size(151, 23);
+            btnOlvideContrasenia.Size = new Size(216, 38);
             btnOlvideContrasenia.TabIndex = 10;
             btnOlvideContrasenia.Text = "Olvide mi contraseña";
             btnOlvideContrasenia.UseVisualStyleBackColor = false;
@@ -95,9 +101,10 @@
             // 
             btnCrearUsuario.BackColor = SystemColors.Info;
             btnCrearUsuario.ForeColor = SystemColors.ActiveCaptionText;
-            btnCrearUsuario.Location = new Point(11, 415);
+            btnCrearUsuario.Location = new Point(16, 692);
+            btnCrearUsuario.Margin = new Padding(4, 5, 4, 5);
             btnCrearUsuario.Name = "btnCrearUsuario";
-            btnCrearUsuario.Size = new Size(134, 23);
+            btnCrearUsuario.Size = new Size(191, 38);
             btnCrearUsuario.TabIndex = 9;
             btnCrearUsuario.Text = "Crear usuario";
             btnCrearUsuario.UseVisualStyleBackColor = false;
@@ -105,17 +112,18 @@
             // lblAcademia
             // 
             lblAcademia.AutoSize = true;
-            lblAcademia.Location = new Point(313, 35);
+            lblAcademia.Location = new Point(447, 58);
+            lblAcademia.Margin = new Padding(4, 0, 4, 0);
             lblAcademia.Name = "lblAcademia";
-            lblAcademia.Size = new Size(67, 15);
+            lblAcademia.Size = new Size(102, 25);
             lblAcademia.TabIndex = 8;
             lblAcademia.Text = "ACADEMIA";
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1143, 750);
             Controls.Add(txtbContrasenia);
             Controls.Add(txtbUsuario);
             Controls.Add(btnIniciarSesion);
@@ -124,6 +132,7 @@
             Controls.Add(btnOlvideContrasenia);
             Controls.Add(btnCrearUsuario);
             Controls.Add(lblAcademia);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Login";
             Text = "Login";
             ResumeLayout(false);

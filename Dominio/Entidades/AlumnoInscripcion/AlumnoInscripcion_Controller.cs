@@ -7,119 +7,58 @@ using System.Threading.Tasks;
 
 public class AlumnoInscripcion_Controller
 {
-    public static void CrearAlumnoInscripcion(int idAlumno, int idCurso, string condicion, int nota)
+    public static void CrearAlumnoInscripcion(AlumnoInscripcion alumnoInscripcion)
     {
-        using (var context = new AcademiaContext())
-        {
-            var alumnoInscripcion = new AlumnoInscripcion()
-            {
-                IdAlumno = idAlumno,
-                IdCurso = idCurso,
-                Condicion = condicion,
-                Nota = nota
-            };
 
-            context.AlumnoInscripciones.Add(alumnoInscripcion);
+        using var context = new AcademiaContext();
+
+        context.AlumnoInscripciones.Add(alumnoInscripcion);
+        context.SaveChanges();
+
+    }
+
+    public static AlumnoInscripcion? GetOneAlumnoInscripcion(int id)
+    {
+        using var context = new AcademiaContext();
+
+        return context.AlumnoInscripciones.Find(id);
+
+    }
+
+    public static IEnumerable<AlumnoInscripcion> GetAllAlumnoInscripcion()
+    {
+        using var context = new AcademiaContext();
+
+        return context.AlumnoInscripciones.ToList();
+    }
+
+    public static void ActualizarAlumnoInscripcion(AlumnoInscripcion alumnoInscripcion)
+    {
+        using var context = new AcademiaContext();
+
+        var alumnoInscripcionToUpdate = context.AlumnoInscripciones.Find(alumnoInscripcion.Id);
+
+        if (alumnoInscripcionToUpdate != null)
+        {
+            alumnoInscripcionToUpdate.IdCurso = alumnoInscripcion.IdCurso;
+            alumnoInscripcionToUpdate.IdAlumno = alumnoInscripcion.IdAlumno;
+            alumnoInscripcionToUpdate.Condicion = alumnoInscripcion.Condicion;
+            alumnoInscripcionToUpdate.Nota = alumnoInscripcion.Nota;
+            alumnoInscripcionToUpdate.Id = alumnoInscripcion.Id;
             context.SaveChanges();
-            Console.WriteLine($"AlumnoInscripción creado: ID: {alumnoInscripcion.Id}, ID Alumno: {alumnoInscripcion.IdAlumno}, " +
-                              $"ID Curso: {alumnoInscripcion.IdCurso}, Condición: {alumnoInscripcion.Condicion}, Nota: {alumnoInscripcion.Nota}");
-
-        }
-    }
-
-    public static void LeerAlumnoInscripcion(int id)
-    {
-        using (var context = new AcademiaContext())
-        {
-            var alumnoInscripcion = context.AlumnoInscripciones.FirstOrDefault(ai => ai.Id == id);
-            if (alumnoInscripcion != null)
-            {
-                Console.WriteLine($"AlumnoInscripción encontrada: ID: {alumnoInscripcion.Id}, ID Alumno: {alumnoInscripcion.IdAlumno}, " +
-                                  $"ID Curso: {alumnoInscripcion.IdCurso}, Condición: {alumnoInscripcion.Condicion}, Nota: {alumnoInscripcion.Nota}");
-
-            }
-            else
-            {
-                Console.WriteLine("AlumnoInscripcion no encontrado.");
-            }
-        }
-    }
-
-    public static void ActualizarAlumnoInscripcion(int id)
-    {
-        int decision = 10;
-
-        while (decision > 4 || decision < 0)
-        {
-            Console.WriteLine("\n¿Qué propiedad desea modificar?" +
-            "              \n   1- Id del alumno" +
-            "              \n   2- Id del curso" +
-            "              \n   3- Condición" +
-            "              \n   4- Nota" +
-            "              \n   0- Salir");
-            Console.Write("\nIngrese su decisión: ");
-            decision = int.Parse(Console.ReadLine());
-        }
-
-        if (decision != 0)
-        {
-            using (var context = new AcademiaContext())
-            {
-                var alumnoInscripcion = context.AlumnoInscripciones.FirstOrDefault(ai => ai.Id == id);
-                if (alumnoInscripcion != null)
-                {
-                    switch (decision)
-                    {
-                        case 1:
-                            Console.Write("\nIngrese el nuevo id del alumno: ");
-                            alumnoInscripcion.IdAlumno = int.Parse(Console.ReadLine());
-                            break;
-
-                        case 2:
-                            Console.Write("\nIngrese el nuevo id del curso: ");
-                            alumnoInscripcion.IdCurso = int.Parse(Console.ReadLine());
-                            break;
-
-                        case 3:
-                            Console.Write("\nIngrese la nueva condición: ");
-                            alumnoInscripcion.Condicion = Console.ReadLine();
-                            break;
-
-                        case 4:
-                            Console.Write("\nIngrese la nueva nota: ");
-                            alumnoInscripcion.Nota = int.Parse(Console.ReadLine());
-                            break;
-                    }
-                    context.SaveChanges();
-                    Console.WriteLine($"AlumnoInscripción actualizada: ID: {alumnoInscripcion.Id}, ID Alumno: {alumnoInscripcion.IdAlumno}, " +
-                                      $"ID Curso: {alumnoInscripcion.IdCurso}, Condición: {alumnoInscripcion.Condicion}, Nota: {alumnoInscripcion.Nota}");
-
-                }
-                else
-                {
-                    Console.WriteLine("AlumnoInscripcion no encontrado.");
-                }
-            }
         }
     }
 
     public static void EliminarAlumnoInscripcion(int id)
     {
-        using (var context = new AcademiaContext())
-        {
-            var alumnoInscripcion = context.AlumnoInscripciones.FirstOrDefault(ai => ai.Id == id);
-            if (alumnoInscripcion != null)
-            {
-                context.AlumnoInscripciones.Remove(alumnoInscripcion);
-                context.SaveChanges();
-                Console.WriteLine($"AlumnoInscripción eliminada: ID: {alumnoInscripcion.Id}, ID Alumno: {alumnoInscripcion.IdAlumno}, " +
-                                  $"ID Curso: {alumnoInscripcion.IdCurso}, Condición: {alumnoInscripcion.Condicion}, Nota: {alumnoInscripcion.Nota}");
+        using var context = new AcademiaContext();
 
-            }
-            else
-            {
-                Console.WriteLine("AlumnoInscripcion no encontrado.");
-            }
+        var alumnoInscripcion = context.AlumnoInscripciones.Find(id);
+        if (alumnoInscripcion != null)
+        {
+            context.AlumnoInscripciones.Remove(alumnoInscripcion);
+            context.SaveChanges();
         }
+
     }
 }
