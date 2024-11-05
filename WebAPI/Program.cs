@@ -32,7 +32,7 @@ namespace WebAPI
             {
 
 
-                return Usuario_Controller.GetOneUsuario(id);
+                return Usuario_Controller.GetOneUsuarioId(id);
             })
             .WithName("LeerUsuario");
 
@@ -47,7 +47,7 @@ namespace WebAPI
             app.MapPost("/usuarios", (Usuario usuario) =>
             {
 
-                Usuario_Controller.CrearUsuario(usuario);
+                Usuario_Controller.AgregarUsuario(usuario);
             })
             .WithName("CrearUsuario");
 
