@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Microsoft.AspNetCore.Components.Forms
+@inject NavigationManager Navigation
 
 <PageTitle>Academia</PageTitle>
 
@@ -28,21 +29,41 @@
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
 
         <div style="margin-top: 20px;">
-            <NavLink href="/crear-usuario" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: indigo"> 
+            <NavLink href="/crear-usuario" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" 
+            style="background-color: indigo"> 
                Crear nuevo usuario
             </NavLink>
         </div>
+
+        @if (showErrorMessage)
+        {
+            <div class="alert alert-danger" role="alert" style="margin-top: 20px; color: red">
+                Nombre de usuario o contraseña incorrectas. Intente nuevamente.
+            </div>
+        }
 
     </EditForm>
 </div>
 
 @code {
     private LoginModel loginModel = new LoginModel();
+    private bool showErrorMessage = false;
 
     private async Task HandleLogin()
     {
-        // Lógica para manejar el inicio de sesión
-        // Por ejemplo: await authService.Login(loginModel);
+        var usuario = Usuario_Controller.GetOneUsuarioUsername(loginModel.Username);
+
+        if (usuario != null && usuario.Password == loginModel.Password)
+        {
+            // Redirige a otra página en caso de inicio de sesión exitoso
+            Navigation.NavigateTo("/pagina-destino");
+        }
+        else
+        {
+            // Muestra el mensaje de error si las credenciales son incorrectas
+            showErrorMessage = true;
+        }
+
     }
 
     public class LoginModel

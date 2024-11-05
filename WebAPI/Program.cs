@@ -32,7 +32,7 @@ namespace WebAPI
             {
 
 
-                return Usuario_Controller.GetOneUsuario(id);
+                return Usuario_Controller.GetOneUsuarioId(id);
             })
             .WithName("LeerUsuario");
             //.WithOpenApi();

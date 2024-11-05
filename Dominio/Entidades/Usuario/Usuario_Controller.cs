@@ -17,12 +17,20 @@ public class Usuario_Controller
         
     }
 
-    public static Usuario? GetOneUsuario(int id)
+    public static Usuario? GetOneUsuarioId(int id)
     {
         using var context = new AcademiaContext();
 
         return context.Usuarios.Find(id);
         
+    }
+
+    public static Usuario? GetOneUsuarioUsername(string username)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Usuarios.FirstOrDefault(u => u.Username == username);
+
     }
 
     public static IEnumerable<Usuario> GetAllUsuario()

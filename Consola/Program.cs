@@ -27,9 +27,9 @@ public class Program
             Habilitado = false
         };
         Usuario_Controller.CrearUsuario(usuario);
-        Usuario_Controller.GetOneUsuario(12345);
+        Usuario_Controller.GetOneUsuarioId(12345);
         Usuario_Controller.ActualizarUsuario(usuario);
-        Usuario_Controller.GetOneUsuario(12345);
+        Usuario_Controller.GetOneUsuarioId(12345);
         Usuario_Controller.EliminarUsuario(12345);
         // Estará bien referenciado de esta forma? con la clase por delante
 
