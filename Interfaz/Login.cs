@@ -16,5 +16,10 @@ namespace Interfaz
         {
             InitializeComponent();
         }
+
+        private void IniciarSesion(object sender, EventArgs e)
+        {
+            //Validacion de usuario y contraseña
+        }
     }
 }

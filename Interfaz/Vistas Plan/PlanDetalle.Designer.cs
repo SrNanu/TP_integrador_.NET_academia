@@ -52,7 +52,8 @@
             label1.Size = new Size(74, 25);
             label1.TabIndex = 1;
             label1.Text = "Detalles";
-            label1.Click += this.label1_Click;
+            //comentado por error, no mergear label1.Click += this.label1_Click;
+            
             // 
             // textBox1
             // 
@@ -111,7 +112,7 @@
             Controls.Add(txtbDetalles);
             Name = "PlanDetalle";
             Text = "Form1";
-            Load += this.PlanDetalle_Load;
+            // comentado por error, no mergear Load += this.PlanDetalle_Load;
             ResumeLayout(false);
             PerformLayout();
         }

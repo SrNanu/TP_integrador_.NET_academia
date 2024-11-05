@@ -34,7 +34,7 @@
             lblContrasenia = new Label();
             lblUsuario = new Label();
             btnOlvideContrasenia = new Button();
-            btnCrearUsuario = new Button();
+            btnRegistrarse = new Button();
             lblAcademia = new Label();
             SuspendLayout();
             // 
@@ -62,6 +62,7 @@
             btnIniciarSesion.TabIndex = 13;
             btnIniciarSesion.Text = "Iniciar sesión";
             btnIniciarSesion.UseVisualStyleBackColor = false;
+            btnIniciarSesion.Click += IniciarSesion;
             // 
             // lblContrasenia
             // 
@@ -91,16 +92,16 @@
             btnOlvideContrasenia.Text = "Olvide mi contraseña";
             btnOlvideContrasenia.UseVisualStyleBackColor = false;
             // 
-            // btnCrearUsuario
+            // btnRegistrarse
             // 
-            btnCrearUsuario.BackColor = SystemColors.Info;
-            btnCrearUsuario.ForeColor = SystemColors.ActiveCaptionText;
-            btnCrearUsuario.Location = new Point(11, 415);
-            btnCrearUsuario.Name = "btnCrearUsuario";
-            btnCrearUsuario.Size = new Size(134, 23);
-            btnCrearUsuario.TabIndex = 9;
-            btnCrearUsuario.Text = "Crear usuario";
-            btnCrearUsuario.UseVisualStyleBackColor = false;
+            btnRegistrarse.BackColor = SystemColors.Info;
+            btnRegistrarse.ForeColor = SystemColors.ActiveCaptionText;
+            btnRegistrarse.Location = new Point(11, 415);
+            btnRegistrarse.Name = "btnRegistrarse";
+            btnRegistrarse.Size = new Size(134, 23);
+            btnRegistrarse.TabIndex = 9;
+            btnRegistrarse.Text = "Registrarse";
+            btnRegistrarse.UseVisualStyleBackColor = false;
             // 
             // lblAcademia
             // 
@@ -122,7 +123,7 @@
             Controls.Add(lblContrasenia);
             Controls.Add(lblUsuario);
             Controls.Add(btnOlvideContrasenia);
-            Controls.Add(btnCrearUsuario);
+            Controls.Add(btnRegistrarse);
             Controls.Add(lblAcademia);
             Name = "Login";
             Text = "Login";
@@ -138,7 +139,7 @@
         private Label lblContrasenia;
         private Label lblUsuario;
         private Button btnOlvideContrasenia;
-        private Button btnCrearUsuario;
+        private Button btnRegistrarse;
         private Label lblAcademia;
     }
 }
