@@ -1,0 +1,98 @@
+﻿@page "/crear-usuario"
+@inject NavigationManager NavigationManager
+
+<h3>Crear Usuario</h3>
+
+<EditForm Model="@usuario" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <InputText id="nombre" class="form-control" @bind-Value="@usuario.Nombre" required />
+        <ValidationMessage For="@(() => usuario.Nombre)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <InputText id="apellido" class="form-control" @bind-Value="@usuario.Apellido" required />
+        <ValidationMessage For="@(() => usuario.Apellido)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <InputDate id="fechaNacimiento" class="form-control" @bind-Value="@usuario.FechaNacimiento" required />
+        <ValidationMessage For="@(() => usuario.FechaNacimiento)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="direccion" class="form-label">Dirección</label>
+        <InputText id="direccion" class="form-control" @bind-Value="@usuario.Direccion" />
+        <ValidationMessage For="@(() => usuario.Direccion)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <InputText id="telefono" class="form-control" @bind-Value="@usuario.Telefono" />
+        <ValidationMessage For="@(() => usuario.Telefono)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo de Usuario</label>
+        <InputSelect id="tipo" class="form-select" @bind-Value="@usuario.Tipo">
+            <option value="">Seleccionar tipo...</option>
+            <option value="TiposUsuarios.Alumno">Alumno</option>
+            <option value="TiposUsuarios.Profesor">Profesor</option>
+            <option value="TiposUsuarios.Administrativo">Administrativo</option>
+        </InputSelect>
+        <ValidationMessage For="@(() => usuario.Tipo)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="legajo" class="form-label">Legajo</label>
+        <InputNumber id="legajo" class="form-control" @bind-Value="@usuario.Legajo" required />
+        <ValidationMessage For="@(() => usuario.Legajo)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <InputText id="email" class="form-control" type="email" @bind-Value="@usuario.Email" required />
+        <ValidationMessage For="@(() => usuario.Email)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <InputText id="username" class="form-control" @bind-Value="@usuario.Username" required />
+        <ValidationMessage For="@(() => usuario.Username)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <InputText id="password" class="form-control" type="password" @bind-Value="@usuario.Password" required />
+        <ValidationMessage For="@(() => usuario.Password)" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear Usuario</button>
+</EditForm>
+
+@if (mensaje != null)
+{
+    <div class="alert alert-success mt-3">@mensaje</div>
+}
+
+@code {
+    // No es necesario definir la clase Usuario aquí, ya que se asume que se importa automáticamente
+    private Usuario usuario = new Usuario();
+    private string mensaje;
+
+    private async Task HandleValidSubmit()
+    {
+        // Aquí puedes agregar el código para guardar el usuario, por ejemplo llamando a un servicio
+        // await usuarioService.CrearUsuario(usuario);
+
+        mensaje = "Usuario creado exitosamente.";
+        // Navegar a otra página si es necesario
+        // NavigationManager.NavigateTo("/usuarios");
+    }
+}
+

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaz", "Interfaz\Interf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{02297320-1A39-4210-94D3-77D736563B57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AplicacionWeb", "AplicacionWeb\AplicacionWeb.csproj", "{4EE74FCF-3C30-4ADA-8D2F-CBCE3C476B95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AplicacionWeb", "AplicacionWeb\AplicacionWeb.csproj", "{4EE74FCF-3C30-4ADA-8D2F-CBCE3C476B95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
