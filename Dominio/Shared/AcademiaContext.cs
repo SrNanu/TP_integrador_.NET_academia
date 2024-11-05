@@ -24,7 +24,7 @@ public class AcademiaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=DESKTOP-6HBL1R6\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False");
+        optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6HBL1R6\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False");
     }
     //Si lo queremos en MySQL
     /*
