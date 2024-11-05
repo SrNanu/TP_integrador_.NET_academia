@@ -8,16 +8,13 @@ using System.Threading.Tasks;
 
 public class Materia : EntidadNegocio
 {
-    [Required]
     [StringLength(100)]
-    public required string Descripcion { get; set; }
+    public  string Descripcion { get; set; }
 
     [ForeignKey("Plan")]
     public int IdPlan { get; set; }
 
-    [Required]
-    public required int HsSemanales { get; set; }
+    public  int HsSemanales { get; set; }
 
-    [Required]
-    public required int HsTotales { get; set; }
+    public  int HsTotales { get; set; }
 }

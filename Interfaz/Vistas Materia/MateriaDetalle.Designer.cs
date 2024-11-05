@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             lblDescripcion = new Label();
-            txtbDetalles = new TextBox();
+            txtbDescripcion = new TextBox();
             label1 = new Label();
             txtbIdPlan = new TextBox();
             lblIdPlan = new Label();
@@ -50,12 +50,12 @@
             lblDescripcion.TabIndex = 0;
             lblDescripcion.Text = "Descripcion";
             // 
-            // txtbDetalles
+            // txtbDescripcion
             // 
-            txtbDetalles.Location = new Point(352, 70);
-            txtbDetalles.Name = "txtbDetalles";
-            txtbDetalles.Size = new Size(150, 31);
-            txtbDetalles.TabIndex = 1;
+            txtbDescripcion.Location = new Point(352, 70);
+            txtbDescripcion.Name = "txtbDescripcion";
+            txtbDescripcion.Size = new Size(150, 31);
+            txtbDescripcion.TabIndex = 1;
             // 
             // label1
             // 
@@ -71,7 +71,7 @@
             txtbIdPlan.Name = "txtbIdPlan";
             txtbIdPlan.Size = new Size(150, 31);
             txtbIdPlan.TabIndex = 4;
-            txtbIdPlan.TextChanged += textBox1_TextChanged;
+            //txtbIdPlan.TextChanged += textBox1_TextChanged;
             // 
             // lblIdPlan
             // 
@@ -81,7 +81,6 @@
             lblIdPlan.Size = new Size(66, 25);
             lblIdPlan.TabIndex = 3;
             lblIdPlan.Text = "Id Plan";
-            //lblIdPlan.Click += this.label2_Click;
             // 
             // txtbHsSemanales
             // 
@@ -89,7 +88,7 @@
             txtbHsSemanales.Name = "txtbHsSemanales";
             txtbHsSemanales.Size = new Size(150, 31);
             txtbHsSemanales.TabIndex = 6;
-            txtbHsSemanales.TextChanged += textBox1_TextChanged_1;
+            //txtbHsSemanales.TextChanged += textBox1_TextChanged_1;
             // 
             // lblHsSemanales
             // 
@@ -99,7 +98,6 @@
             lblHsSemanales.Size = new Size(148, 25);
             lblHsSemanales.TabIndex = 5;
             lblHsSemanales.Text = "Horas Semanales";
-            //lblHsSemanales.Click += this.label2_Click_1;
             // 
             // txtbHsTotales
             // 
@@ -149,7 +147,7 @@
             Controls.Add(txtbIdPlan);
             Controls.Add(lblIdPlan);
             Controls.Add(label1);
-            Controls.Add(txtbDetalles);
+            Controls.Add(txtbDescripcion);
             Controls.Add(lblDescripcion);
             Name = "MateriaDetalle";
             Text = "MateriaDetalle";
@@ -160,7 +158,7 @@
         #endregion
 
         private Label lblDescripcion;
-        private TextBox txtbDetalles;
+        private TextBox txtbDescripcion;
         private Label label1;
         private TextBox txtbIdPlan;
         private Label lblIdPlan;
