@@ -52,7 +52,7 @@
             eliminarButton.TabIndex = 1;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
-            eliminarButton.Click += button1_Click;
+            //eliminarButton.Click += button1_Click;
             // 
             // agregarButton
             // 

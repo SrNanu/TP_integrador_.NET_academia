@@ -30,7 +30,7 @@
         {
             txtbDetalles = new TextBox();
             lblDetalles = new Label();
-            textBox1 = new TextBox();
+            txtbIdEspecialidad = new TextBox();
             lblIdEspecialidad = new Label();
             lblPlan = new Label();
             btnCancelar = new Button();
@@ -53,12 +53,12 @@
             lblDetalles.TabIndex = 1;
             lblDetalles.Text = "Detalles";
             // 
-            // textBox1
+            // txtbIdEspecialidad
             // 
-            textBox1.Location = new Point(328, 251);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 2;
+            txtbIdEspecialidad.Location = new Point(328, 251);
+            txtbIdEspecialidad.Name = "txtbIdEspecialidad";
+            txtbIdEspecialidad.Size = new Size(150, 31);
+            txtbIdEspecialidad.TabIndex = 2;
             // 
             // lblIdEspecialidad
             // 
@@ -105,7 +105,7 @@
             Controls.Add(btnCancelar);
             Controls.Add(lblPlan);
             Controls.Add(lblIdEspecialidad);
-            Controls.Add(textBox1);
+            Controls.Add(txtbIdEspecialidad);
             Controls.Add(lblDetalles);
             Controls.Add(txtbDetalles);
             Name = "PlanDetalle";
@@ -118,7 +118,7 @@
 
         private TextBox txtbDetalles;
         private Label lblDetalles;
-        private TextBox textBox1;
+        private TextBox txtbIdEspecialidad;
         private Label lblIdEspecialidad;
         private Label lblPlan;
         private Button btnCancelar;
