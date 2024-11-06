@@ -33,8 +33,7 @@
             btnIniciarSesion = new Button();
             lblContrasenia = new Label();
             lblUsuario = new Label();
-            btnOlvideContrasenia = new Button();
-            btnCrearUsuario = new Button();
+            btnRegistrarse = new Button();
             lblAcademia = new Label();
             SuspendLayout();
             // 
@@ -65,6 +64,7 @@
             btnIniciarSesion.TabIndex = 13;
             btnIniciarSesion.Text = "Iniciar sesión";
             btnIniciarSesion.UseVisualStyleBackColor = false;
+            btnIniciarSesion.Click += IniciarSesion;
             // 
             // lblContrasenia
             // 
@@ -86,28 +86,18 @@
             lblUsuario.TabIndex = 11;
             lblUsuario.Text = "Usuario";
             // 
-            // btnOlvideContrasenia
+            // btnRegistrarse
             // 
-            btnOlvideContrasenia.BackColor = SystemColors.Info;
-            btnOlvideContrasenia.Location = new Point(244, 692);
-            btnOlvideContrasenia.Margin = new Padding(4, 5, 4, 5);
-            btnOlvideContrasenia.Name = "btnOlvideContrasenia";
-            btnOlvideContrasenia.Size = new Size(216, 38);
-            btnOlvideContrasenia.TabIndex = 10;
-            btnOlvideContrasenia.Text = "Olvide mi contraseña";
-            btnOlvideContrasenia.UseVisualStyleBackColor = false;
-            // 
-            // btnCrearUsuario
-            // 
-            btnCrearUsuario.BackColor = SystemColors.Info;
-            btnCrearUsuario.ForeColor = SystemColors.ActiveCaptionText;
-            btnCrearUsuario.Location = new Point(16, 692);
-            btnCrearUsuario.Margin = new Padding(4, 5, 4, 5);
-            btnCrearUsuario.Name = "btnCrearUsuario";
-            btnCrearUsuario.Size = new Size(191, 38);
-            btnCrearUsuario.TabIndex = 9;
-            btnCrearUsuario.Text = "Crear usuario";
-            btnCrearUsuario.UseVisualStyleBackColor = false;
+
+            btnRegistrarse.BackColor = SystemColors.Info;
+            btnRegistrarse.ForeColor = SystemColors.ActiveCaptionText;
+            btnRegistrarse.Location = new Point(11, 415);
+            btnRegistrarse.Name = "btnRegistrarse";
+            btnRegistrarse.Size = new Size(134, 23);
+            btnRegistrarse.TabIndex = 9;
+            btnRegistrarse.Text = "Registrarse";
+            btnRegistrarse.UseVisualStyleBackColor = false;
+            btnRegistrarse.Click += Registarse;
             // 
             // lblAcademia
             // 
@@ -129,8 +119,7 @@
             Controls.Add(btnIniciarSesion);
             Controls.Add(lblContrasenia);
             Controls.Add(lblUsuario);
-            Controls.Add(btnOlvideContrasenia);
-            Controls.Add(btnCrearUsuario);
+            Controls.Add(btnRegistrarse);
             Controls.Add(lblAcademia);
             Margin = new Padding(4, 5, 4, 5);
             Name = "Login";
@@ -146,8 +135,7 @@
         private Button btnIniciarSesion;
         private Label lblContrasenia;
         private Label lblUsuario;
-        private Button btnOlvideContrasenia;
-        private Button btnCrearUsuario;
+        private Button btnRegistrarse;
         private Label lblAcademia;
     }
 }
