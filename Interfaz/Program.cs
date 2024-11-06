@@ -19,11 +19,7 @@ namespace Interfaz
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new EspecialidadLista());
             Application.Run(new PlanLista());
-            Application.Run(new MateriaLista());
-            Application.Run(new ComisionLista());
-            Application.Run(new CursoLista());
 
 
 
