@@ -1,6 +1,6 @@
 ﻿namespace Interfaz
 {
-    partial class UsuarioDetalle
+    partial class AlumnosDetalle
     {
         /// <summary>
         /// Required designer variable.

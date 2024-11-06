@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Interfaz
+namespace Interfaz.Vistas_Profesor
 {
-    public partial class MenuUsuario : Form
+    public partial class MenuProfesor : Form
     {
-        public MenuUsuario()
+        public MenuProfesor()
         {
             InitializeComponent();
         }

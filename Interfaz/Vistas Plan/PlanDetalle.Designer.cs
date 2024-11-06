@@ -52,6 +52,7 @@
             lblDetalles.Size = new Size(74, 25);
             lblDetalles.TabIndex = 1;
             lblDetalles.Text = "Detalles";
+
             // 
             // txtbIdEspecialidad
             // 
@@ -113,6 +114,7 @@
             Name = "PlanDetalle";
             Text = "Plan Detalle";
             Load += PlanDetalle_Load;
+
             ResumeLayout(false);
             PerformLayout();
         }
