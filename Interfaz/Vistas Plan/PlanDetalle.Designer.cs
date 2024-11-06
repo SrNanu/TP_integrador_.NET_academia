@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             txtbDetalles = new TextBox();
-            label1 = new Label();
-            textBox1 = new TextBox();
-            label2 = new Label();
-            label3 = new Label();
+            lblDetalles = new Label();
+            txtbIdEspecialidad = new TextBox();
+            lblIdEspecialidad = new Label();
+            lblPlan = new Label();
             btnCancelar = new Button();
             btnAceptar = new Button();
             SuspendLayout();
@@ -44,41 +44,40 @@
             txtbDetalles.Size = new Size(150, 31);
             txtbDetalles.TabIndex = 0;
             // 
-            // label1
+            // lblDetalles
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(183, 175);
-            label1.Name = "label1";
-            label1.Size = new Size(74, 25);
-            label1.TabIndex = 1;
-            label1.Text = "Detalles";
-            //comentado por error, no mergear label1.Click += this.label1_Click;
-            
+            lblDetalles.AutoSize = true;
+            lblDetalles.Location = new Point(183, 175);
+            lblDetalles.Name = "lblDetalles";
+            lblDetalles.Size = new Size(74, 25);
+            lblDetalles.TabIndex = 1;
+            lblDetalles.Text = "Detalles";
+
             // 
-            // textBox1
+            // txtbIdEspecialidad
             // 
-            textBox1.Location = new Point(328, 251);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(150, 31);
-            textBox1.TabIndex = 2;
+            txtbIdEspecialidad.Location = new Point(328, 251);
+            txtbIdEspecialidad.Name = "txtbIdEspecialidad";
+            txtbIdEspecialidad.Size = new Size(150, 31);
+            txtbIdEspecialidad.TabIndex = 2;
             // 
-            // label2
+            // lblIdEspecialidad
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(173, 251);
-            label2.Name = "label2";
-            label2.Size = new Size(130, 25);
-            label2.TabIndex = 3;
-            label2.Text = "Id Especialidad";
+            lblIdEspecialidad.AutoSize = true;
+            lblIdEspecialidad.Location = new Point(173, 251);
+            lblIdEspecialidad.Name = "lblIdEspecialidad";
+            lblIdEspecialidad.Size = new Size(130, 25);
+            lblIdEspecialidad.TabIndex = 3;
+            lblIdEspecialidad.Text = "Id Especialidad";
             // 
-            // label3
+            // lblPlan
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(328, 45);
-            label3.Name = "label3";
-            label3.Size = new Size(45, 25);
-            label3.TabIndex = 4;
-            label3.Text = "Plan";
+            lblPlan.AutoSize = true;
+            lblPlan.Location = new Point(328, 45);
+            lblPlan.Name = "lblPlan";
+            lblPlan.Size = new Size(45, 25);
+            lblPlan.TabIndex = 4;
+            lblPlan.Text = "Plan";
             // 
             // btnCancelar
             // 
@@ -88,6 +87,7 @@
             btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += cancelarButton_Click;
             // 
             // btnAceptar
             // 
@@ -97,6 +97,7 @@
             btnAceptar.TabIndex = 6;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += aceptarButton_Click;
             // 
             // PlanDetalle
             // 
@@ -105,14 +106,15 @@
             ClientSize = new Size(800, 450);
             Controls.Add(btnAceptar);
             Controls.Add(btnCancelar);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
+            Controls.Add(lblPlan);
+            Controls.Add(lblIdEspecialidad);
+            Controls.Add(txtbIdEspecialidad);
+            Controls.Add(lblDetalles);
             Controls.Add(txtbDetalles);
             Name = "PlanDetalle";
-            Text = "Form1";
-            // comentado por error, no mergear Load += this.PlanDetalle_Load;
+            Text = "Plan Detalle";
+            Load += PlanDetalle_Load;
+
             ResumeLayout(false);
             PerformLayout();
         }
@@ -120,10 +122,10 @@
         #endregion
 
         private TextBox txtbDetalles;
-        private Label label1;
-        private TextBox textBox1;
-        private Label label2;
-        private Label label3;
+        private Label lblDetalles;
+        private TextBox txtbIdEspecialidad;
+        private Label lblIdEspecialidad;
+        private Label lblPlan;
         private Button btnCancelar;
         private Button btnAceptar;
     }

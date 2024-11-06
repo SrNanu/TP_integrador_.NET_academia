@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class Usuario_Controller
 {
-    public static void CrearUsuario(Usuario usuario)
+    public static void AgregarUsuario(Usuario usuario)
     {
         
         using var context = new AcademiaContext();
@@ -17,12 +17,36 @@ public class Usuario_Controller
         
     }
 
-    public static Usuario? GetOneUsuario(int id)
+    public static Usuario? GetOneUsuarioId(int id)
     {
         using var context = new AcademiaContext();
 
         return context.Usuarios.Find(id);
         
+    }
+
+    public static Usuario? GetOneUsuarioUsername(string username)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Usuarios.FirstOrDefault(u => u.Username == username);
+
+    }
+
+    public static Usuario? GetOneUsuarioMail(string mail)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Usuarios.FirstOrDefault(u => u.Email == mail);
+
+    }
+
+    public static Usuario? GetOneUsuarioLegajo(int legajo)
+    {
+        using var context = new AcademiaContext();
+
+        return context.Usuarios.FirstOrDefault(u => u.Legajo == legajo);
+
     }
 
     public static IEnumerable<Usuario> GetAllUsuario()
@@ -40,7 +64,6 @@ public class Usuario_Controller
 
         if (usuarioToUpdate != null)
         {
-            usuarioToUpdate.IdPlan = usuario.IdPlan;
             usuarioToUpdate.Nombre = usuario.Nombre;
             usuarioToUpdate.Apellido = usuario.Apellido;
             usuarioToUpdate.FechaNacimiento = usuario.FechaNacimiento;

@@ -11,7 +11,6 @@ public class Plan : EntidadNegocio
     [ForeignKey("Especialidad")]
     public int IdEspecialidad { get; set; }
 
-    [Required]
     [StringLength(100)]
-    public required string Descripcion { get; set; }
+    public  string Descripcion { get; set; }
 }
