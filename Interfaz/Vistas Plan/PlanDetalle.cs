@@ -32,8 +32,18 @@ namespace Interfaz.Vistas_Plan
         {
             InitializeComponent();
             errorProvider = new ErrorProvider();
+            LoadEspecialidades(); // Cargar especialidades al iniciar el formulario
         }
 
+        private async void LoadEspecialidades()
+        {
+            // Llama al API o a la base de datos para obtener la lista de especialidades
+            List<Especialidad> especialidades = (List<Especialidad>)await EspecialidadApiClient.GetAllAsync();
+
+            cmbEspecialidades.DataSource = especialidades;
+            cmbEspecialidades.DisplayMember = "Descripcion"; // Mostrar la descripción
+            cmbEspecialidades.ValueMember = "Id"; // El valor será el Id de la especialidad
+        }
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
             PlanApiClient client = new PlanApiClient();
@@ -42,7 +52,8 @@ namespace Interfaz.Vistas_Plan
             {
                 // Asignar el ID de Especialidad y la Descripción
                 this.Plan.IdEspecialidad = int.Parse(txtbIdEspecialidad.Text); // Obtener ID de Especialidad
-                this.Plan.Descripcion = txtbDetalles.Text; // Obtener Descripción
+                //this.Plan.Descripcion = txtbDetalles.Text; // Obtener Descripción
+                this.Plan.IdEspecialidad = (int)cmbEspecialidades.SelectedValue;
 
                 if (this.EditMode)
                 {
@@ -65,7 +76,10 @@ namespace Interfaz.Vistas_Plan
         private void SetPlan()
         {
             this.txtbDetalles.Text = this.Plan.Descripcion; // Establecer la descripción
-            this.txtbIdEspecialidad.Text = this.Plan.IdEspecialidad.ToString(); // Establecer el ID de especialidad
+            if (Plan != null && Plan.IdEspecialidad != 0)
+            {
+                cmbEspecialidades.SelectedValue = this.Plan.IdEspecialidad;
+            }
         }
 
         private bool ValidatePlan()
@@ -82,11 +96,11 @@ namespace Interfaz.Vistas_Plan
                 errorProvider.SetError(txtbDetalles, "La Descripción es requerida.");
             }
 
-            // Validar ID de Especialidad
-            if (string.IsNullOrWhiteSpace(txtbIdEspecialidad.Text) || !int.TryParse(txtbIdEspecialidad.Text, out _))
+            //Validar Especialidad seleccionada
+            if (cmbEspecialidades.SelectedItem == null)
             {
                 isValid = false;
-                errorProvider.SetError(txtbIdEspecialidad, "Debe ingresar un ID de Especialidad válido.");
+                errorProvider.SetError(cmbEspecialidades, "Debe seleccionar una Especialidad.");
             }
 
             return isValid;
