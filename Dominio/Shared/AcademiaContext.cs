@@ -1,8 +1,5 @@
 ﻿using System;
-using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection;
 
 public class AcademiaContext : DbContext
 {
@@ -26,10 +23,4 @@ public class AcademiaContext : DbContext
     {
         optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-KD3CGEG\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False");
     }
-    //Si lo queremos en MySQL
-    /*
-     optionsBuilder.UseMySql("Server=localhost;Database=Academia;User=root;Password=root;",
-            ServerVersion.AutoDetect("Server=localhost;Database=Academia;User=root;Password=root;"));
-    }
-     */
 }

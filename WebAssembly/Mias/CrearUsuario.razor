@@ -42,8 +42,8 @@
         <label for="tipo" class="form-label">Tipo de Usuario</label>
         <InputSelect id="tipo" class="form-select" @bind-Value="@usuarioNuevo.Tipo">
             <option value="">Seleccionar tipo...</option>
-            <option value="TiposUsuarios.Alumno">Alumno</option>
-            <option value="TiposUsuarios.Profesor">Profesor</option>
+            <option value="Alumno">Alumno</option>
+            <option value="Profesor">Profesor</option>
         </InputSelect>
         <ValidationMessage For="@(() => usuarioNuevo.Tipo)" />
     </div>
@@ -105,28 +105,17 @@
 
 @code {
 
-     /*    SI QUIERO IMPRIMIRLO EN EL HTML
-     <div>
-        <h3>Detalles del Usuario</h3>
-        <p>Nombre: @usuarioNuevo.Nombre</p>
-        <p>Apellido: @usuarioNuevo.Apellido</p>
-        <p>Fecha de Nacimiento: @usuarioNuevo.FechaNacimiento.ToShortDateString()</p>
-        <p>Dirección: @usuarioNuevo.Direccion</p>
-        <p>Teléfono: @usuarioNuevo.Telefono</p>
-        <p>Tipo: @usuarioNuevo.Tipo</p>
-        <p>Legajo: @usuarioNuevo.Legajo</p>
-        <p>Email: @usuarioNuevo.Email</p>
-        <p>Username: @usuarioNuevo.Username</p>
-        <p>Password: @usuarioNuevo.Password</p>
-     </div>
-     */
-
     private Usuario usuarioNuevo = new Usuario();
     private bool showErrorMessage = false;
     private bool showDatos = false;
 
     private async Task HandleValidSubmit()
     {
+        Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
+        Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
+        showDatos = true;
+
+
         var usuarioExistente1 = Usuario_Controller.GetOneUsuarioUsername(usuarioNuevo.Username);
         var usuarioExistente2 = Usuario_Controller.GetOneUsuarioMail(usuarioNuevo.Email);
         var usuarioExistente3 = Usuario_Controller.GetOneUsuarioLegajo(usuarioNuevo.Legajo);

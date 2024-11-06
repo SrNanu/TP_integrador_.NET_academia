@@ -31,14 +31,12 @@ namespace WebAPI
             app.MapGet("/usuarios/{id}", (int id) =>
             {
 
-
                 return Usuario_Controller.GetOneUsuarioId(id);
             })
             .WithName("LeerUsuario");
 
             app.MapGet("/usuarios", () =>
             {
-
 
                 return Usuario_Controller.GetAllUsuario();
             })
