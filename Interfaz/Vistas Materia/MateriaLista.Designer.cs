@@ -52,6 +52,7 @@
             eliminarButton.TabIndex = 1;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
+            eliminarButton.Click += eliminarButton_Click;
             // 
             // modificarButton
             // 
@@ -61,6 +62,7 @@
             modificarButton.TabIndex = 2;
             modificarButton.Text = "Modificar";
             modificarButton.UseVisualStyleBackColor = true;
+            modificarButton.Click += modificarButton_Click;
             // 
             // agregarButton
             // 
@@ -70,6 +72,7 @@
             agregarButton.TabIndex = 3;
             agregarButton.Text = "Agregar";
             agregarButton.UseVisualStyleBackColor = true;
+            agregarButton.Click += agregarButton_Click;
             // 
             // MateriaLista
             // 

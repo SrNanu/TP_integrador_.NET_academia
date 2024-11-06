@@ -43,6 +43,7 @@
             agregarButton.TabIndex = 7;
             agregarButton.Text = "Agregar";
             agregarButton.UseVisualStyleBackColor = true;
+            agregarButton.Click += agregarButton_Click;
             // 
             // modificarButton
             // 
@@ -52,6 +53,7 @@
             modificarButton.TabIndex = 6;
             modificarButton.Text = "Modificar";
             modificarButton.UseVisualStyleBackColor = true;
+            modificarButton.Click += modificarButton_Click;
             // 
             // eliminarButton
             // 
@@ -61,6 +63,7 @@
             eliminarButton.TabIndex = 5;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
+            eliminarButton.Click += eliminarButton_Click;
             // 
             // especialidadesDataGridView
             // 

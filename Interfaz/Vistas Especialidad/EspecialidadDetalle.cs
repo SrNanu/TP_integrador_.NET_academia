@@ -39,6 +39,7 @@ namespace Interfaz.Vistas_Especialidad
 
         public EspecialidadDetalle()
         {
+
             InitializeComponent();
             errorProvider = new ErrorProvider();
         }

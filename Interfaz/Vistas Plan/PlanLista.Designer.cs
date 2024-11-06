@@ -52,7 +52,7 @@
             eliminarButton.TabIndex = 1;
             eliminarButton.Text = "Eliminar";
             eliminarButton.UseVisualStyleBackColor = true;
-            //eliminarButton.Click += button1_Click;
+            eliminarButton.Click += eliminarButton_Click;
             // 
             // agregarButton
             // 
@@ -62,6 +62,7 @@
             agregarButton.TabIndex = 2;
             agregarButton.Text = "Agregar";
             agregarButton.UseVisualStyleBackColor = true;
+            agregarButton.Click += agregarButton_Click;
             // 
             // modificarButton
             // 
@@ -71,6 +72,7 @@
             modificarButton.TabIndex = 3;
             modificarButton.Text = "Modificar";
             modificarButton.UseVisualStyleBackColor = true;
+            modificarButton.Click += modificarButton_Click;
             // 
             // PlanLista
             // 
@@ -82,7 +84,7 @@
             Controls.Add(eliminarButton);
             Controls.Add(dataGridView1);
             Name = "PlanLista";
-            Text = "Form1";
+            Text = "Plan Lista";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }

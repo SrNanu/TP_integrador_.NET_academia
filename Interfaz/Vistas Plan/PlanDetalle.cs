@@ -91,6 +91,11 @@ namespace Interfaz.Vistas_Plan
 
             return isValid;
         }
+
+        private void PlanDetalle_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
