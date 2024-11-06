@@ -16,8 +16,6 @@ public enum TiposUsuarios
 public class Usuario : EntidadNegocio
 {
     //Se coloca "required" adelante de cada atributo para que no salte error, se lo deja hasta que se complete el constructor.
-    [ForeignKey("Plan")]
-    public int IdPlan { get; set; } //SE QUEDA? PORQUE CUANDO CREA UN USUARIO DE UN ADMINISTRATIVO O PROFESOR NO INTERESA EL PLAN.
 
     [StringLength(100)]
     public  string Nombre { get; set; }

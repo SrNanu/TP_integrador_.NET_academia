@@ -11,10 +11,8 @@ public class Comision : EntidadNegocio
     [ForeignKey("Plan")]
     public int IdPlan { get; set; }
 
-    [Required]
     [StringLength(150)]
-    public required string Descripcion { get; set; }
+    public  string Descripcion { get; set; }
 
-    [Required]
-    public required int AnioEspecialidad { get; set; }
+    public  int AnioEspecialidad { get; set; }
 }
