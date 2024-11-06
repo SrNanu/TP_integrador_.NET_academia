@@ -39,10 +39,6 @@ namespace Interfaz
 
             if (this.ValidateUsuario())
             {
-                if (this.Usuario == null)
-                {
-                    this.Usuario = new Usuario();
-                }
 
                 this.Usuario.Nombre = txtbNombre.Text;
                 this.Usuario.Apellido = txtbApellido.Text;
