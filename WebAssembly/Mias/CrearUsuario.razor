@@ -16,7 +16,7 @@
 
     <div class="mb-3">
         <label for="apellido" class="form-label">Apellido</label>
-        <InputText id="apellido" class="form-control" @bind-Value="usuarioNuevo.Apellido" required />
+        <InputText id="apellido" class="form-control" @bind-Value="@usuarioNuevo.Apellido" required />
         <ValidationMessage For="@(() => usuarioNuevo.Apellido)" />
     </div>
 
@@ -86,6 +86,18 @@
             <p>Email: @usuarioNuevo.Email</p>
             <p>Username: @usuarioNuevo.Username</p>
             <p>Password: @usuarioNuevo.Password</p>
+
+            <h3>Detalles del Usuario</h3>
+            <p>Nombre: @usuarioNuevo.Nombre.GetType().Name</p>
+            <p>Apellido: @usuarioNuevo.Apellido.GetType().Name</p>
+            <p>Fecha de Nacimiento: @usuarioNuevo.FechaNacimiento.GetType().Name</p>
+            <p>Dirección: @usuarioNuevo.Direccion.GetType().Name</p>
+            <p>Teléfono: @usuarioNuevo.Telefono?.GetType()?.Name</p>
+            <p>Tipo: @usuarioNuevo.Tipo.GetType().Name</p>
+            <p>Legajo: @usuarioNuevo.Legajo.GetType().Name</p>
+            <p>Email: @usuarioNuevo.Email.GetType().Name</p>
+            <p>Username: @usuarioNuevo.Username.GetType().Name</p>
+            <p>Password: @usuarioNuevo.Password.GetType().Name</p>
         </div>
     }
 
@@ -111,14 +123,38 @@
 
     private async Task HandleValidSubmit()
     {
+        /*
+            Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
+            Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
+            showDatos = true;
+
+
+            var usuarioExistente1 = Usuario_Controller.GetOneUsuarioUsername(usuarioNuevo.Username);
+            var usuarioExistente2 = Usuario_Controller.GetOneUsuarioMail(usuarioNuevo.Email);
+            var usuarioExistente3 = Usuario_Controller.GetOneUsuarioLegajo(usuarioNuevo.Legajo);
+
+            if (usuarioExistente1 != null || usuarioExistente2 != null || usuarioExistente3 != null)
+            {
+                showErrorMessage = true;
+            }
+            else
+            {
+                Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
+                Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
+                showDatos = true;
+                Usuario_Controller.AgregarUsuario(usuarioNuevo);
+                Navigation.NavigateTo("/");
+            }
+        */
+
         Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
         Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
         showDatos = true;
 
 
-        var usuarioExistente1 = Usuario_Controller.GetOneUsuarioUsername(usuarioNuevo.Username);
-        var usuarioExistente2 = Usuario_Controller.GetOneUsuarioMail(usuarioNuevo.Email);
-        var usuarioExistente3 = Usuario_Controller.GetOneUsuarioLegajo(usuarioNuevo.Legajo);
+        var usuarioExistente1 = await Usuario_Controller.GetOneUsuarioUsernameAsync(usuarioNuevo.Username);
+        var usuarioExistente2 = await Usuario_Controller.GetOneUsuarioMailAsync(usuarioNuevo.Email);
+        var usuarioExistente3 = await Usuario_Controller.GetOneUsuarioLegajoAsync(usuarioNuevo.Legajo);
 
         if (usuarioExistente1 != null || usuarioExistente2 != null || usuarioExistente3 != null)
         {
@@ -129,9 +165,8 @@
             Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
             Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
             showDatos = true;
-            Usuario_Controller.AgregarUsuario(usuarioNuevo);
+            await Usuario_Controller.AgregarUsuarioAsync(usuarioNuevo);
             Navigation.NavigateTo("/");
         }
     }
 }
-

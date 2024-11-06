@@ -16,7 +16,7 @@
 
     <div class="mb-3">
         <label for="apellido" class="form-label">Apellido</label>
-        <InputText id="apellido" class="form-control" @bind-Value="usuarioNuevo.Apellido" required />
+        <InputText id="apellido" class="form-control" @bind-Value="@usuarioNuevo.Apellido" required />
         <ValidationMessage For="@(() => usuarioNuevo.Apellido)" />
     </div>
 
@@ -127,9 +127,9 @@
 
     private async Task HandleValidSubmit()
     {
-        var usuarioExistente1 = Usuario_Controller.GetOneUsuarioUsername(usuarioNuevo.Username);
-        var usuarioExistente2 = Usuario_Controller.GetOneUsuarioMail(usuarioNuevo.Email);
-        var usuarioExistente3 = Usuario_Controller.GetOneUsuarioLegajo(usuarioNuevo.Legajo);
+        var usuarioExistente1 = await Usuario_Controller.GetOneUsuarioUsername(usuarioNuevo.Username);
+        var usuarioExistente2 = await Usuario_Controller.GetOneUsuarioMail(usuarioNuevo.Email);
+        var usuarioExistente3 = await Usuario_Controller.GetOneUsuarioLegajo(usuarioNuevo.Legajo);
 
         if (usuarioExistente1 != null || usuarioExistente2 != null || usuarioExistente3 != null)
         {
