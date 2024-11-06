@@ -1,6 +1,6 @@
 ﻿namespace Interfaz
 {
-    partial class MenuUsuario
+    partial class MenuAlumnos
     {
         /// <summary>
         /// Required designer variable.

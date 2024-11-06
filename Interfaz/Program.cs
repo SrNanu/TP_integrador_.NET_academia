@@ -21,9 +21,12 @@ namespace Interfaz
             ApplicationConfiguration.Initialize();
             Application.Run(new PlanLista());
 
+            Login login = new Login();
+            login.Show();
 
 
 
+            Application.Run();
         }
     }
 }
