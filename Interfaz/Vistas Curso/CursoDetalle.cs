@@ -11,19 +11,7 @@ using System.Windows.Forms;
 
 namespace Interfaz.Vistas_Cursos
 {
-    /*
-    public partial class CursoDetalle : Form
-    {   
-        
-        public CursoDetalle()
-        {
-            InitializeComponent();
-        }
-        
-
-
-    }
-    */
+   
     public partial class CursoDetalle : Form
     {
         private Curso curso;
@@ -45,6 +33,27 @@ namespace Interfaz.Vistas_Cursos
         {
             InitializeComponent();
             errorProvider = new ErrorProvider();
+            LoadComisiones(); // Cargar comisiones al iniciar el formulario
+            LoadMaterias();   // Cargar materias al iniciar el formulario
+        }
+        private async void LoadComisiones()
+        {
+            // Llama al API o a la base de datos para obtener la lista de comisiones
+            List<Comision> comisiones = (List<Comision>)await ComisionApiClient.GetAllAsync();
+
+            cmbComisiones.DataSource = comisiones;
+            cmbComisiones.DisplayMember = "Descripcion"; // Mostrar la descripción de la comisión
+            cmbComisiones.ValueMember = "Id"; // El valor será el Id de la comisión
+        }
+
+        private async void LoadMaterias()
+        {
+            // Llama al API o a la base de datos para obtener la lista de materias
+            List<Materia> materias = (List<Materia>)await MateriaApiClient.GetAllAsync();
+
+            cmbMaterias.DataSource = materias;
+            cmbMaterias.DisplayMember = "Descripcion"; // Mostrar la descripción de la materia
+            cmbMaterias.ValueMember = "Id"; // El valor será el Id de la materia
         }
 
         private async void aceptarButton_Click(object sender, EventArgs e)
@@ -53,8 +62,10 @@ namespace Interfaz.Vistas_Cursos
 
             if (this.ValidateCurso())
             {
-                this.Curso.IdComision = int.Parse(txtbIdComision.Text);
-                this.Curso.IdMateria = int.Parse(txtbIdMateria.Text);
+                // Guardar el Id de la comisión y la materia seleccionada
+                this.Curso.IdComision = (int)cmbComisiones.SelectedValue;
+                this.Curso.IdMateria = (int)cmbMaterias.SelectedValue;
+
                 this.Curso.Cupo = int.Parse(txtbCupo.Text);
                 this.Curso.AnioCalendario = int.Parse(txtbAnioCalendario.Text);
                 this.Curso.Descripcion = txtbDescripcion.Text;
@@ -79,11 +90,15 @@ namespace Interfaz.Vistas_Cursos
 
         private void SetCurso()
         {
-            this.txtbIdComision.Text = this.Curso.IdComision.ToString();
-            this.txtbIdMateria.Text = this.Curso.IdMateria.ToString();
             this.txtbCupo.Text = this.Curso.Cupo.ToString();
             this.txtbAnioCalendario.Text = this.Curso.AnioCalendario.ToString();
             this.txtbDescripcion.Text = this.Curso.Descripcion;
+
+            if (Curso != null)
+            {
+                cmbComisiones.SelectedValue = this.Curso.IdComision;
+                cmbMaterias.SelectedValue = this.Curso.IdMateria;
+            }
         }
 
         private bool ValidateCurso()
@@ -91,18 +106,16 @@ namespace Interfaz.Vistas_Cursos
             bool isValid = true;
             errorProvider.Clear();
 
-            // Validar IdComision
-            if (!int.TryParse(txtbIdComision.Text, out _) || int.Parse(txtbIdComision.Text) <= 0)
+            if (cmbComisiones.SelectedItem == null)
             {
                 isValid = false;
-                errorProvider.SetError(txtbIdComision, "El IdComision debe ser un número positivo.");
+                errorProvider.SetError(cmbComisiones, "Debe seleccionar una Comisión.");
             }
 
-            // Validar IdMateria
-            if (!int.TryParse(txtbIdMateria.Text, out _) || int.Parse(txtbIdMateria.Text) <= 0)
+            if (cmbMaterias.SelectedItem == null)
             {
                 isValid = false;
-                errorProvider.SetError(txtbIdMateria, "El IdMateria debe ser un número positivo.");
+                errorProvider.SetError(cmbMaterias, "Debe seleccionar una Materia.");
             }
 
             // Validar Cupo
