@@ -84,7 +84,7 @@
             Controls.Add(eliminarButton);
             Controls.Add(materiasDataGridView);
             Name = "MateriaLista";
-            Text = "Form1";
+            Text = "Materia Lista";
             Load += MateriaLista_Load;
             ((System.ComponentModel.ISupportInitialize)materiasDataGridView).EndInit();
             ResumeLayout(false);
