@@ -64,7 +64,6 @@ public class Usuario_Controller
 
         if (usuarioToUpdate != null)
         {
-            usuarioToUpdate.IdPlan = usuario.IdPlan;
             usuarioToUpdate.Nombre = usuario.Nombre;
             usuarioToUpdate.Apellido = usuario.Apellido;
             usuarioToUpdate.FechaNacimiento = usuario.FechaNacimiento;

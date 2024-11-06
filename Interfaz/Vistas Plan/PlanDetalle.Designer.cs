@@ -86,6 +86,7 @@
             btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += cancelarButton_Click;
             // 
             // btnAceptar
             // 
@@ -95,6 +96,7 @@
             btnAceptar.TabIndex = 6;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += aceptarButton_Click;
             // 
             // PlanDetalle
             // 
@@ -109,7 +111,8 @@
             Controls.Add(lblDetalles);
             Controls.Add(txtbDetalles);
             Name = "PlanDetalle";
-            Text = "Form1";
+            Text = "Plan Detalle";
+            Load += PlanDetalle_Load;
             ResumeLayout(false);
             PerformLayout();
         }

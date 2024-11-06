@@ -14,13 +14,12 @@ public class Curso : EntidadNegocio
     [ForeignKey("Materia")]
     public int IdMateria { get; set; }
 
-    [Required]
-    public required int Cupo { get; set; }
+    public int Cupo { get; set; }
 
-    [Required]
-    public required int AnioCalendario { get; set; }
+    
+    public  int AnioCalendario { get; set; }
 
-    [Required]
+    
     [StringLength(150)]
-    public required string Descripcion { get; set; }
+    public  string Descripcion { get; set; }
 }
