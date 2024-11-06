@@ -11,9 +11,9 @@ using Interfaz.ApiClients;
 
 namespace Interfaz
 {
-    public partial class UsuarioLista : Form
+    public partial class AlumnosLista : Form
     {
-        public UsuarioLista()
+        public AlumnosLista()
         {
             InitializeComponent();
             this.GetAllAndLoad();
@@ -26,7 +26,7 @@ namespace Interfaz
 
         private void agregarButton_Click(object sender, EventArgs e)
         {
-            UsuarioDetalle usuarioDetalle = new UsuarioDetalle();
+            AlumnosDetalle usuarioDetalle = new AlumnosDetalle();
 
             Usuario usuarioNuevo = new Usuario();
             usuarioNuevo.FechaNacimiento = DateTime.Now.AddYears(-18);
@@ -40,7 +40,7 @@ namespace Interfaz
 
         private async void modificarButton_Click(object sender, EventArgs e)
         {
-            UsuarioDetalle usuarioDetalle = new UsuarioDetalle();
+            AlumnosDetalle usuarioDetalle = new AlumnosDetalle();
 
             int id;
 

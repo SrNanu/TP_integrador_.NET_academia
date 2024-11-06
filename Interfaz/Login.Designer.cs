@@ -33,7 +33,6 @@
             btnIniciarSesion = new Button();
             lblContrasenia = new Label();
             lblUsuario = new Label();
-            btnOlvideContrasenia = new Button();
             btnRegistrarse = new Button();
             lblAcademia = new Label();
             SuspendLayout();
@@ -82,16 +81,6 @@
             lblUsuario.TabIndex = 11;
             lblUsuario.Text = "Usuario";
             // 
-            // btnOlvideContrasenia
-            // 
-            btnOlvideContrasenia.BackColor = SystemColors.Info;
-            btnOlvideContrasenia.Location = new Point(151, 415);
-            btnOlvideContrasenia.Name = "btnOlvideContrasenia";
-            btnOlvideContrasenia.Size = new Size(151, 23);
-            btnOlvideContrasenia.TabIndex = 10;
-            btnOlvideContrasenia.Text = "Olvide mi contraseña";
-            btnOlvideContrasenia.UseVisualStyleBackColor = false;
-            // 
             // btnRegistrarse
             // 
             btnRegistrarse.BackColor = SystemColors.Info;
@@ -102,6 +91,7 @@
             btnRegistrarse.TabIndex = 9;
             btnRegistrarse.Text = "Registrarse";
             btnRegistrarse.UseVisualStyleBackColor = false;
+            btnRegistrarse.Click += Registarse;
             // 
             // lblAcademia
             // 
@@ -122,7 +112,6 @@
             Controls.Add(btnIniciarSesion);
             Controls.Add(lblContrasenia);
             Controls.Add(lblUsuario);
-            Controls.Add(btnOlvideContrasenia);
             Controls.Add(btnRegistrarse);
             Controls.Add(lblAcademia);
             Name = "Login";
@@ -138,7 +127,6 @@
         private Button btnIniciarSesion;
         private Label lblContrasenia;
         private Label lblUsuario;
-        private Button btnOlvideContrasenia;
         private Button btnRegistrarse;
         private Label lblAcademia;
     }
