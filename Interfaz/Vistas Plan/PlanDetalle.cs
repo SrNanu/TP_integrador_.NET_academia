@@ -51,8 +51,8 @@ namespace Interfaz.Vistas_Plan
             if (this.ValidatePlan())
             {
                 // Asignar el ID de Especialidad y la Descripción
-                this.Plan.IdEspecialidad = int.Parse(txtbIdEspecialidad.Text); // Obtener ID de Especialidad
-                //this.Plan.Descripcion = txtbDetalles.Text; // Obtener Descripción
+                //this.Plan.IdEspecialidad = int.Parse(txtbIdEspecialidad.Text); // Obtener ID de Especialidad
+                this.Plan.Descripcion = txtbDetalles.Text; // Obtener Descripción
                 this.Plan.IdEspecialidad = (int)cmbEspecialidades.SelectedValue;
 
                 if (this.EditMode)
