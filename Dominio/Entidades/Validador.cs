@@ -100,5 +100,101 @@ namespace Dominio.Entidades
             }
         }
 
+        public static void ValidarDocenteTipo(int idDocente, AcademiaContext contexto)
+        {
+            var usuario = contexto.Usuarios.FirstOrDefault(u => u.Id == idDocente);
+
+            if (usuario == null)
+            {
+                throw new ArgumentException("El usuario especificado no existe.");
+            }
+
+            if (usuario.Tipo != TiposUsuarios.Profesor)
+            {
+                throw new ArgumentException("El usuario especificado no es de tipo Docente.");
+            }
+        }
+
+        public static void ValidarExistenciaCurso(int idCurso, AcademiaContext contexto)
+        {
+            if (!contexto.Cursos.Any(c => c.Id == idCurso))
+            {
+                throw new ArgumentException("El curso especificado no existe.");
+            }
+        }
+
+        // Validar que la comisión exista en la base de datos
+        public static void ValidarExistenciaComision(int idComision, AcademiaContext contexto)
+        {
+            if (!contexto.Comisiones.Any(c => c.Id == idComision))
+            {
+                throw new ArgumentException("La comisión especificada no existe.");
+            }
+        }
+
+        // Validar que la materia exista en la base de datos
+        public static void ValidarExistenciaMateria(int idMateria, AcademiaContext contexto)
+        {
+            if (!contexto.Materias.Any(m => m.Id == idMateria))
+            {
+                throw new ArgumentException("La materia especificada no existe.");
+            }
+        }
+
+        // Validar que el cupo sea un número positivo y dentro de un rango lógico (1 y 100)
+        public static void ValidarCupo(int cupo)
+        {
+            if (cupo <= 0 || cupo > 100)
+            {
+                throw new ArgumentException("El cupo debe ser un número positivo entre 1 y 100.");
+            }
+        }
+
+        // Validar que la descripción del curso no esté vacía y sea única
+        public static void ValidarDescripcionCursoUnica(string descripcion, int idCurso, AcademiaContext contexto)
+        {
+            if (string.IsNullOrWhiteSpace(descripcion))
+            {
+                throw new ArgumentException("La descripción no puede estar vacía.");
+            }
+
+            if (contexto.Cursos.Any(c => c.Descripcion == descripcion && c.Id != idCurso))
+            {
+                throw new ArgumentException("Ya existe un curso con la misma descripción.");
+            }
+
+        }
+
+        // Validación que la descripción de la comisión sea única
+        public static void ValidarDescripcionComisionUnica(string descripcion, int idComision, AcademiaContext contexto)
+        {
+            if (string.IsNullOrWhiteSpace(descripcion))
+            {
+                throw new ArgumentException("La descripción no puede estar vacía.");
+            }
+
+            if (contexto.Comisiones.Any(c => c.Descripcion == descripcion ))
+            {
+                throw new ArgumentException("Ya existe una comisión con la misma descripción para este plan.");
+            }
+        }
+
+        // Validación para existencia de Alumno
+        public static void ValidarExistenciaAlumno(int idAlumno, AcademiaContext contexto)
+        {
+            if (!contexto.Usuarios.Any(u => u.Id == idAlumno && u.Tipo == TiposUsuarios.Alumno))
+            {
+                throw new ArgumentException("El alumno seleccionado no existe o no es un tipo válido de usuario.");
+            }
+        }
+
+        // Validación del rango de la Nota
+        public static void ValidarRangoNota(int nota)
+        {
+            if (nota < 0 || nota > 10)
+            {
+                throw new ArgumentException("La nota debe estar entre 0 y 10.");
+            }
+        }
     }
 }

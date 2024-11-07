@@ -4,13 +4,19 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Dominio.Entidades;
 public class Curso_Controller
 {
     public static void CrearCurso(Curso curso)
     {
 
         using var context = new AcademiaContext();
+
+        // Validaciones
+        Validador.ValidarExistenciaComision(curso.IdComision, context);
+        Validador.ValidarExistenciaMateria(curso.IdMateria, context);
+        Validador.ValidarCupo(curso.Cupo);
+        Validador.ValidarDescripcionCursoUnica(curso.Descripcion, 0, context); //se manda 0 porque se esta creando
 
         context.Cursos.Add(curso);
         context.SaveChanges();
@@ -40,6 +46,13 @@ public class Curso_Controller
 
         if (cursoToUpdate != null)
         {
+
+            // Validaciones
+            Validador.ValidarExistenciaComision(curso.IdComision, context);
+            Validador.ValidarExistenciaMateria(curso.IdMateria, context);
+            Validador.ValidarCupo(curso.Cupo);
+            Validador.ValidarDescripcionCursoUnica(curso.Descripcion, curso.Id, context);
+
             cursoToUpdate.IdMateria = curso.IdMateria;
             cursoToUpdate.IdComision = curso.IdComision;
             cursoToUpdate.AnioCalendario = curso.AnioCalendario;
