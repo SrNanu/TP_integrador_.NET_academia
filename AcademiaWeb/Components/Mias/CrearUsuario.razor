@@ -1,10 +1,16 @@
 ﻿@page "/crear-usuario"
 @using Microsoft.AspNetCore.Components.Forms
 @inject NavigationManager Navigation
+@rendermode InteractiveServer
+@inherits LayoutComponentBase
+
+@using Microsoft.AspNetCore.Components
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Web
 
 <h3>Crear Usuario</h3>
 
-<EditForm Model="@usuarioNuevo" OnValidSubmit="@HandleValidSubmit" FormName="crearUserForm">
+@* <EditForm Model="@usuarioNuevo" OnValidSubmit="@HandleValidSubmit" FormName="crearUserForm"> *@
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -101,26 +107,9 @@
     <NavLink href="/" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
         Cancelar
     </NavLink>
-</EditForm>
+@* </EditForm> *@
 
 @code {
-
-     /*    SI QUIERO IMPRIMIRLO EN EL HTML
-     <div>
-        <h3>Detalles del Usuario</h3>
-        <p>Nombre: @usuarioNuevo.Nombre</p>
-        <p>Apellido: @usuarioNuevo.Apellido</p>
-        <p>Fecha de Nacimiento: @usuarioNuevo.FechaNacimiento.ToShortDateString()</p>
-        <p>Dirección: @usuarioNuevo.Direccion</p>
-        <p>Teléfono: @usuarioNuevo.Telefono</p>
-        <p>Tipo: @usuarioNuevo.Tipo</p>
-        <p>Legajo: @usuarioNuevo.Legajo</p>
-        <p>Email: @usuarioNuevo.Email</p>
-        <p>Username: @usuarioNuevo.Username</p>
-        <p>Password: @usuarioNuevo.Password</p>
-     </div>
-     */
-
     private Usuario usuarioNuevo = new Usuario();
     private bool showErrorMessage = false;
     private bool showDatos = false;
