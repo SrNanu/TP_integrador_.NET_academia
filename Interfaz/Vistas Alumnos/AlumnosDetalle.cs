@@ -39,6 +39,7 @@ namespace Interfaz
             {
                 UsuarioApiClient client = new UsuarioApiClient();
 
+
                 if (this.ValidateUsuario())
                 {
                     if (this.Usuario == null)
