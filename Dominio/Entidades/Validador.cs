@@ -68,7 +68,6 @@ namespace Dominio.Entidades
         // Validar que la descripción de la materia sea única
         public static void ValidarDescripcionMateriaUnica(string descripcion, AcademiaContext context, int? idMateria = null)
         {
-            // Verificar que no exista otra materia con la misma descripción (ignorando la materia que se está actualizando)
             if (context.Materias.Any(m => m.Descripcion == descripcion && m.Id != idMateria))
             {
                 throw new ArgumentException("Ya existe una materia con esa descripción.");
@@ -92,6 +91,14 @@ namespace Dominio.Entidades
             }
         }
 
+        // Validar que la descripción de la especialidad sea única
+        public static void ValidarDescripcionEspecialidadUnica(string descripcion, AcademiaContext context, int? idEspecialidad = null)
+        {
+            if (context.Especialidades.Any(m => m.Descripcion == descripcion && m.Id != idEspecialidad))
+            {
+                throw new ArgumentException("Ya existe una Especialidad con esa descripción.");
+            }
+        }
 
     }
 }

@@ -18,7 +18,7 @@ public class Materia_Controller
         Validador.ValidarIdPlan(materia.IdPlan, context);
         Validador.ValidarInt(materia.HsSemanales, "Horas Semanales");
         Validador.ValidarInt(materia.HsTotales, "Horas Totales");
-        Validador.ValidarDescripcionMateriaUnica(materia.Descripcion, context);
+        Validador.ValidarDescripcionMateriaUnica(materia.Descripcion, context); //en este no mandamos id porque esta creando la materia
 
         context.Materias.Add(materia);
         context.SaveChanges();
@@ -46,8 +46,19 @@ public class Materia_Controller
 
         var materiaToUpdate = context.Materias.Find(materia.Id);
 
+        
+
         if (materiaToUpdate != null)
         {
+
+            // Validar campos
+            // Validar campos
+            Validador.ValidarTextoNoVacio(materia.Descripcion, "Descripcion");
+            Validador.ValidarIdPlan(materia.IdPlan, context);
+            Validador.ValidarInt(materia.HsSemanales, "Horas Semanales");
+            Validador.ValidarInt(materia.HsTotales, "Horas Totales");
+            Validador.ValidarDescripcionMateriaUnica(materia.Descripcion, context, materia.Id); //en este mandamos el id para que no se valide contra si mismo
+
             materiaToUpdate.Descripcion = materia.Descripcion;
             materiaToUpdate.HsSemanales = materia.HsSemanales;
             materiaToUpdate.HsTotales = materia.HsTotales;

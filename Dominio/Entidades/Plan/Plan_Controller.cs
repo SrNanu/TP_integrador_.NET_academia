@@ -50,6 +50,7 @@ public class Plan_Controller
             // Validaciones por separado
             Validador.ValidarTextoNoVacio(plan.Descripcion, "Descripción");
             Validador.ValidarLongitudMaxima(plan.Descripcion, 100, "Descripción");
+
             Validador.ValidarExistenciaEspecialidad(plan.IdEspecialidad, context);
             Validador.ValidarDescripcionPlanUnica(plan.Descripcion, plan.Id, context); // en este ponemos el id asi no se valida contra si mismo
 
