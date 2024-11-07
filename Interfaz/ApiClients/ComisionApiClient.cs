@@ -49,8 +49,8 @@ namespace Interfaz.ApiClients
 
             if (!response.IsSuccessStatusCode)
             {
-                var errorContent = await response.Content.ReadAsStringAsync();
-                throw new Exception($"Error al crear la comisión: {errorContent}");
+            var errorContent = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Error al crear la comisión: {errorContent}");
             }
         }
 
@@ -62,8 +62,15 @@ namespace Interfaz.ApiClients
 
         public static async Task UpdateAsync(Comision comision)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("comisiones", comision);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync("comisiones", comision);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al actualizar la comisión: {ex.Message}");
+            }
         }
     }
 }
