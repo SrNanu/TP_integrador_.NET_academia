@@ -13,8 +13,7 @@ public class AcademiaContext : DbContext
 
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Plan> Planes { get; set; }
-    public DbSet<Modulo> Modulos { get; set; }
-    public DbSet<ModuloUsuario> ModuloUsuarios { get; set; }
+
     public DbSet<Materia> Materias { get; set; }
     public DbSet<Especialidad> Especialidades { get; set; }
     public DbSet<DocenteCurso> DocenteCursos { get; set; }
