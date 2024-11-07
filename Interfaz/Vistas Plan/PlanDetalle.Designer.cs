@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             txtbDescripcion = new TextBox();
             lblDescripcion = new Label();
             lblEspecialidad = new Label();

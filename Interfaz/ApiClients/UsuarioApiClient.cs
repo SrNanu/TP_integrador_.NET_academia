@@ -46,8 +46,15 @@ namespace Interfaz.ApiClients
 
         public async static Task AddAsync(Usuario usuario)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("usuarios", usuario);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PostAsJsonAsync("usuarios", usuario);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al crear el usuario: {ex.Message}");
+            }
         }
 
         public static async Task DeleteAsync(int id)
@@ -58,8 +65,15 @@ namespace Interfaz.ApiClients
 
         public static async Task UpdateAsync(Usuario usuario)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("usuarios", usuario);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync("usuarios", usuario);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al actualizar el usuario: {ex.Message}");
+            }
         }
     }
 }

@@ -11,13 +11,7 @@ using System.Windows.Forms;
 
 namespace Interfaz.Vistas_Comision
 {
-    //public partial class ComisionDetalle : Form
-    //{
-    //    public ComisionDetalle()
-    //    {
-    //        InitializeComponent();
-    //    }
-    //}
+   
 
     public partial class ComisionDetalle : Form
     {
@@ -40,30 +34,50 @@ namespace Interfaz.Vistas_Comision
         {
             InitializeComponent();
             errorProvider = new ErrorProvider();
+            LoadPlanes(); // Cargar planes al iniciar el formulario
         }
 
+        private async void LoadPlanes()
+        {
+            // Llama al API o a la base de datos para obtener la lista de planes
+            List<Plan> planes = (List<Plan>)await PlanApiClient.GetAllAsync();
+
+            cmbPlanes.DataSource = planes;
+            cmbPlanes.DisplayMember = "Descripcion"; // Mostrar la descripción del plan
+            cmbPlanes.ValueMember = "Id"; // El valor será el Id del plan
+        }
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            ComisionApiClient client = new ComisionApiClient();
-
-            if (this.ValidateComision())
+            try
             {
-                this.Comision.IdPlan = int.Parse(txtbIdPlan.Text);
-                this.Comision.Descripcion = txtbIdDescripcion.Text;
-                this.Comision.AnioEspecialidad = int.Parse(txtbAnioEspecialidad.Text);
+                ComisionApiClient client = new ComisionApiClient();
 
-                if (this.EditMode)
+                if (this.ValidateComision())
                 {
-                    await ComisionApiClient.UpdateAsync(this.Comision);
-                }
-                else
-                {
-                    await ComisionApiClient.AddAsync(this.Comision);
-                }
+                    this.Comision.Descripcion = txtbIdDescripcion.Text;
+                    this.Comision.AnioEspecialidad = int.Parse(txtbAnioEspecialidad.Text);
+                    this.Comision.IdPlan = (int)cmbPlanes.SelectedValue;
 
-                this.Close();
+                    
+                    if (this.EditMode)
+                    {
+                        await ComisionApiClient.UpdateAsync(this.Comision);
+                    }
+                    else
+                    {
+                        await ComisionApiClient.AddAsync(this.Comision);
+                    }
+                    
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void cancelarButton_Click(object sender, EventArgs e)
         {
@@ -72,9 +86,13 @@ namespace Interfaz.Vistas_Comision
 
         private void SetComision()
         {
-            this.txtbIdPlan.Text = this.Comision.IdPlan.ToString();
             this.txtbIdDescripcion.Text = this.Comision.Descripcion;
             this.txtbAnioEspecialidad.Text = this.Comision.AnioEspecialidad.ToString();
+            // Seleccionar el plan en el ComboBox según el Id de la comisión
+            if (Comision != null)
+            {
+                cmbPlanes.SelectedValue = this.Comision.IdPlan;
+            }
         }
 
         private bool ValidateComision()
@@ -83,10 +101,10 @@ namespace Interfaz.Vistas_Comision
             errorProvider.Clear();
 
             // Validar IdPlan
-            if (!int.TryParse(txtbIdPlan.Text, out _))
+            if (cmbPlanes.SelectedItem == null)
             {
                 isValid = false;
-                errorProvider.SetError(txtbIdPlan, "El ID del Plan debe ser un número entero.");
+                errorProvider.SetError(cmbPlanes, "Debe seleccionar un Plan.");
             }
 
             // Validar Descripcion

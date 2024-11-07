@@ -46,24 +46,32 @@ namespace Interfaz.Vistas_Plan
         }
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            PlanApiClient client = new PlanApiClient();
-
-            if (this.ValidatePlan())
+            try
             {
-                // Asignar el ID de Especialidad y la Descripción
-                this.Plan.Descripcion = txtbDescripcion.Text; // Obtener Descripción
-                this.Plan.IdEspecialidad = (int)cmbEspecialidades.SelectedValue;
 
-                if (this.EditMode)
-                {
-                    await PlanApiClient.UpdateAsync(this.Plan);
-                }
-                else
-                {
-                    await PlanApiClient.AddAsync(this.Plan);
-                }
+                PlanApiClient client = new PlanApiClient();
 
-                this.Close();
+                if (this.ValidatePlan())
+                {
+                    // Asignar el ID de Especialidad y la Descripción
+                    this.Plan.Descripcion = txtbDetalles.Text; // Obtener Descripción
+                    this.Plan.IdEspecialidad = (int)cmbEspecialidades.SelectedValue;
+
+                    if (this.EditMode)
+                    {
+                        await PlanApiClient.UpdateAsync(this.Plan);
+                    }
+                    else
+                    {
+                        await PlanApiClient.AddAsync(this.Plan);
+                    }
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

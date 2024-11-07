@@ -43,8 +43,15 @@ namespace Interfaz.ApiClients
 
         public static async Task AddAsync(Materia materia)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("materias", materia);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PostAsJsonAsync("materias", materia);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al crear la materia: {ex.Message}");
+            }
         }
 
         public static async Task DeleteAsync(int id)
@@ -55,8 +62,15 @@ namespace Interfaz.ApiClients
 
         public static async Task UpdateAsync(Materia materia)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("materias", materia);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync("materias", materia);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al actualizar la materia: {ex.Message}");
+            }
         }
     }
 }

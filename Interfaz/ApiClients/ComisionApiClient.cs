@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,9 +43,15 @@ namespace Interfaz.ApiClients
         }
 
         public static async Task AddAsync(Comision comision)
-        {
-            HttpResponseMessage response = await client.PostAsJsonAsync("comisiones", comision);
-            response.EnsureSuccessStatusCode();
+        {   
+
+            HttpResponseMessage response = await client.PostAsJsonAsync("/comisiones", comision);
+
+            if (!response.IsSuccessStatusCode)
+            {
+            var errorContent = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Error al crear la comisión: {errorContent}");
+            }
         }
 
         public static async Task DeleteAsync(int id)
@@ -55,8 +62,15 @@ namespace Interfaz.ApiClients
 
         public static async Task UpdateAsync(Comision comision)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("comisiones", comision);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync("comisiones", comision);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al actualizar la comisión: {ex.Message}");
+            }
         }
     }
 }

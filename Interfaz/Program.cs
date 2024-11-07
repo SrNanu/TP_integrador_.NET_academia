@@ -21,8 +21,7 @@ namespace Interfaz
 
             ApplicationConfiguration.Initialize();
 
-            Login login = new Login();
-            login.Show();
+            Application.Run(new ComisionLista());
 
             Application.Run();
         }

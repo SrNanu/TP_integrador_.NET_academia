@@ -32,15 +32,15 @@
             btnCancelar = new Button();
             lblPlan = new Label();
             lblIdEspecialidad = new Label();
-            txtbIdMateria = new TextBox();
             lblDetalles = new Label();
-            txtbIdComision = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             txtbCupo = new TextBox();
             txtbAnioCalendario = new TextBox();
             txtbDescripcion = new TextBox();
+            cmbComisiones = new ComboBox();
+            cmbMaterias = new ComboBox();
             SuspendLayout();
             // 
             // btnAceptar
@@ -81,13 +81,6 @@
             lblIdEspecialidad.TabIndex = 10;
             lblIdEspecialidad.Text = "IdMateria";
             // 
-            // txtbIdMateria
-            // 
-            txtbIdMateria.Location = new Point(443, 129);
-            txtbIdMateria.Name = "txtbIdMateria";
-            txtbIdMateria.Size = new Size(150, 31);
-            txtbIdMateria.TabIndex = 9;
-            // 
             // lblDetalles
             // 
             lblDetalles.AutoSize = true;
@@ -96,13 +89,6 @@
             lblDetalles.Size = new Size(103, 25);
             lblDetalles.TabIndex = 8;
             lblDetalles.Text = "IdComision";
-            // 
-            // txtbIdComision
-            // 
-            txtbIdComision.Location = new Point(443, 73);
-            txtbIdComision.Name = "txtbIdComision";
-            txtbIdComision.Size = new Size(150, 31);
-            txtbIdComision.TabIndex = 7;
             // 
             // label1
             // 
@@ -135,28 +121,46 @@
             // 
             txtbCupo.Location = new Point(443, 185);
             txtbCupo.Name = "txtbCupo";
-            txtbCupo.Size = new Size(150, 31);
+            txtbCupo.Size = new Size(182, 31);
             txtbCupo.TabIndex = 17;
             // 
             // txtbAnioCalendario
             // 
             txtbAnioCalendario.Location = new Point(443, 249);
             txtbAnioCalendario.Name = "txtbAnioCalendario";
-            txtbAnioCalendario.Size = new Size(150, 31);
+            txtbAnioCalendario.Size = new Size(182, 31);
             txtbAnioCalendario.TabIndex = 18;
             // 
             // txtbDescripcion
             // 
             txtbDescripcion.Location = new Point(443, 304);
             txtbDescripcion.Name = "txtbDescripcion";
-            txtbDescripcion.Size = new Size(150, 31);
+            txtbDescripcion.Size = new Size(182, 31);
             txtbDescripcion.TabIndex = 19;
+            // 
+            // cmbComisiones
+            // 
+            cmbComisiones.FormattingEnabled = true;
+            cmbComisiones.Location = new Point(443, 68);
+            cmbComisiones.Name = "cmbComisiones";
+            cmbComisiones.Size = new Size(182, 33);
+            cmbComisiones.TabIndex = 20;
+            // 
+            // cmbMaterias
+            // 
+            cmbMaterias.FormattingEnabled = true;
+            cmbMaterias.Location = new Point(443, 129);
+            cmbMaterias.Name = "cmbMaterias";
+            cmbMaterias.Size = new Size(182, 33);
+            cmbMaterias.TabIndex = 21;
             // 
             // CursoDetalle
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmbMaterias);
+            Controls.Add(cmbComisiones);
             Controls.Add(txtbDescripcion);
             Controls.Add(txtbAnioCalendario);
             Controls.Add(txtbCupo);
@@ -167,9 +171,7 @@
             Controls.Add(btnCancelar);
             Controls.Add(lblPlan);
             Controls.Add(lblIdEspecialidad);
-            Controls.Add(txtbIdMateria);
             Controls.Add(lblDetalles);
-            Controls.Add(txtbIdComision);
             Name = "CursoDetalle";
             Text = "CursoDetalle";
             ResumeLayout(false);
@@ -182,14 +184,14 @@
         private Button btnCancelar;
         private Label lblPlan;
         private Label lblIdEspecialidad;
-        private TextBox txtbIdMateria;
         private Label lblDetalles;
-        private TextBox txtbIdComision;
         private Label label1;
         private Label label2;
         private Label label3;
         private TextBox txtbCupo;
         private TextBox txtbAnioCalendario;
         private TextBox txtbDescripcion;
+        private ComboBox cmbComisiones;
+        private ComboBox cmbMaterias;
     }
 }

@@ -46,22 +46,29 @@ namespace Interfaz.Vistas_Especialidad
 
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            EspecialidadApiClient client = new EspecialidadApiClient();
-
-            if (this.ValidateEspecialidad())
+            try
             {
-                this.Especialidad.Descripcion = txtbDescripcion.Text;
+                EspecialidadApiClient client = new EspecialidadApiClient();
 
-                if (this.EditMode)
+                if (this.ValidateEspecialidad())
                 {
-                    await EspecialidadApiClient.UpdateAsync(this.Especialidad);
-                }
-                else
-                {
-                    await EspecialidadApiClient.AddAsync(this.Especialidad);
-                }
+                    this.Especialidad.Descripcion = txtbDescripcion.Text;
 
-                this.Close();
+                    if (this.EditMode)
+                    {
+                        await EspecialidadApiClient.UpdateAsync(this.Especialidad);
+                    }
+                    else
+                    {
+                        await EspecialidadApiClient.AddAsync(this.Especialidad);
+                    }
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

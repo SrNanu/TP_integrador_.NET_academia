@@ -43,8 +43,15 @@ namespace Interfaz.ApiClients
 
         public static async Task AddAsync(Plan plan)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("planes", plan);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PostAsJsonAsync("planes", plan);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al crear el plan: {ex.Message}");
+            }
         }
 
         public static async Task DeleteAsync(int id)
@@ -55,8 +62,15 @@ namespace Interfaz.ApiClients
 
         public static async Task UpdateAsync(Plan plan)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("planes", plan);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync("planes", plan);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al actualizar el plan: {ex.Message}");
+            }
         }
     }
 }
