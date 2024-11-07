@@ -30,7 +30,6 @@
         {
             txtbDetalles = new TextBox();
             lblDetalles = new Label();
-            txtbIdEspecialidad = new TextBox();
             lblIdEspecialidad = new Label();
             lblPlan = new Label();
             btnCancelar = new Button();
@@ -40,7 +39,7 @@
             // 
             // txtbDetalles
             // 
-            txtbDetalles.Location = new Point(328, 175);
+            txtbDetalles.Location = new Point(328, 172);
             txtbDetalles.Name = "txtbDetalles";
             txtbDetalles.Size = new Size(150, 31);
             txtbDetalles.TabIndex = 0;
@@ -53,23 +52,15 @@
             lblDetalles.Size = new Size(74, 25);
             lblDetalles.TabIndex = 1;
             lblDetalles.Text = "Detalles";
-
-            // 
-            // txtbIdEspecialidad
-            // 
-            txtbIdEspecialidad.Location = new Point(328, 251);
-            txtbIdEspecialidad.Name = "txtbIdEspecialidad";
-            txtbIdEspecialidad.Size = new Size(150, 31);
-            txtbIdEspecialidad.TabIndex = 2;
             // 
             // lblIdEspecialidad
             // 
             lblIdEspecialidad.AutoSize = true;
             lblIdEspecialidad.Location = new Point(173, 251);
             lblIdEspecialidad.Name = "lblIdEspecialidad";
-            lblIdEspecialidad.Size = new Size(130, 25);
+            lblIdEspecialidad.Size = new Size(109, 25);
             lblIdEspecialidad.TabIndex = 3;
-            lblIdEspecialidad.Text = "Id Especialidad";
+            lblIdEspecialidad.Text = "Especialidad";
             // 
             // lblPlan
             // 
@@ -103,7 +94,7 @@
             // cmbEspecialidades
             // 
             cmbEspecialidades.FormattingEnabled = true;
-            cmbEspecialidades.Location = new Point(523, 251);
+            cmbEspecialidades.Location = new Point(328, 251);
             cmbEspecialidades.Name = "cmbEspecialidades";
             cmbEspecialidades.Size = new Size(182, 33);
             cmbEspecialidades.TabIndex = 7;
@@ -118,13 +109,11 @@
             Controls.Add(btnCancelar);
             Controls.Add(lblPlan);
             Controls.Add(lblIdEspecialidad);
-            Controls.Add(txtbIdEspecialidad);
             Controls.Add(lblDetalles);
             Controls.Add(txtbDetalles);
             Name = "PlanDetalle";
             Text = "Plan Detalle";
             Load += PlanDetalle_Load;
-
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,7 +122,6 @@
 
         private TextBox txtbDetalles;
         private Label lblDetalles;
-        private TextBox txtbIdEspecialidad;
         private Label lblIdEspecialidad;
         private Label lblPlan;
         private Button btnCancelar;

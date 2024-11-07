@@ -31,7 +31,6 @@
             lblDescripcion = new Label();
             txtbDescripcion = new TextBox();
             label1 = new Label();
-            txtbIdPlan = new TextBox();
             lblIdPlan = new Label();
             txtbHsSemanales = new TextBox();
             lblHsSemanales = new Label();
@@ -39,6 +38,7 @@
             HsTotales = new Label();
             btnConfirmar = new Button();
             btnCancelar = new Button();
+            cmbPlanes = new ComboBox();
             SuspendLayout();
             // 
             // lblDescripcion
@@ -54,7 +54,7 @@
             // 
             txtbDescripcion.Location = new Point(352, 70);
             txtbDescripcion.Name = "txtbDescripcion";
-            txtbDescripcion.Size = new Size(150, 31);
+            txtbDescripcion.Size = new Size(182, 31);
             txtbDescripcion.TabIndex = 1;
             // 
             // label1
@@ -65,27 +65,20 @@
             label1.Size = new Size(0, 25);
             label1.TabIndex = 2;
             // 
-            // txtbIdPlan
-            // 
-            txtbIdPlan.Location = new Point(352, 141);
-            txtbIdPlan.Name = "txtbIdPlan";
-            txtbIdPlan.Size = new Size(150, 31);
-            txtbIdPlan.TabIndex = 4;
-            // 
             // lblIdPlan
             // 
             lblIdPlan.AutoSize = true;
             lblIdPlan.Location = new Point(169, 147);
             lblIdPlan.Name = "lblIdPlan";
-            lblIdPlan.Size = new Size(66, 25);
+            lblIdPlan.Size = new Size(45, 25);
             lblIdPlan.TabIndex = 3;
-            lblIdPlan.Text = "Id Plan";
+            lblIdPlan.Text = "Plan";
             // 
             // txtbHsSemanales
             // 
             txtbHsSemanales.Location = new Point(352, 210);
             txtbHsSemanales.Name = "txtbHsSemanales";
-            txtbHsSemanales.Size = new Size(150, 31);
+            txtbHsSemanales.Size = new Size(182, 31);
             txtbHsSemanales.TabIndex = 6;
             // 
             // lblHsSemanales
@@ -101,7 +94,7 @@
             // 
             txtbHsTotales.Location = new Point(352, 273);
             txtbHsTotales.Name = "txtbHsTotales";
-            txtbHsTotales.Size = new Size(150, 31);
+            txtbHsTotales.Size = new Size(182, 31);
             txtbHsTotales.TabIndex = 8;
             // 
             // HsTotales
@@ -133,18 +126,26 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += cancelarButton_Click;
             // 
+            // cmbPlanes
+            // 
+            cmbPlanes.FormattingEnabled = true;
+            cmbPlanes.Location = new Point(352, 139);
+            cmbPlanes.Name = "cmbPlanes";
+            cmbPlanes.Size = new Size(182, 33);
+            cmbPlanes.TabIndex = 11;
+            // 
             // MateriaDetalle
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmbPlanes);
             Controls.Add(btnCancelar);
             Controls.Add(btnConfirmar);
             Controls.Add(txtbHsTotales);
             Controls.Add(HsTotales);
             Controls.Add(txtbHsSemanales);
             Controls.Add(lblHsSemanales);
-            Controls.Add(txtbIdPlan);
             Controls.Add(lblIdPlan);
             Controls.Add(label1);
             Controls.Add(txtbDescripcion);
@@ -160,7 +161,6 @@
         private Label lblDescripcion;
         private TextBox txtbDescripcion;
         private Label label1;
-        private TextBox txtbIdPlan;
         private Label lblIdPlan;
         private TextBox txtbHsSemanales;
         private Label lblHsSemanales;
@@ -168,5 +168,6 @@
         private Label HsTotales;
         private Button btnConfirmar;
         private Button btnCancelar;
+        private ComboBox cmbPlanes;
     }
 }

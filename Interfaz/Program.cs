@@ -20,9 +20,7 @@ namespace Interfaz
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-
-            Login login = new Login();
-            login.Show();
+            Application.Run(new ComisionLista());
 
 
 

@@ -4,13 +4,19 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Dominio.Entidades;
 public class AlumnoInscripcion_Controller
 {
     public static void CrearAlumnoInscripcion(AlumnoInscripcion alumnoInscripcion)
     {
 
         using var context = new AcademiaContext();
+
+        // Validaciones por separado
+        Validador.ValidarExistenciaCurso(alumnoInscripcion.IdCurso, context);
+        Validador.ValidarExistenciaAlumno(alumnoInscripcion.IdAlumno, context);
+        Validador.ValidarTextoNoVacio(alumnoInscripcion.Condicion, "Condición");
+        Validador.ValidarRangoNota(alumnoInscripcion.Nota);
 
         context.AlumnoInscripciones.Add(alumnoInscripcion);
         context.SaveChanges();
@@ -40,6 +46,12 @@ public class AlumnoInscripcion_Controller
 
         if (alumnoInscripcionToUpdate != null)
         {
+            // Validaciones por separado
+            Validador.ValidarExistenciaCurso(alumnoInscripcion.IdCurso, context);
+            Validador.ValidarExistenciaAlumno(alumnoInscripcion.IdAlumno, context);
+            Validador.ValidarTextoNoVacio(alumnoInscripcion.Condicion, "Condición");
+            Validador.ValidarRangoNota(alumnoInscripcion.Nota);
+
             alumnoInscripcionToUpdate.IdCurso = alumnoInscripcion.IdCurso;
             alumnoInscripcionToUpdate.IdAlumno = alumnoInscripcion.IdAlumno;
             alumnoInscripcionToUpdate.Condicion = alumnoInscripcion.Condicion;

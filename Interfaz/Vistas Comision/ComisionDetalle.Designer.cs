@@ -36,14 +36,14 @@
             lblIdEspecialidad = new Label();
             txtbIdDescripcion = new TextBox();
             lblDetalles = new Label();
-            txtbIdPlan = new TextBox();
+            cmbPlanes = new ComboBox();
             SuspendLayout();
             // 
             // txtbAnioEspecialidad
             // 
             txtbAnioEspecialidad.Location = new Point(405, 247);
             txtbAnioEspecialidad.Name = "txtbAnioEspecialidad";
-            txtbAnioEspecialidad.Size = new Size(150, 31);
+            txtbAnioEspecialidad.Size = new Size(182, 31);
             txtbAnioEspecialidad.TabIndex = 30;
             // 
             // label1
@@ -97,7 +97,7 @@
             // 
             txtbIdDescripcion.Location = new Point(405, 191);
             txtbIdDescripcion.Name = "txtbIdDescripcion";
-            txtbIdDescripcion.Size = new Size(150, 31);
+            txtbIdDescripcion.Size = new Size(182, 31);
             txtbIdDescripcion.TabIndex = 22;
             // 
             // lblDetalles
@@ -105,22 +105,24 @@
             lblDetalles.AutoSize = true;
             lblDetalles.Location = new Point(159, 138);
             lblDetalles.Name = "lblDetalles";
-            lblDetalles.Size = new Size(61, 25);
+            lblDetalles.Size = new Size(45, 25);
             lblDetalles.TabIndex = 21;
-            lblDetalles.Text = "IdPlan";
+            lblDetalles.Text = "Plan";
             // 
-            // txtbIdPlan
+            // cmbPlanes
             // 
-            txtbIdPlan.Location = new Point(405, 135);
-            txtbIdPlan.Name = "txtbIdPlan";
-            txtbIdPlan.Size = new Size(150, 31);
-            txtbIdPlan.TabIndex = 20;
+            cmbPlanes.FormattingEnabled = true;
+            cmbPlanes.Location = new Point(405, 130);
+            cmbPlanes.Name = "cmbPlanes";
+            cmbPlanes.Size = new Size(182, 33);
+            cmbPlanes.TabIndex = 31;
             // 
             // ComisionDetalle
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmbPlanes);
             Controls.Add(txtbAnioEspecialidad);
             Controls.Add(label1);
             Controls.Add(btnAceptar);
@@ -129,7 +131,6 @@
             Controls.Add(lblIdEspecialidad);
             Controls.Add(txtbIdDescripcion);
             Controls.Add(lblDetalles);
-            Controls.Add(txtbIdPlan);
             Name = "ComisionDetalle";
             Text = "ComisionDetalle";
             ResumeLayout(false);
@@ -145,6 +146,6 @@
         private Label lblIdEspecialidad;
         private TextBox txtbIdDescripcion;
         private Label lblDetalles;
-        private TextBox txtbIdPlan;
+        private ComboBox cmbPlanes;
     }
 }
