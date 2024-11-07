@@ -17,7 +17,7 @@ namespace Interfaz.Vistas_Plan
         public PlanLista()
         {
             InitializeComponent();
-            //this.GetAllAndLoad();
+            this.GetAllAndLoad();
         }
         
         private void Planes_Load(object sender, EventArgs e)
