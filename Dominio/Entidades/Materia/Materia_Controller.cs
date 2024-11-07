@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dominio.Entidades;
 
 public class Materia_Controller
 {
@@ -11,6 +12,13 @@ public class Materia_Controller
     {
 
         using var context = new AcademiaContext();
+
+        // Validar campos
+        Validador.ValidarTextoNoVacio(materia.Descripcion, "Descripcion");
+        Validador.ValidarIdPlan(materia.IdPlan, context);
+        Validador.ValidarInt(materia.HsSemanales, "Horas Semanales");
+        Validador.ValidarInt(materia.HsTotales, "Horas Totales");
+        Validador.ValidarDescripcionMateriaUnica(materia.Descripcion, context);
 
         context.Materias.Add(materia);
         context.SaveChanges();
