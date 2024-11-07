@@ -1,4 +1,5 @@
-﻿using Interfaz.Vistas_Comision;
+﻿using Interfaz.Reportes;
+using Interfaz.Vistas_Comision;
 using Interfaz.Vistas_Cursos;
 using Interfaz.Vistas_Especialidad;
 using Interfaz.Vistas_Materia;
@@ -72,6 +73,16 @@ namespace Interfaz.Vistas_Profesor
 
             formComisiones.ShowDialog();
 
+        }
+
+        private async void GenerarReportePlanes(object sender, EventArgs e)
+        {
+            await ReportesHandler.GeneratePlanesReport();
+        }
+
+        private async void GenerarReporteCursos(object sender, EventArgs e)
+        {
+            await ReportesHandler.GenerateCursosReport();
         }
     }
 }

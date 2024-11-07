@@ -35,6 +35,8 @@
             btnPlanes = new Button();
             btnComisiones = new Button();
             lknLogOut = new LinkLabel();
+            btnReporteCursos = new Button();
+            btnReportePlanes = new Button();
             SuspendLayout();
             // 
             // btnCargarNotas
@@ -107,11 +109,33 @@
             lknLogOut.Text = "LogOut";
             lknLogOut.Click += lknLogOut_Click;
             // 
+            // btnReporteCursos
+            // 
+            btnReporteCursos.Location = new Point(112, 305);
+            btnReporteCursos.Name = "btnReporteCursos";
+            btnReporteCursos.Size = new Size(138, 48);
+            btnReporteCursos.TabIndex = 7;
+            btnReporteCursos.Text = "Reporte Cursos";
+            btnReporteCursos.UseVisualStyleBackColor = true;
+            btnReporteCursos.Click += GenerarReporteCursos;
+            // 
+            // btnReportePlanes
+            // 
+            btnReportePlanes.Location = new Point(393, 305);
+            btnReportePlanes.Name = "btnReportePlanes";
+            btnReportePlanes.Size = new Size(138, 48);
+            btnReportePlanes.TabIndex = 8;
+            btnReportePlanes.Text = "Reporte Planes";
+            btnReportePlanes.UseVisualStyleBackColor = true;
+            btnReportePlanes.Click += GenerarReportePlanes;
+            // 
             // MenuProfesor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnReportePlanes);
+            Controls.Add(btnReporteCursos);
             Controls.Add(lknLogOut);
             Controls.Add(btnComisiones);
             Controls.Add(btnPlanes);
@@ -134,5 +158,7 @@
         private Button btnPlanes;
         private Button btnComisiones;
         private LinkLabel lknLogOut;
+        private Button btnReporteCursos;
+        private Button btnReportePlanes;
     }
 }

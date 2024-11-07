@@ -323,6 +323,45 @@ namespace WebAPI
             .WithName("EliminarComision");
 
 
+            //CRUD Inscripciones
+
+            app.MapGet("/inscipciones/{id}", (int id) =>
+            {
+
+                return AlumnoInscripcion_Controller.GetOneAlumnoInscripcion(id);
+            })
+            .WithName("GetOneInscripcion");
+
+            app.MapGet("/inscirpciones", () =>
+            {
+
+                return AlumnoInscripcion_Controller.GetAllAlumnoInscripcion();
+            })
+            .WithName("GetAllInscripciones");
+
+            app.MapPost("/inscirpciones", (AlumnoInscripcion alumnoinscripcion) =>
+            {
+
+                AlumnoInscripcion_Controller.CrearAlumnoInscripcion(alumnoinscripcion);
+            })
+            .WithName("CrearInscripcion");
+
+            app.MapPut("/inscirpciones", (AlumnoInscripcion alumnoinscripcion) =>
+            {
+
+                AlumnoInscripcion_Controller.ActualizarAlumnoInscripcion(alumnoinscripcion);
+            })
+            .WithName("ActualizarInscripcion");
+
+            app.MapDelete("/inscripciones/{id}", (int id) =>
+            {
+
+                AlumnoInscripcion_Controller.EliminarAlumnoInscripcion(id);
+            })
+            .WithName("EliminarInscripcion");
+
+
+
             app.UseStaticFiles();
 
             app.UseRouting();

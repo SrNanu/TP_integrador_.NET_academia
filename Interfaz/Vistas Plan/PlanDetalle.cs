@@ -48,12 +48,12 @@ namespace Interfaz.Vistas_Plan
         {
             try
             {
+
                 PlanApiClient client = new PlanApiClient();
 
                 if (this.ValidatePlan())
                 {
                     // Asignar el ID de Especialidad y la Descripción
-                    //this.Plan.IdEspecialidad = int.Parse(txtbIdEspecialidad.Text); // Obtener ID de Especialidad
                     this.Plan.Descripcion = txtbDetalles.Text; // Obtener Descripción
                     this.Plan.IdEspecialidad = (int)cmbEspecialidades.SelectedValue;
 
@@ -82,7 +82,7 @@ namespace Interfaz.Vistas_Plan
 
         private void SetPlan()
         {
-            this.txtbDetalles.Text = this.Plan.Descripcion; // Establecer la descripción
+            this.txtbDescripcion.Text = this.Plan.Descripcion; // Establecer la descripción
             if (Plan != null && Plan.IdEspecialidad != 0)
             {
                 cmbEspecialidades.SelectedValue = this.Plan.IdEspecialidad;
@@ -97,10 +97,10 @@ namespace Interfaz.Vistas_Plan
             errorProvider.Clear();
 
             // Validar Descripción
-            if (string.IsNullOrWhiteSpace(txtbDetalles.Text))
+            if (string.IsNullOrWhiteSpace(txtbDescripcion.Text))
             {
                 isValid = false;
-                errorProvider.SetError(txtbDetalles, "La Descripción es requerida.");
+                errorProvider.SetError(txtbDescripcion, "La Descripción es requerida.");
             }
 
             //Validar Especialidad seleccionada
