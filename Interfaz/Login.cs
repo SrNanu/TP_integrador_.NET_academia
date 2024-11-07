@@ -96,7 +96,6 @@ namespace Interfaz
             nuevoUsuario.FechaNacimiento = DateTime.Now.AddYears(-18);
 
             formRegistracion.Usuario = nuevoUsuario;
-            
 
             formRegistracion.ShowDialog();
 

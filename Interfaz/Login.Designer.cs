@@ -86,10 +86,10 @@
             // 
             btnRegistrarse.BackColor = SystemColors.Info;
             btnRegistrarse.ForeColor = SystemColors.ActiveCaptionText;
-            btnRegistrarse.Location = new Point(11, 405);
+            btnRegistrarse.Location = new Point(11, 414);
             btnRegistrarse.Margin = new Padding(2);
             btnRegistrarse.Name = "btnRegistrarse";
-            btnRegistrarse.Size = new Size(94, 34);
+            btnRegistrarse.Size = new Size(94, 25);
             btnRegistrarse.TabIndex = 9;
             btnRegistrarse.Text = "Registrarse";
             btnRegistrarse.UseVisualStyleBackColor = false;

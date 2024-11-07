@@ -56,194 +56,173 @@
             // lblCrearNuevoUsuario
             // 
             lblCrearNuevoUsuario.AutoSize = true;
-            lblCrearNuevoUsuario.Location = new Point(453, 48);
-            lblCrearNuevoUsuario.Margin = new Padding(4, 0, 4, 0);
+            lblCrearNuevoUsuario.Location = new Point(317, 29);
             lblCrearNuevoUsuario.Name = "lblCrearNuevoUsuario";
-            lblCrearNuevoUsuario.Size = new Size(211, 25);
+            lblCrearNuevoUsuario.Size = new Size(137, 15);
             lblCrearNuevoUsuario.TabIndex = 0;
             lblCrearNuevoUsuario.Text = "CREAR NUEVO USUARIO";
             // 
             // lblDatosPersonales
             // 
             lblDatosPersonales.AutoSize = true;
-            lblDatosPersonales.Location = new Point(129, 98);
-            lblDatosPersonales.Margin = new Padding(4, 0, 4, 0);
+            lblDatosPersonales.Location = new Point(90, 59);
             lblDatosPersonales.Name = "lblDatosPersonales";
-            lblDatosPersonales.Size = new Size(149, 25);
+            lblDatosPersonales.Size = new Size(96, 15);
             lblDatosPersonales.TabIndex = 1;
             lblDatosPersonales.Text = "Datos personales";
             // 
             // lblDatosCuenta
             // 
             lblDatosCuenta.AutoSize = true;
-            lblDatosCuenta.Location = new Point(894, 98);
-            lblDatosCuenta.Margin = new Padding(4, 0, 4, 0);
+            lblDatosCuenta.Location = new Point(626, 59);
             lblDatosCuenta.Name = "lblDatosCuenta";
-            lblDatosCuenta.Size = new Size(141, 25);
+            lblDatosCuenta.Size = new Size(92, 15);
             lblDatosCuenta.TabIndex = 2;
             lblDatosCuenta.Text = "Datos de cuenta";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(30, 190);
-            lblNombre.Margin = new Padding(4, 0, 4, 0);
+            lblNombre.Location = new Point(21, 114);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(78, 25);
+            lblNombre.Size = new Size(51, 15);
             lblNombre.TabIndex = 3;
             lblNombre.Text = "Nombre";
             // 
             // lblApellido
             // 
             lblApellido.AutoSize = true;
-            lblApellido.Location = new Point(29, 263);
-            lblApellido.Margin = new Padding(4, 0, 4, 0);
+            lblApellido.Location = new Point(20, 158);
             lblApellido.Name = "lblApellido";
-            lblApellido.Size = new Size(78, 25);
+            lblApellido.Size = new Size(51, 15);
             lblApellido.TabIndex = 4;
             lblApellido.Text = "Apellido";
             // 
             // lblFechaNacimiento
             // 
             lblFechaNacimiento.AutoSize = true;
-            lblFechaNacimiento.Location = new Point(30, 335);
-            lblFechaNacimiento.Margin = new Padding(4, 0, 4, 0);
+            lblFechaNacimiento.Location = new Point(21, 201);
             lblFechaNacimiento.Name = "lblFechaNacimiento";
-            lblFechaNacimiento.Size = new Size(174, 25);
+            lblFechaNacimiento.Size = new Size(117, 15);
             lblFechaNacimiento.TabIndex = 5;
             lblFechaNacimiento.Text = "Fecha de nacimiento";
             // 
             // lblDireccion
             // 
             lblDireccion.AutoSize = true;
-            lblDireccion.Location = new Point(31, 408);
-            lblDireccion.Margin = new Padding(4, 0, 4, 0);
+            lblDireccion.Location = new Point(22, 245);
             lblDireccion.Name = "lblDireccion";
-            lblDireccion.Size = new Size(85, 25);
+            lblDireccion.Size = new Size(57, 15);
             lblDireccion.TabIndex = 6;
             lblDireccion.Text = "Direccion";
             // 
             // lblTelefono
             // 
             lblTelefono.AutoSize = true;
-            lblTelefono.Location = new Point(31, 477);
-            lblTelefono.Margin = new Padding(4, 0, 4, 0);
+            lblTelefono.Location = new Point(22, 286);
             lblTelefono.Name = "lblTelefono";
-            lblTelefono.Size = new Size(79, 25);
+            lblTelefono.Size = new Size(52, 15);
             lblTelefono.TabIndex = 7;
             lblTelefono.Text = "Telefono";
             // 
             // lblEmail
             // 
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(34, 545);
-            lblEmail.Margin = new Padding(4, 0, 4, 0);
+            lblEmail.Location = new Point(24, 327);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(61, 25);
+            lblEmail.Size = new Size(41, 15);
             lblEmail.TabIndex = 8;
             lblEmail.Text = "E-mail";
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(720, 188);
-            lblUsuario.Margin = new Padding(4, 0, 4, 0);
+            lblUsuario.Location = new Point(504, 113);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(72, 25);
+            lblUsuario.Size = new Size(47, 15);
             lblUsuario.TabIndex = 9;
             lblUsuario.Text = "Usuario";
             // 
             // lblContrasenia
             // 
             lblContrasenia.AutoSize = true;
-            lblContrasenia.Location = new Point(720, 312);
-            lblContrasenia.Margin = new Padding(4, 0, 4, 0);
+            lblContrasenia.Location = new Point(504, 187);
             lblContrasenia.Name = "lblContrasenia";
-            lblContrasenia.Size = new Size(101, 25);
+            lblContrasenia.Size = new Size(67, 15);
             lblContrasenia.TabIndex = 10;
             lblContrasenia.Text = "Contraseña";
             // 
             // lblTipoUsuarios
             // 
             lblTipoUsuarios.AutoSize = true;
-            lblTipoUsuarios.Location = new Point(706, 408);
-            lblTipoUsuarios.Margin = new Padding(4, 0, 4, 0);
+            lblTipoUsuarios.Location = new Point(494, 245);
             lblTipoUsuarios.Name = "lblTipoUsuarios";
-            lblTipoUsuarios.Size = new Size(135, 25);
+            lblTipoUsuarios.Size = new Size(88, 15);
             lblTipoUsuarios.TabIndex = 11;
             lblTipoUsuarios.Text = "Tipo de usuario";
             // 
             // txtbNombre
             // 
-            txtbNombre.Location = new Point(214, 185);
-            txtbNombre.Margin = new Padding(4, 5, 4, 5);
+            txtbNombre.Location = new Point(150, 111);
             txtbNombre.Name = "txtbNombre";
-            txtbNombre.Size = new Size(141, 31);
+            txtbNombre.Size = new Size(100, 23);
             txtbNombre.TabIndex = 15;
             // 
             // txtbApellido
             // 
-            txtbApellido.Location = new Point(214, 263);
-            txtbApellido.Margin = new Padding(4, 5, 4, 5);
+            txtbApellido.Location = new Point(150, 158);
             txtbApellido.Name = "txtbApellido";
-            txtbApellido.Size = new Size(141, 31);
+            txtbApellido.Size = new Size(100, 23);
             txtbApellido.TabIndex = 16;
             // 
             // txtbUsuario
             // 
-            txtbUsuario.Location = new Point(883, 183);
-            txtbUsuario.Margin = new Padding(4, 5, 4, 5);
+            txtbUsuario.Location = new Point(618, 110);
             txtbUsuario.Name = "txtbUsuario";
-            txtbUsuario.Size = new Size(141, 31);
+            txtbUsuario.Size = new Size(100, 23);
             txtbUsuario.TabIndex = 17;
             // 
             // txtbContrasenia
             // 
-            txtbContrasenia.Location = new Point(883, 298);
-            txtbContrasenia.Margin = new Padding(4, 5, 4, 5);
+            txtbContrasenia.Location = new Point(618, 179);
             txtbContrasenia.Name = "txtbContrasenia";
             txtbContrasenia.PasswordChar = '*';
-            txtbContrasenia.Size = new Size(141, 31);
+            txtbContrasenia.Size = new Size(100, 23);
             txtbContrasenia.TabIndex = 18;
             // 
             // txtbDireccion
             // 
-            txtbDireccion.Location = new Point(214, 408);
-            txtbDireccion.Margin = new Padding(4, 5, 4, 5);
+            txtbDireccion.Location = new Point(150, 245);
             txtbDireccion.Name = "txtbDireccion";
-            txtbDireccion.Size = new Size(141, 31);
+            txtbDireccion.Size = new Size(100, 23);
             txtbDireccion.TabIndex = 19;
             // 
             // txtbTelefono
             // 
-            txtbTelefono.Location = new Point(211, 483);
-            txtbTelefono.Margin = new Padding(4, 5, 4, 5);
+            txtbTelefono.Location = new Point(148, 290);
             txtbTelefono.Name = "txtbTelefono";
-            txtbTelefono.Size = new Size(141, 31);
+            txtbTelefono.Size = new Size(100, 23);
             txtbTelefono.TabIndex = 20;
             // 
             // txtbEmail
             // 
-            txtbEmail.Location = new Point(214, 547);
-            txtbEmail.Margin = new Padding(4, 5, 4, 5);
+            txtbEmail.Location = new Point(150, 328);
             txtbEmail.Name = "txtbEmail";
-            txtbEmail.Size = new Size(141, 31);
+            txtbEmail.Size = new Size(100, 23);
             txtbEmail.TabIndex = 21;
             // 
             // dtpFechaNacimiento
             // 
-            dtpFechaNacimiento.Location = new Point(214, 333);
-            dtpFechaNacimiento.Margin = new Padding(4, 5, 4, 5);
+            dtpFechaNacimiento.Location = new Point(150, 200);
             dtpFechaNacimiento.Name = "dtpFechaNacimiento";
-            dtpFechaNacimiento.Size = new Size(284, 31);
+            dtpFechaNacimiento.Size = new Size(200, 23);
             dtpFechaNacimiento.TabIndex = 22;
             // 
             // btnConfirmar
             // 
-            btnConfirmar.Location = new Point(1013, 697);
-            btnConfirmar.Margin = new Padding(4, 5, 4, 5);
+            btnConfirmar.Location = new Point(709, 418);
             btnConfirmar.Name = "btnConfirmar";
-            btnConfirmar.Size = new Size(107, 38);
+            btnConfirmar.Size = new Size(75, 23);
             btnConfirmar.TabIndex = 23;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = true;
@@ -251,10 +230,9 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(894, 697);
-            btnCancelar.Margin = new Padding(4, 5, 4, 5);
+            btnCancelar.Location = new Point(626, 418);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(107, 38);
+            btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 24;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -263,17 +241,18 @@
             // cmbTipo
             // 
             cmbTipo.FormattingEnabled = true;
-            cmbTipo.Items.AddRange(new object[] { "Alumno", "Profesor", "Administrativo" });
-            cmbTipo.Location = new Point(865, 408);
+            cmbTipo.Items.AddRange(new object[] { "Alumno", "Profesor" });
+            cmbTipo.Location = new Point(606, 245);
+            cmbTipo.Margin = new Padding(2, 2, 2, 2);
             cmbTipo.Name = "cmbTipo";
-            cmbTipo.Size = new Size(182, 33);
+            cmbTipo.Size = new Size(129, 23);
             cmbTipo.TabIndex = 27;
             // 
-            // UsuarioDetalle
+            // AlumnosDetalle
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1143, 750);
+            ClientSize = new Size(800, 450);
             Controls.Add(cmbTipo);
             Controls.Add(btnCancelar);
             Controls.Add(btnConfirmar);
@@ -298,8 +277,7 @@
             Controls.Add(lblDatosPersonales);
             Controls.Add(lblCrearNuevoUsuario);
             Font = new Font("Segoe UI", 9F);
-            Margin = new Padding(4, 5, 4, 5);
-            Name = "UsuarioDetalle";
+            Name = "AlumnosDetalle";
             Text = "CrearUsuario";
             ResumeLayout(false);
             PerformLayout();

@@ -16,5 +16,19 @@ namespace Interfaz
         {
             InitializeComponent();
         }
+
+
+        private void lknLogOut_Click(object sender, EventArgs e)
+        {
+            Login formLogin = new Login();
+
+            formLogin.Show();
+
+            formLogin.Activate();
+
+            this.Dispose();
+        }
+
+
     }
 }

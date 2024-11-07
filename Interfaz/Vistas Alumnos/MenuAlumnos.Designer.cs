@@ -30,34 +30,49 @@
         {
             lblMenuUsuario = new Label();
             btnInscripcionMateria = new Button();
+            lknLogOut = new LinkLabel();
             SuspendLayout();
             // 
             // lblMenuUsuario
             // 
             lblMenuUsuario.AutoSize = true;
-            lblMenuUsuario.Location = new Point(330, 24);
+            lblMenuUsuario.Location = new Point(289, 18);
             lblMenuUsuario.Name = "lblMenuUsuario";
-            lblMenuUsuario.Size = new Size(100, 20);
+            lblMenuUsuario.Size = new Size(81, 15);
             lblMenuUsuario.TabIndex = 0;
             lblMenuUsuario.Text = "Menú Usuario";
             // 
             // btnInscripcionMateria
             // 
-            btnInscripcionMateria.Location = new Point(119, 95);
+            btnInscripcionMateria.Location = new Point(104, 71);
+            btnInscripcionMateria.Margin = new Padding(3, 2, 3, 2);
             btnInscripcionMateria.Name = "btnInscripcionMateria";
-            btnInscripcionMateria.Size = new Size(94, 55);
+            btnInscripcionMateria.Size = new Size(82, 41);
             btnInscripcionMateria.TabIndex = 1;
             btnInscripcionMateria.Text = "Inscribirse a materia";
             btnInscripcionMateria.UseVisualStyleBackColor = true;
             // 
-            // MenuUsuario
+            // lknLogOut
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            lknLogOut.AutoSize = true;
+            lknLogOut.Location = new Point(38, 302);
+            lknLogOut.Name = "lknLogOut";
+            lknLogOut.Size = new Size(47, 15);
+            lknLogOut.TabIndex = 2;
+            lknLogOut.TabStop = true;
+            lknLogOut.Text = "LogOut";
+            lknLogOut.Click += lknLogOut_Click;
+            // 
+            // MenuAlumnos
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
+            Controls.Add(lknLogOut);
             Controls.Add(btnInscripcionMateria);
             Controls.Add(lblMenuUsuario);
-            Name = "MenuUsuario";
+            Margin = new Padding(3, 2, 3, 2);
+            Name = "MenuAlumnos";
             Text = "MenuUsuario";
             ResumeLayout(false);
             PerformLayout();
@@ -67,5 +82,6 @@
 
         private Label lblMenuUsuario;
         private Button btnInscripcionMateria;
+        private LinkLabel lknLogOut;
     }
 }
