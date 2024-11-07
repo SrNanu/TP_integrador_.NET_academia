@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,6 +12,12 @@ public class Plan_Controller
     {
 
         using var context = new AcademiaContext();
+
+        // Validaciones por separado
+        Validador.ValidarTextoNoVacio(plan.Descripcion, "Descripción");
+        Validador.ValidarLongitudMaxima(plan.Descripcion, 100, "Descripción");
+        Validador.ValidarExistenciaEspecialidad(plan.IdEspecialidad, context);
+        Validador.ValidarDescripcionPlanUnica(plan.Descripcion, 0, context); // ponemos 0 porque esta creando el plan
 
         context.Planes.Add(plan);
         context.SaveChanges();
@@ -40,6 +47,12 @@ public class Plan_Controller
 
         if (planToUpdate != null)
         {
+            // Validaciones por separado
+            Validador.ValidarTextoNoVacio(plan.Descripcion, "Descripción");
+            Validador.ValidarLongitudMaxima(plan.Descripcion, 100, "Descripción");
+            Validador.ValidarExistenciaEspecialidad(plan.IdEspecialidad, context);
+            Validador.ValidarDescripcionPlanUnica(plan.Descripcion, plan.Id, context); // en este ponemos el id asi no se valida contra si mismo
+
             planToUpdate.IdEspecialidad = plan.IdEspecialidad;
             planToUpdate.Descripcion = plan.Descripcion;
             planToUpdate.Id = plan.Id;

@@ -43,5 +43,27 @@ namespace Dominio.Entidades
                 throw new ArgumentException("El nombre de usuario ya está en uso.");
             }
         }
+
+        // Validación para longitud máxima de un campo
+        public static void ValidarLongitudMaxima(string campo, int longitudMaxima, string nombreCampo)
+        {
+            if (campo.Length > longitudMaxima)
+                throw new ArgumentException($"El campo {nombreCampo} no puede exceder los {longitudMaxima} caracteres.");
+        }
+
+        // Validación para existencia de especialidad
+        public static void ValidarExistenciaEspecialidad(int idEspecialidad, AcademiaContext contexto)
+        {
+            if (!contexto.Especialidades.Any(e => e.Id == idEspecialidad))
+                throw new ArgumentException("La especialidad seleccionada no existe.");
+        }
+
+        // Validación para la unicidad de la descripción del plan
+        public static void ValidarDescripcionPlanUnica(string descripcion, int idPlan, AcademiaContext contexto)
+        {
+            if (contexto.Planes.Any(p => p.Descripcion == descripcion && p.Id != idPlan))
+                throw new ArgumentException("Ya existe un plan con la misma descripción.");
+        }
+
     }
 }
