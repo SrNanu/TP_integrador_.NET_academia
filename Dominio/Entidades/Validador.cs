@@ -175,7 +175,7 @@ namespace Dominio.Entidades
 
             if (contexto.Comisiones.Any(c => c.Descripcion == descripcion ))
             {
-                throw new ArgumentException("Ya existe una comisión con la misma descripción para este plan.");
+                throw new ArgumentException("Ya existe una comisión con la misma descripción.");
             }
         }
 

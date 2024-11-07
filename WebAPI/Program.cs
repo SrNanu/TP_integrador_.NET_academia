@@ -209,7 +209,16 @@ namespace WebAPI
 
             app.MapPost("/comisiones", (Comision comision) =>
             {
+                
+                try { 
                 Comision_Controller.CrearComision(comision);
+                    return Results.Ok(new { message = "Comisión creada exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
+
             })
             .WithName("CrearComision");
 

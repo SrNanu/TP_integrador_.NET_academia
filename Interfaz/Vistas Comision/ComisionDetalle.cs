@@ -48,27 +48,36 @@ namespace Interfaz.Vistas_Comision
         }
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            ComisionApiClient client = new ComisionApiClient();
-
-            if (this.ValidateComision())
+            try
             {
-                this.Comision.Descripcion = txtbIdDescripcion.Text;
-                this.Comision.AnioEspecialidad = int.Parse(txtbAnioEspecialidad.Text);
-                // Guardar el Id del plan seleccionado
-                this.Comision.IdPlan = (int)cmbPlanes.SelectedValue;
+                ComisionApiClient client = new ComisionApiClient();
 
-                if (this.EditMode)
+                if (this.ValidateComision())
                 {
-                    await ComisionApiClient.UpdateAsync(this.Comision);
-                }
-                else
-                {
-                    await ComisionApiClient.AddAsync(this.Comision);
-                }
+                    this.Comision.Descripcion = txtbIdDescripcion.Text;
+                    this.Comision.AnioEspecialidad = int.Parse(txtbAnioEspecialidad.Text);
+                    this.Comision.IdPlan = (int)cmbPlanes.SelectedValue;
 
-                this.Close();
+                    
+                    if (this.EditMode)
+                    {
+                        await ComisionApiClient.UpdateAsync(this.Comision);
+                    }
+                    else
+                    {
+                        await ComisionApiClient.AddAsync(this.Comision);
+                    }
+                    
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void cancelarButton_Click(object sender, EventArgs e)
         {
