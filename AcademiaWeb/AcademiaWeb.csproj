@@ -19,10 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Components\Mias\CrearUsuario1.razor">
+    <Content Update="Components\Mias\CrearUsuario.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
-    <Content Update="Components\Mias\Login1.razor">
+    <Content Update="Components\Mias\Login.razor">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </Content>
   </ItemGroup>

@@ -1,0 +1,137 @@
+﻿@page "/CrearUsuario123"
+@using Microsoft.AspNetCore.Components.Forms
+@inject NavigationManager Navigation
+@rendermode InteractiveServer
+@inherits LayoutComponentBase
+
+@using Microsoft.AspNetCore.Components
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Components.Web
+
+<h3>Crear Usuario</h3>
+
+@* <EditForm Model="@usuarioNuevo" OnValidSubmit="@HandleValidSubmit" FormName="crearUserForm"> *@
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <InputText id="nombre" class="form-control" @bind-Value="@usuarioNuevo.Nombre" required />
+        <ValidationMessage For="@(() => usuarioNuevo.Nombre)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <InputText id="apellido" class="form-control" @bind-Value="@usuarioNuevo.Apellido" required />
+        <ValidationMessage For="@(() => usuarioNuevo.Apellido)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+        <InputDate id="fechaNacimiento" class="form-control" @bind-Value="@usuarioNuevo.FechaNacimiento" required min="1951-01-01" />
+        <ValidationMessage For="@(() => usuarioNuevo.FechaNacimiento)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="direccion" class="form-label">Dirección</label>
+        <InputText id="direccion" class="form-control" @bind-Value="@usuarioNuevo.Direccion" />
+        <ValidationMessage For="@(() => usuarioNuevo.Direccion)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <InputText id="telefono" class="form-control" @bind-Value="@usuarioNuevo.Telefono" />
+        <ValidationMessage For="@(() => usuarioNuevo.Telefono)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="tipo" class="form-label">Tipo de Usuario</label>
+        <InputSelect id="tipo" class="form-select" @bind-Value="@usuarioNuevo.Tipo">
+            <option value="">Seleccionar tipo...</option>
+            <option value="TiposUsuarios.Alumno">Alumno</option>
+            <option value="TiposUsuarios.Profesor">Profesor</option>
+        </InputSelect>
+        <ValidationMessage For="@(() => usuarioNuevo.Tipo)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="legajo" class="form-label">Legajo</label>
+        <InputNumber id="legajo" class="form-control" @bind-Value="@usuarioNuevo.Legajo" required />
+        <ValidationMessage For="@(() => usuarioNuevo.Legajo)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <InputText id="email" class="form-control" type="email" @bind-Value="@usuarioNuevo.Email" required />
+        <ValidationMessage For="@(() => usuarioNuevo.Email)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <InputText id="username" class="form-control" @bind-Value="@usuarioNuevo.Username" required />
+        <ValidationMessage For="@(() => usuarioNuevo.Username)" />
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <InputText id="password" class="form-control" type="password" @bind-Value="@usuarioNuevo.Password" required />
+        <ValidationMessage For="@(() => usuarioNuevo.Password)" />
+    </div>
+
+    @if (showDatos)
+    {
+        <div>
+            <h3>Detalles del Usuario</h3>
+            <p>Nombre: @usuarioNuevo.Nombre</p>
+            <p>Apellido: @usuarioNuevo.Apellido</p>
+            <p>Fecha de Nacimiento: @usuarioNuevo.FechaNacimiento.ToShortDateString()</p>
+            <p>Dirección: @usuarioNuevo.Direccion</p>
+            <p>Teléfono: @usuarioNuevo.Telefono</p>
+            <p>Tipo: @usuarioNuevo.Tipo</p>
+            <p>Legajo: @usuarioNuevo.Legajo</p>
+            <p>Email: @usuarioNuevo.Email</p>
+            <p>Username: @usuarioNuevo.Username</p>
+            <p>Password: @usuarioNuevo.Password</p>
+        </div>
+    }
+
+    @if (showErrorMessage)
+    {
+        <div class="alert alert-danger" role="alert" style="margin-top: 20px; color: red">
+            Ya existe un usuario con dicho nombre de usuario, legajo o mail.
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Crear Usuario</button>
+
+    <NavLink href="/" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
+        Cancelar
+    </NavLink>
+@* </EditForm> *@
+
+@code {
+    private Usuario usuarioNuevo = new Usuario();
+    private bool showErrorMessage = false;
+    private bool showDatos = false;
+
+    private async Task HandleValidSubmit()
+    {
+        var usuarioExistente1 = Usuario_Controller.GetOneUsuarioUsername(usuarioNuevo.Username);
+        var usuarioExistente2 = Usuario_Controller.GetOneUsuarioMail(usuarioNuevo.Email);
+        var usuarioExistente3 = Usuario_Controller.GetOneUsuarioLegajo(usuarioNuevo.Legajo);
+
+        if (usuarioExistente1 != null || usuarioExistente2 != null || usuarioExistente3 != null)
+        {
+            showErrorMessage = true;
+        }
+        else
+        {
+            Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
+            Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
+            showDatos = true;
+            Usuario_Controller.AgregarUsuario(usuarioNuevo);
+            Navigation.NavigateTo("/");
+        }
+    }
+}
+

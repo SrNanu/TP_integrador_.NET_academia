@@ -1,0 +1,100 @@
+﻿@page "/CursosInscriptos"
+
+@using Microsoft.AspNetCore.Components.Forms
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+
+<h3>Cursos en las que te has inscrito</h3>
+
+<div class="cursos-list">
+    @if (CursosInscritas.Any())
+    {
+        <ul>
+            @foreach (var materia in CursosInscritas)
+            {
+                <li>
+                    <strong>@materia.Nombre</strong>
+                    <span class="fecha-inscripcion">@materia.FechaInscripcion.ToString("dd/MM/yyyy")</span>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No te has inscrito en ninguna materia aún.</p>
+    }
+
+    <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
+        Volver al menú de usuario
+    </NavLink>
+</div>
+
+@code {
+    // Lista de cursos en los que el alumno está inscripto
+    public List<Materia> CursosInscritas { get; set; } = new List<Materia>
+    {
+        new Materia { Nombre = "Matemáticas", FechaInscripcion = DateTime.Now.AddMonths(-2) },
+        new Materia { Nombre = "Física", FechaInscripcion = DateTime.Now.AddMonths(-1) },
+        new Materia { Nombre = "Historia", FechaInscripcion = DateTime.Now.AddMonths(-3) }
+    };
+
+    public class Materia
+    {
+        public string Nombre { get; set; }
+        public DateTime FechaInscripcion { get; set; }
+    }
+}
+
+<style>
+    /* Estilos generales */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+    }
+
+    /* Estilos para la lista */
+    .cursos-list {
+        width: 60%;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cursos-list ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .cursos-list li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        font-size: 16px;
+    }
+
+    .cursos-list li:last-child {
+        border-bottom: none;
+    }
+
+    .cursos-list .fecha-inscripcion {
+        font-size: 14px;
+        color: #888;
+        margin-left: 10px;
+    }
+
+    /* Mensaje si no hay cursos inscritas */
+    .cursos-list p {
+        font-size: 16px;
+        text-align: center;
+        color: #f44336;
+    }
+</style>

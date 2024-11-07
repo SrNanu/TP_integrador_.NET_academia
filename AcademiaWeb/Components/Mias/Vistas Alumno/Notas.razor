@@ -1,0 +1,99 @@
+﻿@page "/Notas"
+
+@using Microsoft.AspNetCore.Components.Forms
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+
+<h3>Notas</h3>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Materia</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var materia in MateriasNotas)
+            {
+                <tr>
+                    <td>@materia.NombreMateria</td>
+                    <td>@materia.Nota</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
+    Volver al menú de usuario
+</NavLink>
+
+@code {
+    // Aquí irían los datos de las materias y las notas, que podrías obtener de la base de datos
+    public List<MateriaNota> MateriasNotas { get; set; } = new List<MateriaNota>
+    {
+        new MateriaNota { NombreMateria = "Matemáticas", Nota = 8.5 },
+        new MateriaNota { NombreMateria = "Física", Nota = 7.2 },
+        new MateriaNota { NombreMateria = "Historia", Nota = 9.1 }
+    };
+
+    public class MateriaNota
+    {
+        public string NombreMateria { get; set; }
+        public double Nota { get; set; }
+    }
+}
+
+<style>
+    /* Estilos generales */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+    }
+
+    /* Estilo de la tabla */
+    .table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th,
+    .table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    .table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .table td {
+        font-size: 16px;
+    }
+
+    /* Estilos para las notas */
+    .table td:nth-child(2) {
+        text-align: center;
+        font-weight: bold;
+        color: #4CAF50;
+    }
+</style>

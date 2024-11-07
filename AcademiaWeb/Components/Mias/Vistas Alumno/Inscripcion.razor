@@ -1,0 +1,118 @@
+﻿@page "/InscripcionCursos"
+
+@using Microsoft.AspNetCore.Components.Forms
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+
+<h3>Inscripción a cursos</h3>
+
+<div class="container">
+    <p>Selecciona una materia para inscribirte:</p>
+
+    <select @bind="MateriaSeleccionadaId" class="select-box">
+        <option value="0" disabled>Elige una materia</option>
+        @foreach (var materia in MateriasDisponibles)
+        {
+            <option value="@materia.Id">@materia.Nombre</option>
+        }
+    </select>
+
+    <button class="btn-inscribir" @onclick="Inscribir">Inscribirse</button>
+
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <p class="message">@Message</p>
+    }
+
+    <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
+        Volver al menú de usuario
+    </NavLink>
+</div>
+
+@code {
+    // Lista de materias disponibles
+    public List<Materia> MateriasDisponibles { get; set; } = new List<Materia>
+    {
+        new Materia { Id = 1, Nombre = "Matemáticas" },
+        new Materia { Id = 2, Nombre = "Física" },
+        new Materia { Id = 3, Nombre = "Historia" },
+        new Materia { Id = 4, Nombre = "Química" }
+    };
+
+    // Materia seleccionada por el alumno
+    public int MateriaSeleccionadaId { get; set; }
+
+    // Acción para inscribir al alumno en la materia seleccionada
+    public void Inscribir()
+    {
+        var materiaSeleccionada = MateriasDisponibles.FirstOrDefault(m => m.Id == MateriaSeleccionadaId);
+        if (materiaSeleccionada != null)
+        {
+            // Lógica de inscripción (por ejemplo, agregar a una base de datos)
+            // Aquí solo mostramos un mensaje
+            Message = $"Te has inscrito en {materiaSeleccionada.Nombre}.";
+        }
+    }
+
+    // Mensaje para mostrar después de la inscripción
+    public string Message { get; set; }
+
+    public class Materia
+    {
+        public int Id { get; set; }
+        public string Nombre { get; set; }
+    }
+}
+
+<style>
+    /* Contenedor principal */
+    .container {
+        width: 60%;
+        margin: 30px auto;
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+    }
+
+    /* Estilo del select */
+    .select-box {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    .btn-inscribir {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .btn-inscribir:hover {
+        background-color: #45a049;
+    }
+
+    .message {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #e7f7e7;
+        color: #4CAF50;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 16px;
+    }
+</style>
