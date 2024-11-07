@@ -17,14 +17,12 @@ namespace Interfaz
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            // see https://aka.ms/applicationconfiguration
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new PlanLista());
 
             Login login = new Login();
             login.Show();
-
-
 
             Application.Run();
         }
