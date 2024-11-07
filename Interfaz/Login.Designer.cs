@@ -41,6 +41,7 @@
             // 
             txtbContrasenia.Location = new Point(300, 196);
             txtbContrasenia.Name = "txtbContrasenia";
+            txtbContrasenia.PasswordChar = '*';
             txtbContrasenia.Size = new Size(100, 23);
             txtbContrasenia.TabIndex = 15;
             // 
@@ -86,7 +87,7 @@
             btnRegistrarse.BackColor = SystemColors.Info;
             btnRegistrarse.ForeColor = SystemColors.ActiveCaptionText;
             btnRegistrarse.Location = new Point(11, 414);
-            btnRegistrarse.Margin = new Padding(2, 2, 2, 2);
+            btnRegistrarse.Margin = new Padding(2);
             btnRegistrarse.Name = "btnRegistrarse";
             btnRegistrarse.Size = new Size(94, 25);
             btnRegistrarse.TabIndex = 9;

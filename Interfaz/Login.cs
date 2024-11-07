@@ -91,11 +91,13 @@ namespace Interfaz
 
             AlumnosDetalle formRegistracion = new AlumnosDetalle();
 
-            formRegistracion.Show();
+            Usuario nuevoUsuario = new Usuario();
 
-            formRegistracion.Activate();
+            nuevoUsuario.FechaNacimiento = DateTime.Now.AddYears(-18);
 
-            this.Dispose();
+            formRegistracion.Usuario = nuevoUsuario;
+
+            formRegistracion.ShowDialog();
 
         }
     }
