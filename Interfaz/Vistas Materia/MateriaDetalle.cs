@@ -49,26 +49,33 @@ namespace Interfaz.Vistas_Materia
 
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            MateriaApiClient client = new MateriaApiClient();
-
-            if (this.ValidateMateria())
+            try
             {
-                // Asignar los valores de los TextBoxes a la materia
-                this.Materia.Descripcion = txtbDescripcion.Text; // Obtener Descripción
-                this.Materia.IdPlan = (int)cmbPlanes.SelectedValue; // Obtener el Id del Plan seleccionado
-                this.Materia.HsSemanales = int.Parse(txtbHsSemanales.Text); // Obtener Horas Semanales
-                this.Materia.HsTotales = int.Parse(txtbHsTotales.Text); // Obtener Horas Totales
+                MateriaApiClient client = new MateriaApiClient();
 
-                if (this.EditMode)
+                if (this.ValidateMateria())
                 {
-                    await MateriaApiClient.UpdateAsync(this.Materia);
-                }
-                else
-                {
-                    await MateriaApiClient.AddAsync(this.Materia);
-                }
+                    // Asignar los valores de los TextBoxes a la materia
+                    this.Materia.Descripcion = txtbDescripcion.Text; // Obtener Descripción
+                    this.Materia.IdPlan = (int)cmbPlanes.SelectedValue; // Obtener el Id del Plan seleccionado
+                    this.Materia.HsSemanales = int.Parse(txtbHsSemanales.Text); // Obtener Horas Semanales
+                    this.Materia.HsTotales = int.Parse(txtbHsTotales.Text); // Obtener Horas Totales
 
-                this.Close();
+                    if (this.EditMode)
+                    {
+                        await MateriaApiClient.UpdateAsync(this.Materia);
+                    }
+                    else
+                    {
+                        await MateriaApiClient.AddAsync(this.Materia);
+                    }
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

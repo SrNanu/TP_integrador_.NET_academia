@@ -58,28 +58,35 @@ namespace Interfaz.Vistas_Cursos
 
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            CursoApiClient client = new CursoApiClient();
-
-            if (this.ValidateCurso())
+            try
             {
-                // Guardar el Id de la comisión y la materia seleccionada
-                this.Curso.IdComision = (int)cmbComisiones.SelectedValue;
-                this.Curso.IdMateria = (int)cmbMaterias.SelectedValue;
+                CursoApiClient client = new CursoApiClient();
 
-                this.Curso.Cupo = int.Parse(txtbCupo.Text);
-                this.Curso.AnioCalendario = int.Parse(txtbAnioCalendario.Text);
-                this.Curso.Descripcion = txtbDescripcion.Text;
-
-                if (this.EditMode)
+                if (this.ValidateCurso())
                 {
-                    await CursoApiClient.UpdateAsync(this.Curso);
-                }
-                else
-                {
-                    await CursoApiClient.AddAsync(this.Curso);
-                }
+                    // Guardar el Id de la comisión y la materia seleccionada
+                    this.Curso.IdComision = (int)cmbComisiones.SelectedValue;
+                    this.Curso.IdMateria = (int)cmbMaterias.SelectedValue;
 
-                this.Close();
+                    this.Curso.Cupo = int.Parse(txtbCupo.Text);
+                    this.Curso.AnioCalendario = int.Parse(txtbAnioCalendario.Text);
+                    this.Curso.Descripcion = txtbDescripcion.Text;
+
+                    if (this.EditMode)
+                    {
+                        await CursoApiClient.UpdateAsync(this.Curso);
+                    }
+                    else
+                    {
+                        await CursoApiClient.AddAsync(this.Curso);
+                    }
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

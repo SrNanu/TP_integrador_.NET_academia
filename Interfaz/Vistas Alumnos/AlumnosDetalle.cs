@@ -35,41 +35,48 @@ namespace Interfaz
 
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            UsuarioApiClient client = new UsuarioApiClient();
-
-            if (this.ValidateUsuario())
+            try
             {
-                if (this.Usuario == null)
+                UsuarioApiClient client = new UsuarioApiClient();
+
+                if (this.ValidateUsuario())
                 {
-                    this.Usuario = new Usuario();
+                    if (this.Usuario == null)
+                    {
+                        this.Usuario = new Usuario();
+                    }
+
+                    this.Usuario.Nombre = txtbNombre.Text;
+                    this.Usuario.Apellido = txtbApellido.Text;
+                    this.Usuario.FechaNacimiento = dtpFechaNacimiento.Value;
+                    this.Usuario.Direccion = txtbDireccion.Text;
+                    this.Usuario.Telefono = txtbTelefono.Text;
+                    this.Usuario.Email = txtbEmail.Text;
+                    this.Usuario.Username = txtbUsuario.Text;
+                    this.Usuario.Password = txtbContrasenia.Text;
+
+                    // Asignar el tipo de usuario seleccionado en el ComboBox
+                    this.Usuario.Tipo = (TiposUsuarios)Enum.Parse(typeof(TiposUsuarios), cmbTipo.SelectedItem.ToString());
+
+                    //El Detalle se esta llevando la responsabilidad de llamar al servicio
+                    //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
+                    //en la Lista o tal vez en un Presenter o Controler
+
+                    if (this.EditMode)
+                    {
+                        await UsuarioApiClient.UpdateAsync(this.Usuario);
+                    }
+                    else
+                    {
+                        await UsuarioApiClient.AddAsync(this.Usuario);
+                    }
+
+                    this.Close();
                 }
-
-                this.Usuario.Nombre = txtbNombre.Text;
-                this.Usuario.Apellido = txtbApellido.Text;
-                this.Usuario.FechaNacimiento = dtpFechaNacimiento.Value;
-                this.Usuario.Direccion = txtbDireccion.Text;
-                this.Usuario.Telefono = txtbTelefono.Text;
-                this.Usuario.Email = txtbEmail.Text;
-                this.Usuario.Username = txtbUsuario.Text;
-                this.Usuario.Password = txtbContrasenia.Text;
-
-                // Asignar el tipo de usuario seleccionado en el ComboBox
-                this.Usuario.Tipo = (TiposUsuarios)Enum.Parse(typeof(TiposUsuarios), cmbTipo.SelectedItem.ToString());
-
-                //El Detalle se esta llevando la responsabilidad de llamar al servicio
-                //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
-                //en la Lista o tal vez en un Presenter o Controler
-
-                if (this.EditMode)
-                {
-                    await UsuarioApiClient.UpdateAsync(this.Usuario);
-                }
-                else
-                {
-                    await UsuarioApiClient.AddAsync(this.Usuario);
-                }
-
-                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
