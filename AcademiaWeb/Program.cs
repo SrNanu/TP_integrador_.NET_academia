@@ -1,4 +1,4 @@
-using AplicacionWeb.Components;
+using AcademiaWeb.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
