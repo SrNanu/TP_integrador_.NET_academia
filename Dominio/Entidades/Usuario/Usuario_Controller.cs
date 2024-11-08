@@ -50,6 +50,14 @@ public class Usuario_Controller
     }
 
     // Metodos Async
+
+    public async Task<IEnumerable<Usuario>> GetProfesores(int idUsuario)     //En vez de IEnumerable podria ir List.
+    {
+        using var context = new AcademiaContext();
+
+        return await context.Usuarios.Where(ai => (ai.Id == idUsuario && ai.Tipo == TiposUsuarios.Profesor)).ToListAsync();
+    }
+
     public static async Task AgregarUsuarioAsync(Usuario usuario)
     {
         using var context = new AcademiaContext();

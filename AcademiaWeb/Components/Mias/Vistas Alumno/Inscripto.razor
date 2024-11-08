@@ -1,27 +1,47 @@
 ﻿@page "/CursosInscriptos"
+@using AcademiaWeb.Services
+@inject Usuario usuarioOnline
 
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 
-<h3>Cursos en las que te has inscrito</h3>
+<h3>Cursos en los que te has inscrito</h3>
 
 <div class="cursos-list">
-    @if (CursosInscritas.Any())
+    @if (AlumnoInscripcionesConDetalles.Any())
     {
-        <ul>
-            @foreach (var materia in CursosInscritas)
-            {
-                <li>
-                    <strong>@materia.Nombre</strong>
-                    <span class="fecha-inscripcion">@materia.FechaInscripcion.ToString("dd/MM/yyyy")</span>
-                </li>
-            }
-        </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Año Curso</th>
+                    <th>Descripción Curso</th>
+                    <th>Profesor</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detalle in AlumnoInscripcionesConDetalles)
+                {
+                    foreach (var profesor in detalle.Profesores)
+                    {
+                        <tr>
+                            <td>@detalle.Curso.AnioCalendario</td>
+                            <td>@detalle.Materia.Descripcion</td>
+                            <td>@profesor.Nombre</td>
+                            <td>@detalle.Nota</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
     }
     else
     {
-        <p>No te has inscrito en ninguna materia aún.</p>
+        <div class="message-container">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>No te has inscrito en ningún curso.</p>
+        </div>
     }
 
     <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
@@ -30,23 +50,48 @@
 </div>
 
 @code {
-    // Lista de cursos en los que el alumno está inscripto
-    public List<Materia> CursosInscritas { get; set; } = new List<Materia>
-    {
-        new Materia { Nombre = "Matemáticas", FechaInscripcion = DateTime.Now.AddMonths(-2) },
-        new Materia { Nombre = "Física", FechaInscripcion = DateTime.Now.AddMonths(-1) },
-        new Materia { Nombre = "Historia", FechaInscripcion = DateTime.Now.AddMonths(-3) }
-    };
+    public List<DetalleInscripcion> AlumnoInscripcionesConDetalles { get; set; } = new List<DetalleInscripcion>();
+    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller { get; set; } = new AlumnoInscripcion_Controller();
+    public DocenteCurso_Controller DocenteCurso_Controller { get; set; } = new DocenteCurso_Controller();
+    public Usuario_Controller Usuario_Controller { get; set; } = new Usuario_Controller();
 
-    public class Materia
+    protected override async Task OnInitializedAsync()
     {
-        public string Nombre { get; set; }
-        public DateTime FechaInscripcion { get; set; }
+        var inscripciones = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.Id);
+
+        foreach (var inscripcion in inscripciones)
+        {
+            var curso = Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+            var materia = Materia_Controller.GetOneMateria(inscripcion.IdCurso);
+            var idProfesoresEnCurso = await DocenteCurso_Controller.GetProfesoresDC(inscripcion.IdCurso);
+
+            var profesores = new List<Usuario>();
+
+            foreach (var idProfesorDeCurso in idProfesoresEnCurso)
+            {
+                profesores.AddRange(await Usuario_Controller.GetProfesores(idProfesorDeCurso.IdDocente));
+            }
+
+            AlumnoInscripcionesConDetalles.Add(new DetalleInscripcion
+                {
+                    Curso = curso,
+                    Materia = materia,
+                    Profesores = profesores,
+                    Nota = inscripcion.Nota  
+                });
+        }
+    }
+
+    public class DetalleInscripcion
+    {
+        public Curso Curso { get; set; }
+        public Materia Materia { get; set; }
+        public List<Usuario> Profesores { get; set; }
+        public int Nota { get; set; }
     }
 }
 
 <style>
-    /* Estilos generales */
     body {
         font-family: 'Arial', sans-serif;
         background-color: #f9f9f9;
@@ -60,7 +105,6 @@
         margin-top: 20px;
     }
 
-    /* Estilos para la lista */
     .cursos-list {
         width: 60%;
         margin: 20px auto;
@@ -70,31 +114,31 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    .cursos-list ul {
-        list-style-type: none;
-        padding: 0;
-    }
+        .cursos-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    .cursos-list li {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        font-size: 16px;
-    }
+        .cursos-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
 
-    .cursos-list li:last-child {
-        border-bottom: none;
-    }
+            .cursos-list li:last-child {
+                border-bottom: none;
+            }
 
-    .cursos-list .fecha-inscripcion {
-        font-size: 14px;
-        color: #888;
-        margin-left: 10px;
-    }
+        .cursos-list .fecha-inscripcion {
+            font-size: 14px;
+            color: #888;
+            margin-left: 10px;
+        }
 
-    /* Mensaje si no hay cursos inscritas */
-    .cursos-list p {
-        font-size: 16px;
-        text-align: center;
-        color: #f44336;
-    }
+        /* Mensaje si no hay cursos inscritos */
+        .cursos-list p {
+            font-size: 16px;
+            text-align: center;
+            color: #f44336;
+        }
 </style>

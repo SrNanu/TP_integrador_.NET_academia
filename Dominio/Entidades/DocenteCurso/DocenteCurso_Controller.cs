@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -7,6 +8,13 @@ using System.Threading.Tasks;
 
 public class DocenteCurso_Controller
 {
+    public async Task<IEnumerable<DocenteCurso>> GetProfesoresDC(int idCurso)     //En vez de IEnumerable podria ir List.
+    {
+        using var context = new AcademiaContext();
+
+        return await context.DocenteCursos.Where(dc => dc.IdCurso == idCurso).ToListAsync();
+    }
+
     public static void CrearDocenteCurso(DocenteCurso docenteCurso)
     {
 

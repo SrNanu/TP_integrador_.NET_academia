@@ -26,7 +26,7 @@ public class AlumnoInscripcion_Controller
 
     }
 
-    public async Task<IEnumerable<AlumnoInscripcion>> GetAlumnosInscripcionesByIdUsuario(int idUsuario)
+    public async Task<IEnumerable<AlumnoInscripcion>> GetAlumnosInscripcionesByIdUsuario(int idUsuario)     //En vez de IEnumerable podria ir List.
     {
         using var context = new AcademiaContext();
 
