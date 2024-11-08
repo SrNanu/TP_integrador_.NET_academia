@@ -33,6 +33,13 @@ public class AlumnoInscripcion_Controller
         return await context.AlumnoInscripciones.Where(ai => ai.IdAlumno == idUsuario).ToListAsync();
     }
 
+    public async Task<IEnumerable<AlumnoInscripcion>> GetAlumnosInscripcionesByIdCurso(int idCurso)     //En vez de IEnumerable podria ir List.
+    {
+        using var context = new AcademiaContext();
+
+        return await context.AlumnoInscripciones.Where(ai => ai.IdCurso == idCurso).ToListAsync();
+    }
+
     public static IEnumerable<AlumnoInscripcion> GetAllAlumnoInscripcion()
     {
         using var context = new AcademiaContext();

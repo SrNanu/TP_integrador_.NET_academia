@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -23,6 +24,34 @@ public class Curso_Controller
 
         return context.Cursos.Find(id);
 
+    }
+
+    public IEnumerable<Curso> GetCursosByIdMateria(int idMateria)     //En vez de IEnumerable podria ir List.
+    {
+        using var context = new AcademiaContext();
+
+        return context.Cursos.Where(ai => ai.IdMateria == idMateria).ToList();
+    }
+
+    public async Task<Curso?> GetOneCursoByIdMateria(int idMateria)
+    {
+        using var context = new AcademiaContext();
+        AlumnoInscripcion_Controller alumnoInscripcionController = new AlumnoInscripcion_Controller();
+
+        var cursosDeMateria = GetCursosByIdMateria(idMateria);
+
+        foreach (var curso in cursosDeMateria)
+        {
+            var inscripciones = await alumnoInscripcionController.GetAlumnosInscripcionesByIdCurso(curso.Id);
+            int cantidadInscriptos = inscripciones.Count();
+
+            if (cantidadInscriptos < curso.Cupo)
+            {
+                return curso;
+            }
+        }
+
+        return null;
     }
 
     public static IEnumerable<Curso> GetAllCurso()

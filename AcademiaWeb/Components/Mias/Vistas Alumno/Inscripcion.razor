@@ -1,4 +1,6 @@
 ﻿@page "/InscripcionCursos"
+@using AcademiaWeb.Services
+@inject Usuario usuarioOnline
 
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
@@ -9,11 +11,11 @@
 <div class="container">
     <p>Selecciona una materia para inscribirte:</p>
 
-    <select @bind="MateriaSeleccionadaId" class="select-box">
+    <select @bind="materiaSeleccionadaId" class="select-box">
         <option value="0" disabled>Elige una materia</option>
         @foreach (var materia in MateriasDisponibles)
         {
-            <option value="@materia.Id">@materia.Nombre</option>
+            <option value="@materia.Id">@materia.Descripcion</option>
         }
     </select>
 
@@ -30,42 +32,39 @@
 </div>
 
 @code {
-    // Lista de materias disponibles
-    public List<Materia> MateriasDisponibles { get; set; } = new List<Materia>
-    {
-        new Materia { Id = 1, Nombre = "Matemáticas" },
-        new Materia { Id = 2, Nombre = "Física" },
-        new Materia { Id = 3, Nombre = "Historia" },
-        new Materia { Id = 4, Nombre = "Química" }
-    };
+    int materiaSeleccionadaId;
+    public Curso_Controller Curso_Controller = new Curso_Controller();
 
-    // Materia seleccionada por el alumno
-    public int MateriaSeleccionadaId { get; set; }
+    List<Materia> MateriasDisponibles = (Materia_Controller.GetAllMateria()).ToList();
 
-    // Acción para inscribir al alumno en la materia seleccionada
     public void Inscribir()
     {
-        var materiaSeleccionada = MateriasDisponibles.FirstOrDefault(m => m.Id == MateriaSeleccionadaId);
+        var materiaSeleccionada = Materia_Controller.GetOneMateria(materiaSeleccionadaId);
         if (materiaSeleccionada != null)
         {
-            // Lógica de inscripción (por ejemplo, agregar a una base de datos)
-            // Aquí solo mostramos un mensaje
-            Message = $"Te has inscrito en {materiaSeleccionada.Nombre}.";
+            var curso = Curso_Controller.GetOneCursoByIdMateria(materiaSeleccionada.Id);
+
+            AlumnoInscripcion alumnoInscripcion = new AlumnoInscripcion()
+                {
+                    IdCurso = curso.Id,
+                    IdAlumno = usuarioOnline.Id,
+                    Condicion = "Habilitado"
+                };
+
+            AlumnoInscripcion_Controller.CrearAlumnoInscripcion(alumnoInscripcion);
+
+            Message = $"Te has inscripto en {materiaSeleccionada.Descripcion}.";
+        }
+        else
+        {
+            Message = $"No existe una materia con ese código.";
         }
     }
 
-    // Mensaje para mostrar después de la inscripción
     public string Message { get; set; }
-
-    public class Materia
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-    }
 }
 
 <style>
-    /* Contenedor principal */
     .container {
         width: 60%;
         margin: 30px auto;
@@ -81,7 +80,6 @@
         color: #333;
     }
 
-    /* Estilo del select */
     .select-box {
         width: 100%;
         padding: 10px;

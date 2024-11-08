@@ -50,10 +50,10 @@
 </div>
 
 @code {
-    public List<DetalleInscripcion> AlumnoInscripcionesConDetalles { get; set; } = new List<DetalleInscripcion>();
-    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller { get; set; } = new AlumnoInscripcion_Controller();
-    public DocenteCurso_Controller DocenteCurso_Controller { get; set; } = new DocenteCurso_Controller();
-    public Usuario_Controller Usuario_Controller { get; set; } = new Usuario_Controller();
+    public List<DetalleInscripcion> AlumnoInscripcionesConDetalles = new List<DetalleInscripcion>();
+    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller = new AlumnoInscripcion_Controller();
+    public DocenteCurso_Controller DocenteCurso_Controller = new DocenteCurso_Controller();
+    public Usuario_Controller Usuario_Controller = new Usuario_Controller();
 
     protected override async Task OnInitializedAsync()
     {
