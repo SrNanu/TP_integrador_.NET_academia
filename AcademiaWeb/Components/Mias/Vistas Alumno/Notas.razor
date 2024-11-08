@@ -1,8 +1,10 @@
 ﻿@page "/Notas"
+@using AcademiaWeb.Services
 
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+@inject Usuario usuarioOnline
 
 <h3>Notas</h3>
 
@@ -10,16 +12,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Materia</th>
+                <th>Curso</th>
                 <th>Nota</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var materia in MateriasNotas)
+            @foreach (var inscripcion in AlumnoInscripciones)
             {
+                var @curso = Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+                var @materia = Materia_Controller.GetOneMateria(curso.IdMateria);
+
                 <tr>
-                    <td>@materia.NombreMateria</td>
-                    <td>@materia.Nota</td>
+                    <td>@curso.AnioCalendario</td>
+                    <td>@materia.Descripcion</td>
+                    <td>@inscripcion.Nota</td>
                 </tr>
             }
         </tbody>
@@ -31,18 +37,12 @@
 </NavLink>
 
 @code {
-    // Aquí irían los datos de las materias y las notas, que podrías obtener de la base de datos
-    public List<MateriaNota> MateriasNotas { get; set; } = new List<MateriaNota>
-    {
-        new MateriaNota { NombreMateria = "Matemáticas", Nota = 8.5 },
-        new MateriaNota { NombreMateria = "Física", Nota = 7.2 },
-        new MateriaNota { NombreMateria = "Historia", Nota = 9.1 }
-    };
+    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller = new AlumnoInscripcion_Controller();
+    public List<AlumnoInscripcion> AlumnoInscripciones { get; set; } = new List<AlumnoInscripcion>();
 
-    public class MateriaNota
+    protected override async Task OnInitializedAsync()
     {
-        public string NombreMateria { get; set; }
-        public double Nota { get; set; }
+        AlumnoInscripciones = (await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.Id)).ToList();
     }
 }
 

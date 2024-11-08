@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+@using AcademiaWeb.Services
 
 @using Microsoft.AspNetCore.Components
 @using System.ComponentModel.DataAnnotations
@@ -81,6 +82,8 @@
 
         if (usuario != null && usuario.Password == loginModel.Password)
         {
+            StateContainer.UsuarioContenido = usuario;
+
             if (usuario.Tipo == TiposUsuarios.Alumno)
             {
                 Navigation.NavigateTo("/MenuAlumno");

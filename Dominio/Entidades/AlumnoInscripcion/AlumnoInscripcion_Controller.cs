@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 public class AlumnoInscripcion_Controller
 {
@@ -23,6 +24,13 @@ public class AlumnoInscripcion_Controller
 
         return context.AlumnoInscripciones.Find(id);
 
+    }
+
+    public async Task<IEnumerable<AlumnoInscripcion>> GetAlumnosInscripcionesByIdUsuario(int idUsuario)
+    {
+        using var context = new AcademiaContext();
+
+        return await context.AlumnoInscripciones.Where(ai => ai.IdAlumno == idUsuario).ToListAsync();
     }
 
     public static IEnumerable<AlumnoInscripcion> GetAllAlumnoInscripcion()
