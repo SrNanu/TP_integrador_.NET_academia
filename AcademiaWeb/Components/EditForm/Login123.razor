@@ -16,7 +16,7 @@
 
 <div class="login-container">
     <h2>Iniciar Sesión</h2>
-    @* <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin" FormName="loginForm"> *@
+    <EditForm Model="@loginModel" OnValidSubmit="@HandleLogin" FormName="loginForm">
         <DataAnnotationsValidator />
         <ValidationSummary />
 
@@ -33,7 +33,7 @@
         <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
 
         <div style="margin-top: 20px;">
-            <NavLink href="/crear-usuario" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: indigo"> 
+            <NavLink href="/CrearUsuario123" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: indigo"> 
                Crear nuevo usuario
             </NavLink>
         </div>
@@ -53,7 +53,7 @@
             </div>
         }
 
-    @* </EditForm> *@
+    </EditForm>
 </div>
 
 @code {

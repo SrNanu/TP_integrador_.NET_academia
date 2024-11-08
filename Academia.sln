@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaz", "Interfaz\Interf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{02297320-1A39-4210-94D3-77D736563B57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAssembly", "WebAssembly\WebAssembly.csproj", "{7049485D-6F0B-47DC-B626-AD7267AA09C8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AcademiaWeb", "AcademiaWeb\AcademiaWeb.csproj", "{E02FD347-B20F-4E4C-9A85-B0E129AD4AB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AcademiaWeb", "AcademiaWeb\AcademiaWeb.csproj", "{E02FD347-B20F-4E4C-9A85-B0E129AD4AB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{02297320-1A39-4210-94D3-77D736563B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02297320-1A39-4210-94D3-77D736563B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02297320-1A39-4210-94D3-77D736563B57}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7049485D-6F0B-47DC-B626-AD7267AA09C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7049485D-6F0B-47DC-B626-AD7267AA09C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7049485D-6F0B-47DC-B626-AD7267AA09C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7049485D-6F0B-47DC-B626-AD7267AA09C8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E02FD347-B20F-4E4C-9A85-B0E129AD4AB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E02FD347-B20F-4E4C-9A85-B0E129AD4AB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E02FD347-B20F-4E4C-9A85-B0E129AD4AB4}.Release|Any CPU.ActiveCfg = Release|Any CPU

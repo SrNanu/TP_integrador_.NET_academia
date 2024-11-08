@@ -10,7 +10,7 @@
 
 <h3>Crear Usuario</h3>
 
-@* <EditForm Model="@usuarioNuevo" OnValidSubmit="@HandleValidSubmit" FormName="crearUserForm"> *@
+<EditForm Model="@usuarioNuevo" OnValidSubmit="@HandleValidSubmit" FormName="crearUserForm">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -107,7 +107,7 @@
     <NavLink href="/" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
         Cancelar
     </NavLink>
-@* </EditForm> *@
+</EditForm>
 
 @code {
     private Usuario usuarioNuevo = new Usuario();
