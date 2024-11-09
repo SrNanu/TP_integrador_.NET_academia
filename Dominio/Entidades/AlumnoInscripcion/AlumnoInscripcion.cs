@@ -19,6 +19,6 @@ public class AlumnoInscripcion : EntidadNegocio
     public required string Condicion { get; set; } = "Habilitado";
 
     [Required]
-    public int Nota { get; set; }
+    public int? Nota { get; set; }
 
 }

@@ -1,12 +1,12 @@
-﻿@page "/MenuProfesor"
+﻿@page "/MenuDocente"
+@rendermode InteractiveServer
 
-<h2>Menú de Profesor</h2>
+<h2>Menú de Docente</h2>
 
 <div class="menu-container">
-    <button class="menu-button" @onclick="IrPaginaBajaAlumno">Dar de Baja Alumno</button>
-    <button class="menu-button" @onclick="IrPaginaCargarNotas">Cargar Notas</button>
-    <button class="menu-button" @onclick="IrPaginaAltaCurso">Alta en Curso</button>
-    <button class="menu-button" @onclick="IrPaginaVerCursos">Ver Cursos</button>
+    <button class="menu-button" @onclick="IrPaginaCargarNotas">Cargar notas</button>
+    <button class="menu-button" @onclick="IrPaginaAltaCurso">Alta en curso</button>
+    <button class="menu-button" @onclick="IrPaginaVerCursos">Ver cursos en los que esta inscripto</button>
     <button class="menu-button logout-button" @onclick="CerrarSesion">Cerrar sesión</button>
 </div>
 
@@ -14,29 +14,24 @@
     [Inject]
     private NavigationManager Navigation { get; set; } = default!;
 
-    private void IrPaginaBajaAlumno()
-    {
-        Navigation.NavigateTo("/BajaAlumno");
-    }
-
     private void IrPaginaCargarNotas()
     {
-        Navigation.NavigateTo("/CargarNotas");
+        Navigation.NavigateTo("/SeleccionarCursoProfesor");
     }
 
     private void IrPaginaAltaCurso()
     {
-        Navigation.NavigateTo("/AltaCurso");
+        Navigation.NavigateTo("/InscripcionCursos");
     }
 
     private void IrPaginaVerCursos()
     {
-        Navigation.NavigateTo("/VerCursos");
+        Navigation.NavigateTo("/CursosInscriptos");
     }
 
     private void CerrarSesion()
     {
-        Navigation.NavigateTo("/login", true); // Redirige a la página de login
+        Navigation.NavigateTo("/Login", true);
     }
 }
 

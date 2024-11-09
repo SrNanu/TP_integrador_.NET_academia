@@ -1,8 +1,13 @@
 ﻿namespace AcademiaWeb.Services
 {
-    public class StateContainer
+    public class UsuarioContainer
     {
-        public static Usuario UsuarioContenido { get; set; }
+        public Usuario UsuarioContenido { get; set; }
+    }
+
+    public class CursoContainer
+    {
+        public Curso CursoContenido { get; set; }
     }
 }
 

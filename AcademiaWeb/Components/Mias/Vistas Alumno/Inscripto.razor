@@ -1,12 +1,12 @@
-﻿@page "/CursosInscriptos"
+﻿@page "/CursosInscriptosAlumno"
 @using AcademiaWeb.Services
-@inject Usuario usuarioOnline
+@inject UsuarioContainer usuarioOnline
 
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 
-<h3>Cursos en los que te has inscrito</h3>
+<h3>Cursos en los que te has inscripto</h3>
 
 <div class="cursos-list">
     @if (AlumnoInscripcionesConDetalles.Any())
@@ -16,19 +16,19 @@
                 <tr>
                     <th>Año Curso</th>
                     <th>Descripción Curso</th>
-                    <th>Profesor</th>
+                    <th>Docente</th>
                     <th>Nota</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var detalle in AlumnoInscripcionesConDetalles)
                 {
-                    foreach (var profesor in detalle.Profesores)
+                    foreach (var docente in detalle.Docentes)
                     {
                         <tr>
                             <td>@detalle.Curso.AnioCalendario</td>
                             <td>@detalle.Materia.Descripcion</td>
-                            <td>@profesor.Nombre</td>
+                            <td>@docente.Nombre</td>
                             <td>@detalle.Nota</td>
                         </tr>
                     }
@@ -40,7 +40,7 @@
     {
         <div class="message-container">
             <i class="fas fa-exclamation-circle"></i>
-            <p>No te has inscrito en ningún curso.</p>
+            <p>No te has inscripto en ningún curso.</p>
         </div>
     }
 
@@ -57,26 +57,27 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var inscripciones = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.Id);
+        AlumnoInscripcionesConDetalles.Clear();
+        var inscripciones = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
 
         foreach (var inscripcion in inscripciones)
         {
             var curso = Curso_Controller.GetOneCurso(inscripcion.IdCurso);
             var materia = Materia_Controller.GetOneMateria(inscripcion.IdCurso);
-            var idProfesoresEnCurso = await DocenteCurso_Controller.GetProfesoresDC(inscripcion.IdCurso);
+            var idDocentesEnCurso = await DocenteCurso_Controller.GetDocentesDC(inscripcion.IdCurso);
 
-            var profesores = new List<Usuario>();
+            var docentes = new List<Usuario>();
 
-            foreach (var idProfesorDeCurso in idProfesoresEnCurso)
+            foreach (var idDocenteDeCurso in idDocentesEnCurso)
             {
-                profesores.AddRange(await Usuario_Controller.GetProfesores(idProfesorDeCurso.IdDocente));
+                docentes.AddRange(await Usuario_Controller.GetDocentes(idDocenteDeCurso.IdDocente));
             }
 
             AlumnoInscripcionesConDetalles.Add(new DetalleInscripcion
                 {
                     Curso = curso,
                     Materia = materia,
-                    Profesores = profesores,
+                    Docentes = docentes,
                     Nota = inscripcion.Nota  
                 });
         }
@@ -86,8 +87,8 @@
     {
         public Curso Curso { get; set; }
         public Materia Materia { get; set; }
-        public List<Usuario> Profesores { get; set; }
-        public int Nota { get; set; }
+        public List<Usuario> Docentes { get; set; }
+        public int? Nota { get; set; }
     }
 }
 
@@ -135,7 +136,7 @@
             margin-left: 10px;
         }
 
-        /* Mensaje si no hay cursos inscritos */
+        /* Mensaje si no hay cursos inscriptos */
         .cursos-list p {
             font-size: 16px;
             text-align: center;

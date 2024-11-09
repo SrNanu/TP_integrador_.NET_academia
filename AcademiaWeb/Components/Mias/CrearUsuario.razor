@@ -28,7 +28,7 @@
 
 <div class="mb-3">
     <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-    <InputDate id="fechaNacimiento" class="form-control" @bind-Value="@usuarioNuevo.FechaNacimiento" required min="1951-01-01" />
+    <InputDate id="fechaNacimiento" class="form-control" @bind-Value="@usuarioNuevo.FechaNacimiento" required min="1970-01-01" />
     @if (fechaNacimientoError)
     {
         <ValidationMessage For="@(() => usuarioNuevo.FechaNacimiento)" />
@@ -49,8 +49,8 @@
     <label for="tipo" class="form-label">Tipo de Usuario</label>
     <InputSelect id="tipo" class="form-select" @bind-Value="@usuarioNuevo.Tipo">
         <option value="">Seleccionar tipo...</option>
-        <option value="TiposUsuarios.Alumno">Alumno</option>
-        <option value="TiposUsuarios.Profesor">Profesor</option>
+        <option value="@TiposUsuarios.Alumno">Alumno</option>
+        <option value="@TiposUsuarios.Docente">Docente</option>
     </InputSelect>
 </div>
 
@@ -90,7 +90,7 @@
     }
 </div>
 
-@if (showDatos)
+@* @if (showDatos)
 {
     <div>
         <h3>Detalles del Usuario</h3>
@@ -105,7 +105,7 @@
         <p>Username: @usuarioNuevo.Username</p>
         <p>Password: @usuarioNuevo.Password</p>
     </div>
-}
+} *@
 
 @if (showErrorMessage)
 {
@@ -123,7 +123,7 @@
 @code {
     private Usuario usuarioNuevo = new Usuario();
     private bool showErrorMessage = false;
-    private bool showDatos = false;
+    // private bool showDatos = false;
     private bool nombreError, apellidoError, fechaNacimientoError, legajoError, emailError, usernameError, passwordError;
 
     private async Task HandleSubmitAsync()
@@ -192,9 +192,9 @@
         }
         else
         {
-            Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
-            Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
-            showDatos = true;
+            // Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
+            // Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
+            // showDatos = true;
             Usuario_Controller.AgregarUsuario(usuarioNuevo);
             Navigation.NavigateTo("/Login");
         }

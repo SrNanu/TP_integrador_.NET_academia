@@ -1,12 +1,13 @@
-﻿@page "/CursosInscriptos"
+﻿@page "/SeleccionarCursoProfesor"
 @using AcademiaWeb.Services
 @inject UsuarioContainer usuarioOnline
+@inject CursoContainer cursoContainer
+@inject NavigationManager Navigation
 
-@using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 
-<h3>Cursos en los que te has inscripto</h3>
+<h3>Cursos en los que estás inscripto</h3>
 
 <div class="cursos-list">
     @if (InscripcionesConDetalles.Any())
@@ -16,6 +17,7 @@
                 <tr>
                     <th>Año Curso</th>
                     <th>Descripción Curso</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,6 +26,11 @@
                     <tr>
                         <td>@detalle.Curso.AnioCalendario</td>
                         <td>@detalle.Materia.Descripcion</td>
+                        <td>
+                            <button class="btn btn-primary" @onclick="() => RedirigirACargaNotas(detalle.Curso)">
+                                Cargar Notas
+                            </button>
+                        </td>
                     </tr>
                 }
             </tbody>
@@ -33,13 +40,13 @@
     {
         <div class="message-container">
             <i class="fas fa-exclamation-circle"></i>
-            <p>No te has inscripto en ningún curso.</p>
+            <p>No estás inscripto en ningún curso.</p>
         </div>
     }
 
-    <NavLink href="/MenuDocente" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
-        Volver al menú de usuario
-    </NavLink>
+    <button class="btn btn-secondary" @onclick="RedirigirAMenuProfesor" style="background-color: red">
+        Cancelar
+    </button>
 </div>
 
 @code {
@@ -68,61 +75,20 @@
         }
     }
 
+    private void RedirigirACargaNotas(Curso cursoSeleccionado)
+    {
+        cursoContainer.CursoContenido = cursoSeleccionado;
+        Navigation.NavigateTo($"/CargarNotas");
+    }
+
+    private void RedirigirAMenuProfesor()
+    {
+        Navigation.NavigateTo($"/MenuDocente");
+    }
+
     public class DetalleInscripcion
     {
         public Curso Curso { get; set; }
         public Materia Materia { get; set; }
     }
 }
-
-<style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f9f9f9;
-        margin: 0;
-        padding: 0;
-    }
-
-    h3 {
-        text-align: center;
-        color: #333;
-        margin-top: 20px;
-    }
-
-    .cursos-list {
-        width: 60%;
-        margin: 20px auto;
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-        .cursos-list ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .cursos-list li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            font-size: 16px;
-        }
-
-            .cursos-list li:last-child {
-                border-bottom: none;
-            }
-
-        .cursos-list .fecha-inscripcion {
-            font-size: 14px;
-            color: #888;
-            margin-left: 10px;
-        }
-
-        /* Mensaje si no hay cursos a los que se inscribió */
-        .cursos-list p {
-            font-size: 16px;
-            text-align: center;
-            color: #f44336;
-        }
-</style>

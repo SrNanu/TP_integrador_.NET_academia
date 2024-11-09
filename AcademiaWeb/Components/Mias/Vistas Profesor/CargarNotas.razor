@@ -1,0 +1,158 @@
+﻿@page "/CargarNotas"
+@using AcademiaWeb.Services
+@inject UsuarioContainer usuarioOnline
+@inject CursoContainer cursoSeleccionado
+@rendermode InteractiveServer
+
+<h3>Cargar Notas de los Alumnos</h3>
+
+<div class="alumnos-list">
+    @if (AlumnosInscripcionConNotas.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var alumno in AlumnosInscripcionConNotas)
+                {
+                    <tr>
+                        <td>@alumno.NombreAlumno</td>
+                        <td>
+                            <input type="text" @bind="alumno.Nota" placeholder="Ingrese la nota" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <!-- Aquí pasas la lista AlumnosInscripcionConNotas al método GuardarNotas -->
+        <button class="btn-guardar" @onclick="() => GuardarNotas(AlumnosInscripcionConNotas)">Guardar Notas</button>
+    }
+    else
+    {
+        <p>No hay alumnos en este curso.</p>
+    }
+
+    @if (!string.IsNullOrEmpty(Message))
+    {
+        <p class="message">@Message</p>
+    }
+</div>
+
+@code {
+    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller = new AlumnoInscripcion_Controller();
+    public List<Usuario> AlumnosInscriptos { get; set; } = new List<Usuario>();
+    public List<AlumnoInscripcion> AlumnosInscripcionConNotas { get; set; } = new List<AlumnoInscripcion>();
+
+    public class AlumnoInscripcion
+    {
+        public int IdAlumno { get; set; }
+        public string NombreAlumno { get; set; }
+        public int? Nota { get; set; } // Declarado como tipo nullable
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var alumnosInsc = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdCurso(cursoSeleccionado.CursoContenido.Id);
+        List<Usuario> listaAlumnos = new List<Usuario>();
+
+        foreach (var inscripcion in alumnosInsc)
+        {
+            var alumnoRecuperado = await Usuario_Controller.GetOneUsuarioIdAsync(inscripcion.IdAlumno);
+
+            AlumnosInscripcionConNotas.Add(new AlumnoInscripcion
+                {
+                    IdAlumno = alumnoRecuperado.Id,
+                    NombreAlumno = string.Concat(alumnoRecuperado.Nombre, " ", alumnoRecuperado.Apellido),
+                    Nota = null
+                });
+        }
+    }
+
+    public void GuardarNotas(List<AlumnoInscripcion> alumnosInscripcionConNotas)
+    {
+        foreach (var inscripcion in alumnosInscripcionConNotas)
+        {
+            var inscripcionAlumno = AlumnoInscripcion_Controller.GetOneAlumnoInscripcionByIdUsuario(inscripcion.IdAlumno);
+            inscripcionAlumno.Nota = inscripcion.Nota;
+            AlumnoInscripcion_Controller.ActualizarAlumnoInscripcion(inscripcionAlumno);
+        }
+
+        Message = "Las notas han sido guardadas correctamente.";
+    }
+
+    public string Message { get; set; }
+}
+
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+    }
+
+    /* Estilos para la lista de alumnos */
+    .alumnos-list {
+        width: 70%;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+        }
+
+    .btn-guardar {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+        .btn-guardar:hover {
+            background-color: #45a049;
+        }
+
+    .message {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #e7f7e7;
+        color: #4CAF50;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 16px;
+    }
+</style>
+

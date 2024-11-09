@@ -26,6 +26,13 @@ public class AlumnoInscripcion_Controller
 
     }
 
+    public AlumnoInscripcion GetOneAlumnoInscripcionByIdUsuario(int idUsuario)
+    {
+        using var context = new AcademiaContext();
+
+        return context.AlumnoInscripciones.Find(idUsuario);
+    }
+
     public async Task<IEnumerable<AlumnoInscripcion>> GetAlumnosInscripcionesByIdUsuario(int idUsuario)     //En vez de IEnumerable podria ir List.
     {
         using var context = new AcademiaContext();

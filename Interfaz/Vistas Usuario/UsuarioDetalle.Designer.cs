@@ -263,7 +263,7 @@
             // cmbTipo
             // 
             cmbTipo.FormattingEnabled = true;
-            cmbTipo.Items.AddRange(new object[] { "Alumno", "Profesor", "Administrativo" });
+            cmbTipo.Items.AddRange(new object[] { "Alumno", "Docente", "Administrativo" });
             cmbTipo.Location = new Point(865, 408);
             cmbTipo.Name = "cmbTipo";
             cmbTipo.Size = new Size(182, 33);
@@ -320,7 +320,7 @@
         private Label lblContrasenia;
         private Label lblTipoUsuarios;
         private CheckBox cbAlumno;
-        private CheckBox cbProfesor;
+        private CheckBox cbDocente;
         private CheckBox cbAdministrativo;
         private TextBox txtbNombre;
         private TextBox txtbApellido;

@@ -5,6 +5,7 @@
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 @using AcademiaWeb.Services
+@inject UsuarioContainer usuarioContainer
 
 @using Microsoft.AspNetCore.Components
 @using System.ComponentModel.DataAnnotations
@@ -43,13 +44,13 @@
         <a href="/CrearUsuario" class="btn btn-secondary" style="background-color: indigo">Crear nuevo usuario</a>
     </div>
 
-    @if (showDatos)
+    @* @if (showDatos)
     {
         <div>
             <p>Username: @loginModel.Username</p>
             <p>Password: @loginModel.Password</p>
         </div>
-    }
+    } *@
 
     @if (showErrorMessage)
     {
@@ -62,7 +63,7 @@
 @code {
     private LoginModel loginModel = new LoginModel();
     private bool showErrorMessage = false;
-    private bool showDatos = false;
+    // private bool showDatos = false;
     private bool showUsernameError = false;
     private bool showPasswordError = false;
 
@@ -78,19 +79,19 @@
 
         // Lógica para la autenticación
         var usuario = Usuario_Controller.GetOneUsuarioUsername(loginModel.Username);
-        showDatos = true;
+        // showDatos = true;
 
         if (usuario != null && usuario.Password == loginModel.Password)
         {
-            StateContainer.UsuarioContenido = usuario;
+            usuarioContainer.UsuarioContenido = usuario;
 
             if (usuario.Tipo == TiposUsuarios.Alumno)
             {
                 Navigation.NavigateTo("/MenuAlumno");
             }
-            else if (usuario.Tipo == TiposUsuarios.Profesor)
+            else if (usuario.Tipo == TiposUsuarios.Docente)
             {
-                Navigation.NavigateTo("/MenuProfesor");
+                Navigation.NavigateTo("/MenuDocente");
             }
         }
         else

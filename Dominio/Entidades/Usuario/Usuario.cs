@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 public enum TiposUsuarios
 {
     Alumno,         // 0
-    Profesor        // 1
+    Docente        // 1
 }
 
 public class Usuario : EntidadNegocio

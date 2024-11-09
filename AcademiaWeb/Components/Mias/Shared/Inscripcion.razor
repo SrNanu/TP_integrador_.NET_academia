@@ -1,7 +1,7 @@
 ﻿@page "/InscripcionCursos"
 @using AcademiaWeb.Services
-@inject Usuario usuarioOnline
-
+@inject UsuarioContainer usuarioOnline
+@inject NavigationManager Navigation
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
@@ -26,9 +26,9 @@
         <p class="message">@Message</p>
     }
 
-    <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
-        Volver al menú de usuario
-    </NavLink>
+    <button class="btn btn-secondary" @onclick="RedirigirAMenu" style="background-color: red">
+        Cancelar
+    </button>
 </div>
 
 @code {
@@ -44,20 +44,45 @@
         {
             var curso = Curso_Controller.GetOneCursoByIdMateria(materiaSeleccionada.Id);
 
-            AlumnoInscripcion alumnoInscripcion = new AlumnoInscripcion()
-                {
-                    IdCurso = curso.Id,
-                    IdAlumno = usuarioOnline.Id,
-                    Condicion = "Habilitado"
-                };
+            if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Alumno)
+            {
+                AlumnoInscripcion alumnoInscripcion = new AlumnoInscripcion()
+                    {
+                        IdCurso = curso.Id,
+                        IdAlumno = usuarioOnline.UsuarioContenido.Id,
+                        Condicion = "Habilitado"
+                    };
 
-            AlumnoInscripcion_Controller.CrearAlumnoInscripcion(alumnoInscripcion);
+                AlumnoInscripcion_Controller.CrearAlumnoInscripcion(alumnoInscripcion);
+            }
+            else if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Docente)
+            {
+                DocenteCurso docenteInscripcion = new DocenteCurso()
+                    {
+                        IdCurso = curso.Id,
+                        IdDocente = usuarioOnline.UsuarioContenido.Id
+                    };
+
+                DocenteCurso_Controller.CrearDocenteCurso(docenteInscripcion);
+            }
 
             Message = $"Te has inscripto en {materiaSeleccionada.Descripcion}.";
         }
         else
         {
             Message = $"No existe una materia con ese código.";
+        }
+    }
+
+    private void RedirigirAMenu()
+    {
+        if(usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Docente)
+        {
+            Navigation.NavigateTo($"/MenuDocente");
+        }
+        else
+        {
+            Navigation.NavigateTo($"/MenuAlumno");
         }
     }
 
