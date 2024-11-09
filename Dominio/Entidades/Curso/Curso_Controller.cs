@@ -18,15 +18,15 @@ public class Curso_Controller
 
     }
 
-    public static Curso? GetOneCurso(int id)
+    public static async Task<Curso?> GetOneCurso(int id)
     {
         using var context = new AcademiaContext();
 
-        return context.Cursos.Find(id);
+        return await context.Cursos.FindAsync(id);
 
     }
 
-    public IEnumerable<Curso> GetCursosByIdMateria(int idMateria)     //En vez de IEnumerable podria ir List.
+    public IEnumerable<Curso> GetCursosByIdMateria(int idMateria)     
     {
         using var context = new AcademiaContext();
 
@@ -47,6 +47,7 @@ public class Curso_Controller
 
             if (cantidadInscriptos < curso.Cupo)
             {
+                context.Entry(curso).State = EntityState.Detached;
                 return curso;
             }
         }

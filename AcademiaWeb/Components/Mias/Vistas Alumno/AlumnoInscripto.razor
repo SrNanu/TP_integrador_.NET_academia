@@ -25,12 +25,25 @@
                 {
                     foreach (var docente in detalle.Docentes)
                     {
-                        <tr>
-                            <td>@detalle.Curso.AnioCalendario</td>
-                            <td>@detalle.Materia.Descripcion</td>
-                            <td>@docente.Nombre</td>
-                            <td>@detalle.Nota</td>
-                        </tr>
+                        @if (docente == null)
+                        {
+                            <tr>
+                                <td>@detalle.Curso.AnioCalendario</td>
+                                <td>@detalle.Materia.Descripcion</td>
+                                <td>-</td>
+                                <td>@detalle.Nota</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@detalle.Curso.AnioCalendario</td>
+                                <td>@detalle.Materia.Descripcion</td>
+                                <td>@docente.Nombre</td>
+                                <td>@detalle.Nota</td>
+                            </tr>
+                        }
+                        
                     }
                 }
             </tbody>
@@ -51,9 +64,6 @@
 
 @code {
     public List<DetalleInscripcion> AlumnoInscripcionesConDetalles = new List<DetalleInscripcion>();
-    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller = new AlumnoInscripcion_Controller();
-    public DocenteCurso_Controller DocenteCurso_Controller = new DocenteCurso_Controller();
-    public Usuario_Controller Usuario_Controller = new Usuario_Controller();
 
     protected override async Task OnInitializedAsync()
     {
@@ -62,15 +72,16 @@
 
         foreach (var inscripcion in inscripciones)
         {
-            var curso = Curso_Controller.GetOneCurso(inscripcion.IdCurso);
-            var materia = Materia_Controller.GetOneMateria(inscripcion.IdCurso);
+            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+            var materia = await Materia_Controller.GetOneMateria(inscripcion.IdCurso);
             var idDocentesEnCurso = await DocenteCurso_Controller.GetDocentesDC(inscripcion.IdCurso);
 
-            var docentes = new List<Usuario>();
+            List<Usuario> docentes = new List<Usuario>();
 
             foreach (var idDocenteDeCurso in idDocentesEnCurso)
             {
-                docentes.AddRange(await Usuario_Controller.GetDocentes(idDocenteDeCurso.IdDocente));
+                var docente = await Usuario_Controller.GetDocentes(idDocenteDeCurso.IdDocente);
+                docentes.Add(docente);
             }
 
             AlumnoInscripcionesConDetalles.Add(new DetalleInscripcion
@@ -78,7 +89,7 @@
                     Curso = curso,
                     Materia = materia,
                     Docentes = docentes,
-                    Nota = inscripcion.Nota  
+                    Nota = inscripcion.Nota
                 });
         }
     }

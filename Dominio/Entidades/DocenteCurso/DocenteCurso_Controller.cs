@@ -1,21 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 public class DocenteCurso_Controller
 {
-    public async Task<IEnumerable<DocenteCurso>> GetDocentesInscripcionesByIdDocente(int idDocente)     //En vez de IEnumerable podria ir List.
+    public static async Task<IEnumerable<DocenteCurso>> GetDocentesInscripcionesByIdDocente(int idDocente)     //En vez de IEnumerable podria ir List.
     {
         using var context = new AcademiaContext();
 
         return await context.DocenteCursos.Where(dc => dc.IdDocente == idDocente).ToListAsync();
     }
 
-    public async Task<IEnumerable<DocenteCurso>> GetDocentesDC(int idCurso)     //En vez de IEnumerable podria ir List.
+    public async static Task<IEnumerable<DocenteCurso>> GetDocentesDC(int idCurso)     //En vez de IEnumerable podria ir List.
     {
         using var context = new AcademiaContext();
 

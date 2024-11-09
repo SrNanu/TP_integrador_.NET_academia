@@ -37,12 +37,12 @@
 
     List<Materia> MateriasDisponibles = (Materia_Controller.GetAllMateria()).ToList();
 
-    public void Inscribir()
+    public async void Inscribir()
     {
-        var materiaSeleccionada = Materia_Controller.GetOneMateria(materiaSeleccionadaId);
+        var materiaSeleccionada = await Materia_Controller.GetOneMateria(materiaSeleccionadaId);
         if (materiaSeleccionada != null)
         {
-            var curso = Curso_Controller.GetOneCursoByIdMateria(materiaSeleccionada.Id);
+            var curso = await Curso_Controller.GetOneCursoByIdMateria(materiaSeleccionada.Id);
 
             if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Alumno)
             {
@@ -60,7 +60,8 @@
                 DocenteCurso docenteInscripcion = new DocenteCurso()
                     {
                         IdCurso = curso.Id,
-                        IdDocente = usuarioOnline.UsuarioContenido.Id
+                        IdDocente = usuarioOnline.UsuarioContenido.Id,
+                        Cargo = TiposCargos.ProfesorTeoria
                     };
 
                 DocenteCurso_Controller.CrearDocenteCurso(docenteInscripcion);

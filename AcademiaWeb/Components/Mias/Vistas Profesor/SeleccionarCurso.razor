@@ -60,11 +60,11 @@
 
         foreach (var inscripcion in inscripciones)
         {
-            var curso = Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
 
             if (curso != null)
             {
-                var materia = Materia_Controller.GetOneMateria(inscripcion.IdCurso);
+                var materia = await Materia_Controller.GetOneMateria(inscripcion.IdCurso);
 
                 InscripcionesConDetalles.Add(new DetalleInscripcion
                     {

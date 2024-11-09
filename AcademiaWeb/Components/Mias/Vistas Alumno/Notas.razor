@@ -1,6 +1,5 @@
 ﻿@page "/Notas"
 @using AcademiaWeb.Services
-
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
@@ -22,12 +21,9 @@
             <tbody>
                 @foreach (var inscripcion in AlumnoInscripciones)
                 {
-                    var @curso = Curso_Controller.GetOneCurso(inscripcion.IdCurso);
-                    var @materia = Materia_Controller.GetOneMateria(curso.IdMateria);
-
                     <tr>
-                        <td>@curso.AnioCalendario</td>
-                        <td>@materia.Descripcion</td>
+                        <td>@inscripcion.CursoAnioCalendario</td>
+                        <td>@inscripcion.MateriaDescripcion</td>
                         <td>@inscripcion.Nota</td>
                     </tr>
                 }
@@ -42,19 +38,41 @@
         </div>
     }
 
-    <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
+    <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Volver al menú de usuario" style="background-color: red">
         Volver al menú de usuario
     </NavLink>
 </div>
 
 @code {
     public AlumnoInscripcion_Controller AlumnoInscripcion_Controller = new AlumnoInscripcion_Controller();
-    public List<AlumnoInscripcion> AlumnoInscripciones { get; set; } = new List<AlumnoInscripcion>();
+    public List<AlumnoInscripcionConDetalles> AlumnoInscripciones { get; set; } = new List<AlumnoInscripcionConDetalles>();
 
     protected override async Task OnInitializedAsync()
     {
-        AlumnoInscripciones = (await AlumnoInscripcion_Controller
-            .GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id)).ToList();
+        var inscripciones = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
+        var inscripcionesConDetalles = new List<AlumnoInscripcionConDetalles>();
+
+        foreach (var inscripcion in inscripciones)
+        {
+            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+            var materia = await Materia_Controller.GetOneMateria(curso.IdMateria);
+
+            inscripcionesConDetalles.Add(new AlumnoInscripcionConDetalles
+                {
+                    CursoAnioCalendario = curso.AnioCalendario,
+                    MateriaDescripcion = materia.Descripcion,
+                    Nota = inscripcion.Nota
+                });
+        }
+
+        AlumnoInscripciones = inscripcionesConDetalles;
+    }
+
+    public class AlumnoInscripcionConDetalles
+    {
+        public int CursoAnioCalendario { get; set; }
+        public string MateriaDescripcion { get; set; }
+        public int? Nota { get; set; }
     }
 }
 

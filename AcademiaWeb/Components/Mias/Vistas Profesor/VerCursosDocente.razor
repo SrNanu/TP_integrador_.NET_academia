@@ -44,7 +44,6 @@
 
 @code {
     public List<DetalleInscripcion> InscripcionesConDetalles = new List<DetalleInscripcion>();
-    public DocenteCurso_Controller DocenteCurso_Controller = new DocenteCurso_Controller();
 
     protected override async Task OnInitializedAsync()
     {
@@ -53,11 +52,11 @@
 
         foreach (var inscripcion in inscripciones)
         {
-            var curso = Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
 
             if (curso != null)
             {
-                var materia = Materia_Controller.GetOneMateria(inscripcion.IdCurso);
+                var materia = await Materia_Controller.GetOneMateria(inscripcion.IdCurso);
 
                 InscripcionesConDetalles.Add(new DetalleInscripcion
                     {

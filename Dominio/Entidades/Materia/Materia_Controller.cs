@@ -17,11 +17,11 @@ public class Materia_Controller
 
     }
 
-    public static Materia? GetOneMateria(int id)
+    public async static Task<Materia?> GetOneMateria(int id)
     {
         using var context = new AcademiaContext();
 
-        return context.Materias.Find(id);
+        return await context.Materias.FindAsync(id);
 
     }
 
