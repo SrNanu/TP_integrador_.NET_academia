@@ -19,8 +19,7 @@
 
     private void CerrarSesion()
     {
-        // Lógica para cerrar sesión
-        Navigation.NavigateTo("/Login", true); // Redirigir a la página de login
+        Navigation.NavigateTo("/Login", true);
     }
 
     private void IrPaginaNotas()
@@ -40,7 +39,6 @@
 }
 
 <style>
-    /* Estilos generales */
     h2 {
         text-align: center;
         color: #333;
@@ -62,7 +60,6 @@
         background-color: #fafafa;
     }
 
-    /* Estilo de los botones */
     .menu-button {
         width: 100%;
         padding: 12px 20px;
@@ -76,12 +73,10 @@
         transition: background-color 0.3s ease;
     }
 
-    /* Botón de cerrar sesión con color diferente */
     .logout-button {
         background-color: #dc3545;
     }
 
-    /* Efecto hover para los botones */
     .menu-button:hover {
         background-color: #0056b3;
     }
@@ -90,7 +85,6 @@
         background-color: #c82333;
     }
 
-    /* Animación para el botón al hacer clic */
     .menu-button:active {
         transform: scale(0.98);
     }

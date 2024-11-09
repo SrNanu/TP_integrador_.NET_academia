@@ -44,14 +44,6 @@
         <a href="/CrearUsuario" class="btn btn-secondary" style="background-color: indigo">Crear nuevo usuario</a>
     </div>
 
-    @* @if (showDatos)
-    {
-        <div>
-            <p>Username: @loginModel.Username</p>
-            <p>Password: @loginModel.Password</p>
-        </div>
-    } *@
-
     @if (showErrorMessage)
     {
         <div class="alert alert-danger" role="alert" style="margin-top: 20px; color: red">
@@ -63,7 +55,6 @@
 @code {
     private LoginModel loginModel = new LoginModel();
     private bool showErrorMessage = false;
-    // private bool showDatos = false;
     private bool showUsernameError = false;
     private bool showPasswordError = false;
 
@@ -77,9 +68,7 @@
             return;
         }
 
-        // Lógica para la autenticación
         var usuario = Usuario_Controller.GetOneUsuarioUsername(loginModel.Username);
-        // showDatos = true;
 
         if (usuario != null && usuario.Password == loginModel.Password)
         {

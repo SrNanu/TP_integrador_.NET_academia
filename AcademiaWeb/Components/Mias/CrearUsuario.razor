@@ -90,23 +90,6 @@
     }
 </div>
 
-@* @if (showDatos)
-{
-    <div>
-        <h3>Detalles del Usuario</h3>
-        <p>Nombre: @usuarioNuevo.Nombre</p>
-        <p>Apellido: @usuarioNuevo.Apellido</p>
-        <p>Fecha de Nacimiento: @usuarioNuevo.FechaNacimiento.ToShortDateString()</p>
-        <p>Dirección: @usuarioNuevo.Direccion</p>
-        <p>Teléfono: @usuarioNuevo.Telefono</p>
-        <p>Tipo: @usuarioNuevo.Tipo</p>
-        <p>Legajo: @usuarioNuevo.Legajo</p>
-        <p>Email: @usuarioNuevo.Email</p>
-        <p>Username: @usuarioNuevo.Username</p>
-        <p>Password: @usuarioNuevo.Password</p>
-    </div>
-} *@
-
 @if (showErrorMessage)
 {
     <div class="alert alert-danger" role="alert" style="margin-top: 20px; color: red">
@@ -123,17 +106,14 @@
 @code {
     private Usuario usuarioNuevo = new Usuario();
     private bool showErrorMessage = false;
-    // private bool showDatos = false;
     private bool nombreError, apellidoError, fechaNacimientoError, legajoError, emailError, usernameError, passwordError;
 
     private async Task HandleSubmitAsync()
     {
-        // Reset error flags
         nombreError = apellidoError = fechaNacimientoError = legajoError = emailError = usernameError = passwordError = false;
 
         bool isValid = true;
 
-        // Validate required fields
         if (string.IsNullOrWhiteSpace(usuarioNuevo.Nombre))
         {
             nombreError = true;
@@ -181,7 +161,6 @@
             return;
         }
 
-        // Valida si existe un usuario con estos datos
         var usuarioExistente1 = Usuario_Controller.GetOneUsuarioUsername(usuarioNuevo.Username);
         var usuarioExistente2 = Usuario_Controller.GetOneUsuarioMail(usuarioNuevo.Email);
         var usuarioExistente3 = Usuario_Controller.GetOneUsuarioLegajo(usuarioNuevo.Legajo);
@@ -192,9 +171,6 @@
         }
         else
         {
-            // Console.WriteLine($"Nombre: {usuarioNuevo.Nombre}");
-            // Console.WriteLine($"Apellido: {usuarioNuevo.Apellido}");
-            // showDatos = true;
             Usuario_Controller.AgregarUsuario(usuarioNuevo);
             Navigation.NavigateTo("/Login");
         }

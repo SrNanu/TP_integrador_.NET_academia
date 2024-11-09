@@ -29,7 +29,6 @@
             </tbody>
         </table>
 
-        <!-- Aquí pasas la lista AlumnosInscripcionConNotas al método GuardarNotas -->
         <button class="btn-guardar" @onclick="() => GuardarNotas(AlumnosInscripcionConNotas)">Guardar Notas</button>
     }
     else
@@ -52,7 +51,7 @@
     {
         public int IdAlumno { get; set; }
         public string NombreAlumno { get; set; }
-        public int? Nota { get; set; } // Declarado como tipo nullable
+        public int? Nota { get; set; }
     }
 
 
@@ -104,7 +103,6 @@
         margin-top: 20px;
     }
 
-    /* Estilos para la lista de alumnos */
     .alumnos-list {
         width: 70%;
         margin: 20px auto;
