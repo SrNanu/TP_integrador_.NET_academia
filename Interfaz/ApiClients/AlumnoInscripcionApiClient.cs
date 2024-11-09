@@ -22,7 +22,7 @@ namespace Interfaz.ApiClients
         public static async Task<AlumnoInscripcion> GetAsync(int id)
         {
             AlumnoInscripcion inscripcion = null;
-            HttpResponseMessage response = await client.GetAsync("inscripciones/" + id);
+            HttpResponseMessage response = await client.GetAsync("inscipciones/" + id);
             if (response.IsSuccessStatusCode)
             {
                 inscripcion = await response.Content.ReadAsAsync<AlumnoInscripcion>();
@@ -33,7 +33,7 @@ namespace Interfaz.ApiClients
         public static async Task<IEnumerable<AlumnoInscripcion>> GetAllAsync()
         {
             IEnumerable<AlumnoInscripcion> inscripciones = null;
-            HttpResponseMessage response = await client.GetAsync("inscripciones");
+            HttpResponseMessage response = await client.GetAsync("inscipciones");
             if (response.IsSuccessStatusCode)
             {
                 inscripciones = await response.Content.ReadAsAsync<IEnumerable<AlumnoInscripcion>>();
@@ -43,19 +43,19 @@ namespace Interfaz.ApiClients
 
         public static async Task AddAsync(AlumnoInscripcion inscripcion)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("inscripciones", inscripcion);
+            HttpResponseMessage response = await client.PostAsJsonAsync("inscipciones", inscripcion);
             response.EnsureSuccessStatusCode();
         }
 
         public static async Task DeleteAsync(int id)
         {
-            HttpResponseMessage response = await client.DeleteAsync("inscripciones/" + id);
+            HttpResponseMessage response = await client.DeleteAsync("inscipciones/" + id);
             response.EnsureSuccessStatusCode();
         }
 
         public static async Task UpdateAsync(AlumnoInscripcion inscripcion)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("inscripciones", inscripcion);
+            HttpResponseMessage response = await client.PutAsJsonAsync("inscipciones", inscripcion);
             response.EnsureSuccessStatusCode();
         }
 

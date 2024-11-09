@@ -4,6 +4,7 @@ using Interfaz.Vistas_Cursos;
 using Interfaz.Vistas_Especialidad;
 using Interfaz.Vistas_Materia;
 using Interfaz.Vistas_Plan;
+using Interfaz.Vistas_Inscripciones;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,11 +79,22 @@ namespace Interfaz.Vistas_Profesor
         private async void GenerarReportePlanes(object sender, EventArgs e)
         {
             await ReportesHandler.GeneratePlanesReport();
+            MessageBox.Show("Reporte creado en el Escritorio", "Exito");
         }
 
         private async void GenerarReporteCursos(object sender, EventArgs e)
         {
             await ReportesHandler.GenerateCursosReport();
+            MessageBox.Show("Reporte creado en el Escritorio", "Exito");
+
+        }
+
+
+        private void btnCargarNotas_Click(object sender, EventArgs e)
+        {
+            CargarNota formCargarNotas = new CargarNota();
+
+            formCargarNotas.ShowDialog();
         }
     }
 }

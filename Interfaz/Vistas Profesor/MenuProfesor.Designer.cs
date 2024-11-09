@@ -47,6 +47,7 @@
             btnCargarNotas.TabIndex = 0;
             btnCargarNotas.Text = "Cargar Notas";
             btnCargarNotas.UseVisualStyleBackColor = true;
+            btnCargarNotas.Click += btnCargarNotas_Click;
             // 
             // btnMaterias
             // 
@@ -111,7 +112,7 @@
             // 
             // btnReporteCursos
             // 
-            btnReporteCursos.Location = new Point(112, 305);
+            btnReporteCursos.Location = new Point(112, 295);
             btnReporteCursos.Name = "btnReporteCursos";
             btnReporteCursos.Size = new Size(138, 48);
             btnReporteCursos.TabIndex = 7;
@@ -121,7 +122,7 @@
             // 
             // btnReportePlanes
             // 
-            btnReportePlanes.Location = new Point(393, 305);
+            btnReportePlanes.Location = new Point(393, 295);
             btnReportePlanes.Name = "btnReportePlanes";
             btnReportePlanes.Size = new Size(138, 48);
             btnReportePlanes.TabIndex = 8;

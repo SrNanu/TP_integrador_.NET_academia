@@ -1,7 +1,6 @@
 using Interfaz.Vistas_Especialidad;
 using Interfaz.Vistas_Materia;
 using Interfaz.Vistas_Plan;
-using Interfaz.Vistas_Materia;
 using Interfaz.Vistas_Cursos;
 using Interfaz.Vistas_Comision;
 
@@ -21,7 +20,8 @@ namespace Interfaz
 
             ApplicationConfiguration.Initialize();
 
-            Application.Run(new ComisionLista());
+            Login login = new Login();
+            login.Show();
 
             Application.Run();
         }

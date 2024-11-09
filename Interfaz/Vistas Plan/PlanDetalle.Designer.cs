@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-
             txtbDescripcion = new TextBox();
             lblDescripcion = new Label();
             lblEspecialidad = new Label();
@@ -109,8 +108,10 @@
             // 
             // PlanDetalle
             // 
+            AcceptButton = btnAceptar;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancelar;
             ClientSize = new Size(560, 270);
             Controls.Add(cmbEspecialidades);
             Controls.Add(btnAceptar);

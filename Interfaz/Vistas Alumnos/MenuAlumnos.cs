@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Interfaz.Vistas_Inscripciones;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,9 @@ namespace Interfaz
 {
     public partial class MenuAlumnos : Form
     {
+
+        internal Usuario? UsuarioLogeado { get; set; }
+
         public MenuAlumnos()
         {
             InitializeComponent();
@@ -29,6 +34,13 @@ namespace Interfaz
             this.Dispose();
         }
 
+        private void btnInscripcionMateria_Click(object sender, EventArgs e)
+        {
+            InscripcionCurso formInscripcion = new InscripcionCurso();
 
+            formInscripcion.UsuarioLogeado = this.UsuarioLogeado;
+
+            formInscripcion.ShowDialog();
+        }
     }
 }
