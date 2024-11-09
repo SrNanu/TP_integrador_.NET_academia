@@ -332,28 +332,28 @@ namespace WebAPI
             })
             .WithName("GetOneInscripcion");
 
-            app.MapGet("/inscirpciones", () =>
+            app.MapGet("/inscipciones", () =>
             {
 
                 return AlumnoInscripcion_Controller.GetAllAlumnoInscripcion();
             })
             .WithName("GetAllInscripciones");
 
-            app.MapPost("/inscirpciones", (AlumnoInscripcion alumnoinscripcion) =>
+            app.MapPost("/inscipciones", (AlumnoInscripcion alumnoinscripcion) =>
             {
 
                 AlumnoInscripcion_Controller.CrearAlumnoInscripcion(alumnoinscripcion);
             })
             .WithName("CrearInscripcion");
 
-            app.MapPut("/inscirpciones", (AlumnoInscripcion alumnoinscripcion) =>
+            app.MapPut("/inscipciones", (AlumnoInscripcion alumnoinscripcion) =>
             {
 
                 AlumnoInscripcion_Controller.ActualizarAlumnoInscripcion(alumnoinscripcion);
             })
             .WithName("ActualizarInscripcion");
 
-            app.MapDelete("/inscripciones/{id}", (int id) =>
+            app.MapDelete("/inscipciones/{id}", (int id) =>
             {
 
                 AlumnoInscripcion_Controller.EliminarAlumnoInscripcion(id);

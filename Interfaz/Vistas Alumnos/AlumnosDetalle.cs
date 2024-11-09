@@ -54,6 +54,7 @@ namespace Interfaz
                     this.Usuario.Telefono = txtbTelefono.Text;
                     this.Usuario.Email = txtbEmail.Text;
                     this.Usuario.Username = txtbUsuario.Text;
+                    this.usuario.Legajo = int.Parse(txtbLegajo.Text);
                     this.Usuario.Password = txtbContrasenia.Text;
 
                     // Asignar el tipo de usuario seleccionado en el ComboBox
@@ -95,6 +96,7 @@ namespace Interfaz
             this.txtbTelefono.Text = this.Usuario.Telefono;
             this.txtbEmail.Text = this.Usuario.Email;
             this.txtbUsuario.Text = this.Usuario.Username;
+            this.txtbLegajo.Text = this.Usuario.Legajo.ToString();
             this.txtbContrasenia.Text = this.Usuario.Password;
 
             // Marcar el tipo de usuario en el CheckedListBox
@@ -163,6 +165,12 @@ namespace Interfaz
             {
                 isValid = false;
                 errorProvider.SetError(txtbContrasenia, "La Contraseña es requerida y debe tener al menos 6 caracteres.");
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbContrasenia.Text))
+            {
+                isValid = false;
+                errorProvider.SetError(txtbContrasenia, "El Legajo es requerido.");
             }
 
             // Validar Tipo de Usuario (ComboBox)

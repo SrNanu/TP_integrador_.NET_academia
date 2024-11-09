@@ -46,6 +46,8 @@ namespace Interfaz
                             //Alumno
                             MenuAlumnos menu = new MenuAlumnos();
 
+                            menu.UsuarioLogeado = unUsuario;
+
                             menu.Show();
 
                             menu.Activate();
