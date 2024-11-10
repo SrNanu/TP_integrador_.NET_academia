@@ -49,47 +49,6 @@ public class Usuario_Controller
 
     }
 
-    // Metodos Async
-
-    public async static Task<Usuario> GetDocentes(int idUsuario)     //En vez de IEnumerable podria ir List.
-    {
-        using var context = new AcademiaContext();
-
-        return await context.Usuarios.FindAsync(idUsuario);
-    }
-
-    public static async Task AgregarUsuarioAsync(Usuario usuario)
-    {
-        using var context = new AcademiaContext();
-        context.Usuarios.Add(usuario);
-        await context.SaveChangesAsync();
-    }
-
-    public static async Task<Usuario?> GetOneUsuarioIdAsync(int id)
-    {
-        using var context = new AcademiaContext();
-        return await context.Usuarios.FindAsync(id);
-    }
-
-    public static async Task<Usuario?> GetOneUsuarioUsernameAsync(string username)
-    {
-        using var context = new AcademiaContext();
-        return await context.Usuarios.FirstOrDefaultAsync(u => u.Username == username);
-    }
-
-    public static async Task<Usuario?> GetOneUsuarioMailAsync(string mail)
-    {
-        using var context = new AcademiaContext();
-        return await context.Usuarios.FirstOrDefaultAsync(u => u.Email == mail);
-    }
-
-    public static async Task<Usuario?> GetOneUsuarioLegajoAsync(int legajo)
-    {
-        using var context = new AcademiaContext();
-        return await context.Usuarios.FirstOrDefaultAsync(u => u.Legajo == legajo);
-    }
-
-    //Siguen los normales
     public static IEnumerable<Usuario> GetAllUsuario()
     {
         using var context = new AcademiaContext();

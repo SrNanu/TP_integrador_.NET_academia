@@ -1,9 +1,10 @@
 ﻿@page "/Notas"
-@using AcademiaWeb.Services
+@using AcademiaWeb.Servicios
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 @inject UsuarioContainer usuarioOnline
+@using Web.ApiClients
 
 <h3>Notas</h3>
 
@@ -44,18 +45,17 @@
 </div>
 
 @code {
-    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller = new AlumnoInscripcion_Controller();
     public List<AlumnoInscripcionConDetalles> AlumnoInscripciones { get; set; } = new List<AlumnoInscripcionConDetalles>();
 
     protected override async Task OnInitializedAsync()
     {
-        var inscripciones = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
+        var inscripciones = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
         var inscripcionesConDetalles = new List<AlumnoInscripcionConDetalles>();
 
         foreach (var inscripcion in inscripciones)
         {
-            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
-            var materia = await Materia_Controller.GetOneMateria(curso.IdMateria);
+            var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
+            var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
 
             inscripcionesConDetalles.Add(new AlumnoInscripcionConDetalles
                 {

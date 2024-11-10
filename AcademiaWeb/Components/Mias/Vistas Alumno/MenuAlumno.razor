@@ -1,8 +1,8 @@
 ﻿@page "/MenuAlumno"
-
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+@inject NavigationManager Navigation
 
 <h2>Menú de Alumno</h2>
 
@@ -14,9 +14,6 @@
 </div>
 
 @code {
-    [Inject]
-    private NavigationManager Navigation { get; set; } = default!;
-
     private void CerrarSesion()
     {
         Navigation.NavigateTo("/Login", true);

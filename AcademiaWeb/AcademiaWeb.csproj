@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Forms" Version="8.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.10" />
@@ -16,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dominio\Dominio.csproj" />
+    <ProjectReference Include="..\WebAPI\WebAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

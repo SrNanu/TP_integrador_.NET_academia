@@ -18,41 +18,12 @@ public class Curso_Controller
 
     }
 
-    public static async Task<Curso?> GetOneCurso(int id)
+    public static Curso? GetOneCurso(int id)
     {
         using var context = new AcademiaContext();
 
-        return await context.Cursos.FindAsync(id);
+        return context.Cursos.Find(id);
 
-    }
-
-    public IEnumerable<Curso> GetCursosByIdMateria(int idMateria)     
-    {
-        using var context = new AcademiaContext();
-
-        return context.Cursos.Where(ai => ai.IdMateria == idMateria).ToList();
-    }
-
-    public async Task<Curso?> GetOneCursoByIdMateria(int idMateria)
-    {
-        using var context = new AcademiaContext();
-        AlumnoInscripcion_Controller alumnoInscripcionController = new AlumnoInscripcion_Controller();
-
-        var cursosDeMateria = GetCursosByIdMateria(idMateria);
-
-        foreach (var curso in cursosDeMateria)
-        {
-            var inscripciones = await alumnoInscripcionController.GetAlumnosInscripcionesByIdCurso(curso.Id);
-            int cantidadInscriptos = inscripciones.Count();
-
-            if (cantidadInscriptos < curso.Cupo)
-            {
-                context.Entry(curso).State = EntityState.Detached;
-                return curso;
-            }
-        }
-
-        return null;
     }
 
     public static IEnumerable<Curso> GetAllCurso()

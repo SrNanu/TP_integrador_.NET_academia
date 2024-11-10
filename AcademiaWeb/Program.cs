@@ -1,5 +1,5 @@
 using AcademiaWeb.Components;
-using AcademiaWeb.Services;
+using AcademiaWeb.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +8,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddSingleton<UsuarioContainer>();
 builder.Services.AddSingleton<CursoContainer>();
+builder.Services.AddHttpClient();
+
 
 var app = builder.Build();
 

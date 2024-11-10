@@ -1,15 +1,14 @@
 ﻿@page "/Login"
 @inject NavigationManager Navigation
-
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
-@using AcademiaWeb.Services
+@using AcademiaWeb.Servicios
 @inject UsuarioContainer usuarioContainer
-
 @using Microsoft.AspNetCore.Components
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components.Web
+@using Web.ApiClients
 
 <PageTitle>Academia</PageTitle>
 
@@ -58,7 +57,7 @@
     private bool showUsernameError = false;
     private bool showPasswordError = false;
 
-    private void HandleLogin()
+    private async void HandleLogin()
     {
         showUsernameError = string.IsNullOrWhiteSpace(loginModel.Username);
         showPasswordError = string.IsNullOrWhiteSpace(loginModel.Password);
@@ -68,7 +67,7 @@
             return;
         }
 
-        var usuario = Usuario_Controller.GetOneUsuarioUsername(loginModel.Username);
+        var usuario = await UsuarioApiClient.GetOneUsuarioUsernameAsync(loginModel.Username);
 
         if (usuario != null && usuario.Password == loginModel.Password)
         {

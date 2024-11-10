@@ -1,10 +1,10 @@
 ﻿@page "/CursosInscriptos"
-@using AcademiaWeb.Services
+@using AcademiaWeb.Servicios
 @inject UsuarioContainer usuarioOnline
-
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+@using Web.ApiClients
 
 <h3>Cursos en los que te has inscripto</h3>
 
@@ -48,15 +48,15 @@
     protected override async Task OnInitializedAsync()
     {
         InscripcionesConDetalles.Clear();
-        var inscripciones = await DocenteCurso_Controller.GetDocentesInscripcionesByIdDocente(usuarioOnline.UsuarioContenido.Id);
+        var inscripciones = await DocenteCursoApiClient.GetDocentesInscripcionesByIdDocente(usuarioOnline.UsuarioContenido.Id);
 
         foreach (var inscripcion in inscripciones)
         {
-            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+            var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
 
             if (curso != null)
             {
-                var materia = await Materia_Controller.GetOneMateria(inscripcion.IdCurso);
+                var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
 
                 InscripcionesConDetalles.Add(new DetalleInscripcion
                     {

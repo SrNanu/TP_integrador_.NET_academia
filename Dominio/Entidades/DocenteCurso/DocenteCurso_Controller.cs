@@ -2,20 +2,6 @@
 
 public class DocenteCurso_Controller
 {
-    public static async Task<IEnumerable<DocenteCurso>> GetDocentesInscripcionesByIdDocente(int idDocente)     //En vez de IEnumerable podria ir List.
-    {
-        using var context = new AcademiaContext();
-
-        return await context.DocenteCursos.Where(dc => dc.IdDocente == idDocente).ToListAsync();
-    }
-
-    public async static Task<IEnumerable<DocenteCurso>> GetDocentesDC(int idCurso)     //En vez de IEnumerable podria ir List.
-    {
-        using var context = new AcademiaContext();
-
-        return await context.DocenteCursos.Where(dc => dc.IdCurso == idCurso).ToListAsync();
-    }
-
     public static void CrearDocenteCurso(DocenteCurso docenteCurso)
     {
 

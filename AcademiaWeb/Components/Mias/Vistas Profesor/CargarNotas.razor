@@ -1,8 +1,9 @@
 ﻿@page "/CargarNotas"
-@using AcademiaWeb.Services
+@using AcademiaWeb.Servicios
 @inject UsuarioContainer usuarioOnline
 @inject CursoContainer cursoSeleccionado
 @rendermode InteractiveServer
+@using Web.ApiClients
 
 <h3>Cargar Notas de los Alumnos</h3>
 
@@ -47,7 +48,7 @@
 </div>
 
 @code {
-    public AlumnoInscripcion_Controller AlumnoInscripcion_Controller = new AlumnoInscripcion_Controller();
+    // public AlumnoInscripcionApiClient AlumnoInscripcionApiClient = new AlumnoInscripcionApiClient();
     public List<Usuario> AlumnosInscriptos { get; set; } = new List<Usuario>();
     public List<AlumnoInscripcion> AlumnosInscripcionConNotas { get; set; } = new List<AlumnoInscripcion>();
 
@@ -61,12 +62,12 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var alumnosInsc = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdCurso(cursoSeleccionado.CursoContenido.Id);
+        var alumnosInsc = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdCurso(cursoSeleccionado.CursoContenido.Id);
         List<Usuario> listaAlumnos = new List<Usuario>();
 
         foreach (var inscripcion in alumnosInsc)
         {
-            var alumnoRecuperado = await Usuario_Controller.GetOneUsuarioIdAsync(inscripcion.IdAlumno);
+            var alumnoRecuperado = await UsuarioApiClient.GetAsync(inscripcion.IdAlumno);
 
             AlumnosInscripcionConNotas.Add(new AlumnoInscripcion
                 {
@@ -77,13 +78,13 @@
         }
     }
 
-    public void GuardarNotas(List<AlumnoInscripcion> alumnosInscripcionConNotas)
+    public async void GuardarNotas(List<AlumnoInscripcion> alumnosInscripcionConNotas)
     {
         foreach (var inscripcion in alumnosInscripcionConNotas)
         {
-            var inscripcionAlumno = AlumnoInscripcion_Controller.GetOneAlumnoInscripcionByIdUsuario(inscripcion.IdAlumno);
+            var inscripcionAlumno = await AlumnoInscripcionApiClient.GetOneAlumnoInscripcionByIdUsuario(inscripcion.IdAlumno);
             inscripcionAlumno.Nota = inscripcion.Nota;
-            AlumnoInscripcion_Controller.ActualizarAlumnoInscripcion(inscripcionAlumno);
+            await AlumnoInscripcionApiClient.UpdateAsync(inscripcionAlumno);
         }
 
         Message = "Las notas han sido guardadas correctamente.";

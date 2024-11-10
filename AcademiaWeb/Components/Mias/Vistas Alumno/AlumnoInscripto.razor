@@ -1,10 +1,10 @@
 ﻿@page "/CursosInscriptosAlumno"
-@using AcademiaWeb.Services
+@using AcademiaWeb.Servicios
 @inject UsuarioContainer usuarioOnline
-
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+@using Web.ApiClients
 
 <h3>Cursos en los que te has inscripto</h3>
 
@@ -68,19 +68,19 @@
     protected override async Task OnInitializedAsync()
     {
         AlumnoInscripcionesConDetalles.Clear();
-        var inscripciones = await AlumnoInscripcion_Controller.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
+        var inscripciones = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
 
         foreach (var inscripcion in inscripciones)
         {
-            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
-            var materia = await Materia_Controller.GetOneMateria(inscripcion.IdCurso);
-            var idDocentesEnCurso = await DocenteCurso_Controller.GetDocentesDC(inscripcion.IdCurso);
+            var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
+            var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
+            var idDocentesEnCurso = await DocenteCursoApiClient.GetDocentesDC(inscripcion.IdCurso);
 
             List<Usuario> docentes = new List<Usuario>();
 
             foreach (var idDocenteDeCurso in idDocentesEnCurso)
             {
-                var docente = await Usuario_Controller.GetDocentes(idDocenteDeCurso.IdDocente);
+                var docente = await UsuarioApiClient.GetAsync(idDocenteDeCurso.IdDocente);
                 docentes.Add(docente);
             }
 

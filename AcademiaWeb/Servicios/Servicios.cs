@@ -1,4 +1,4 @@
-﻿namespace AcademiaWeb.Services
+﻿namespace AcademiaWeb.Servicios
 {
     public class UsuarioContainer
     {

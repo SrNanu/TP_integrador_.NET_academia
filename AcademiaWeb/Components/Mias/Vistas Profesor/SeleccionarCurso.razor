@@ -1,9 +1,9 @@
 ﻿@page "/SeleccionarCursoProfesor"
-@using AcademiaWeb.Services
+@using AcademiaWeb.Servicios
 @inject UsuarioContainer usuarioOnline
 @inject CursoContainer cursoContainer
 @inject NavigationManager Navigation
-
+@using Web.ApiClients
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
 
@@ -51,20 +51,19 @@
 
 @code {
     public List<DetalleInscripcion> InscripcionesConDetalles = new List<DetalleInscripcion>();
-    public DocenteCurso_Controller DocenteCurso_Controller = new DocenteCurso_Controller();
 
     protected override async Task OnInitializedAsync()
     {
         InscripcionesConDetalles.Clear();
-        var inscripciones = await DocenteCurso_Controller.GetDocentesInscripcionesByIdDocente(usuarioOnline.UsuarioContenido.Id);
+        var inscripciones = await DocenteCursoApiClient.GetDocentesInscripcionesByIdDocente(usuarioOnline.UsuarioContenido.Id);
 
         foreach (var inscripcion in inscripciones)
         {
-            var curso = await Curso_Controller.GetOneCurso(inscripcion.IdCurso);
+            var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
 
             if (curso != null)
             {
-                var materia = await Materia_Controller.GetOneMateria(inscripcion.IdCurso);
+                var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
 
                 InscripcionesConDetalles.Add(new DetalleInscripcion
                     {

@@ -1,10 +1,11 @@
 ﻿@page "/InscripcionCursos"
-@using AcademiaWeb.Services
+@using AcademiaWeb.Servicios
 @inject UsuarioContainer usuarioOnline
 @inject NavigationManager Navigation
 @using Microsoft.AspNetCore.Components.Forms
 @inherits LayoutComponentBase
 @rendermode InteractiveServer
+@using Web.ApiClients
 
 <h3>Inscripción a cursos</h3>
 
@@ -33,16 +34,20 @@
 
 @code {
     int materiaSeleccionadaId;
-    public Curso_Controller Curso_Controller = new Curso_Controller();
 
-    List<Materia> MateriasDisponibles = (Materia_Controller.GetAllMateria()).ToList();
+    List<Materia> MateriasDisponibles = new List<Materia>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        MateriasDisponibles = (await MateriaApiClient.GetAllAsync()).ToList();
+    }
 
     public async void Inscribir()
     {
-        var materiaSeleccionada = await Materia_Controller.GetOneMateria(materiaSeleccionadaId);
+        var materiaSeleccionada = await MateriaApiClient.GetAsync(materiaSeleccionadaId);
         if (materiaSeleccionada != null)
         {
-            var curso = await Curso_Controller.GetOneCursoByIdMateria(materiaSeleccionada.Id);
+            var curso = await CursoApiClient.GetOneCursoByIdMateria(materiaSeleccionada.Id);
 
             if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Alumno)
             {
@@ -53,7 +58,7 @@
                         Condicion = "Habilitado"
                     };
 
-                AlumnoInscripcion_Controller.CrearAlumnoInscripcion(alumnoInscripcion);
+                await AlumnoInscripcionApiClient.AddAsync(alumnoInscripcion);
             }
             else if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Docente)
             {
@@ -64,7 +69,7 @@
                         Cargo = TiposCargos.ProfesorTeoria
                     };
 
-                DocenteCurso_Controller.CrearDocenteCurso(docenteInscripcion);
+                await DocenteCursoApiClient.AddAsync(docenteInscripcion);
             }
 
             Message = $"Te has inscripto en {materiaSeleccionada.Descripcion}.";
