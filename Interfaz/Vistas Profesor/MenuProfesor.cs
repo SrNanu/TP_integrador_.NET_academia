@@ -96,5 +96,12 @@ namespace Interfaz.Vistas_Profesor
 
             formCargarNotas.ShowDialog();
         }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            AlumnosLista formUsuarios = new AlumnosLista();
+
+            formUsuarios.ShowDialog();
+        }
     }
 }

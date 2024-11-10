@@ -37,6 +37,7 @@
             lknLogOut = new LinkLabel();
             btnReporteCursos = new Button();
             btnReportePlanes = new Button();
+            btnUsuarios = new Button();
             SuspendLayout();
             // 
             // btnCargarNotas
@@ -130,11 +131,22 @@
             btnReportePlanes.UseVisualStyleBackColor = true;
             btnReportePlanes.Click += GenerarReportePlanes;
             // 
+            // btnUsuarios
+            // 
+            btnUsuarios.Location = new Point(609, 183);
+            btnUsuarios.Name = "btnUsuarios";
+            btnUsuarios.Size = new Size(143, 52);
+            btnUsuarios.TabIndex = 9;
+            btnUsuarios.Text = "Usuarios";
+            btnUsuarios.UseVisualStyleBackColor = true;
+            btnUsuarios.Click += btnUsuarios_Click;
+            // 
             // MenuProfesor
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnUsuarios);
             Controls.Add(btnReportePlanes);
             Controls.Add(btnReporteCursos);
             Controls.Add(lknLogOut);
@@ -161,5 +173,6 @@
         private LinkLabel lknLogOut;
         private Button btnReporteCursos;
         private Button btnReportePlanes;
+        private Button btnUsuarios;
     }
 }
