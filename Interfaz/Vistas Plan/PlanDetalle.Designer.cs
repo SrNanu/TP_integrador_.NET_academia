@@ -35,6 +35,7 @@
             lblPlan = new Label();
             btnCancelar = new Button();
             btnAceptar = new Button();
+            cmbEspecialidades = new ComboBox();
             SuspendLayout();
             // 
             // txtbDetalles
@@ -52,6 +53,7 @@
             lblDetalles.Size = new Size(74, 25);
             lblDetalles.TabIndex = 1;
             lblDetalles.Text = "Detalles";
+
             // 
             // txtbIdEspecialidad
             // 
@@ -86,6 +88,7 @@
             btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += cancelarButton_Click;
             // 
             // btnAceptar
             // 
@@ -95,12 +98,22 @@
             btnAceptar.TabIndex = 6;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += aceptarButton_Click;
+            // 
+            // cmbEspecialidades
+            // 
+            cmbEspecialidades.FormattingEnabled = true;
+            cmbEspecialidades.Location = new Point(523, 251);
+            cmbEspecialidades.Name = "cmbEspecialidades";
+            cmbEspecialidades.Size = new Size(182, 33);
+            cmbEspecialidades.TabIndex = 7;
             // 
             // PlanDetalle
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(cmbEspecialidades);
             Controls.Add(btnAceptar);
             Controls.Add(btnCancelar);
             Controls.Add(lblPlan);
@@ -109,7 +122,9 @@
             Controls.Add(lblDetalles);
             Controls.Add(txtbDetalles);
             Name = "PlanDetalle";
-            Text = "Form1";
+            Text = "Plan Detalle";
+            Load += PlanDetalle_Load;
+
             ResumeLayout(false);
             PerformLayout();
         }
@@ -123,5 +138,6 @@
         private Label lblPlan;
         private Button btnCancelar;
         private Button btnAceptar;
+        private ComboBox cmbEspecialidades;
     }
 }

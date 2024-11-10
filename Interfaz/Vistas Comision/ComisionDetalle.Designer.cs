@@ -36,7 +36,7 @@
             lblIdEspecialidad = new Label();
             txtbIdDescripcion = new TextBox();
             lblDetalles = new Label();
-            txtbIdPlann = new TextBox();
+            txtbIdPlan = new TextBox();
             SuspendLayout();
             // 
             // txtbAnioEspecialidad
@@ -63,6 +63,7 @@
             btnAceptar.TabIndex = 26;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += aceptarButton_Click;
             // 
             // btnCancelar
             // 
@@ -72,6 +73,7 @@
             btnCancelar.TabIndex = 25;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += cancelarButton_Click;
             // 
             // lblPlan
             // 
@@ -107,12 +109,12 @@
             lblDetalles.TabIndex = 21;
             lblDetalles.Text = "IdPlan";
             // 
-            // txtbIdPlann
+            // txtbIdPlan
             // 
-            txtbIdPlann.Location = new Point(405, 135);
-            txtbIdPlann.Name = "txtbIdPlann";
-            txtbIdPlann.Size = new Size(150, 31);
-            txtbIdPlann.TabIndex = 20;
+            txtbIdPlan.Location = new Point(405, 135);
+            txtbIdPlan.Name = "txtbIdPlan";
+            txtbIdPlan.Size = new Size(150, 31);
+            txtbIdPlan.TabIndex = 20;
             // 
             // ComisionDetalle
             // 
@@ -127,7 +129,7 @@
             Controls.Add(lblIdEspecialidad);
             Controls.Add(txtbIdDescripcion);
             Controls.Add(lblDetalles);
-            Controls.Add(txtbIdPlann);
+            Controls.Add(txtbIdPlan);
             Name = "ComisionDetalle";
             Text = "ComisionDetalle";
             ResumeLayout(false);
@@ -143,6 +145,6 @@
         private Label lblIdEspecialidad;
         private TextBox txtbIdDescripcion;
         private Label lblDetalles;
-        private TextBox txtbIdPlann;
+        private TextBox txtbIdPlan;
     }
 }

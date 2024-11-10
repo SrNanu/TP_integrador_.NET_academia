@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 public class Especialidad : EntidadNegocio
 {
-    [Required]
+    
     [StringLength(150)]
-    public required string Descripcion { get; set; }
+    public string Descripcion { get; set; }
 }
 

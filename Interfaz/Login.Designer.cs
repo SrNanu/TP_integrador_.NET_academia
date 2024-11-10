@@ -33,106 +33,89 @@
             btnIniciarSesion = new Button();
             lblContrasenia = new Label();
             lblUsuario = new Label();
-            btnOlvideContrasenia = new Button();
-            btnCrearUsuario = new Button();
+            btnRegistrarse = new Button();
             lblAcademia = new Label();
             SuspendLayout();
             // 
             // txtbContrasenia
             // 
-            txtbContrasenia.Location = new Point(429, 327);
-            txtbContrasenia.Margin = new Padding(4, 5, 4, 5);
+            txtbContrasenia.Location = new Point(300, 196);
             txtbContrasenia.Name = "txtbContrasenia";
-            txtbContrasenia.Size = new Size(141, 31);
+            txtbContrasenia.PasswordChar = '*';
+            txtbContrasenia.Size = new Size(100, 23);
             txtbContrasenia.TabIndex = 15;
             // 
             // txtbUsuario
             // 
-            txtbUsuario.Location = new Point(429, 167);
-            txtbUsuario.Margin = new Padding(4, 5, 4, 5);
+            txtbUsuario.Location = new Point(300, 100);
             txtbUsuario.Name = "txtbUsuario";
-            txtbUsuario.Size = new Size(141, 31);
+            txtbUsuario.Size = new Size(100, 23);
             txtbUsuario.TabIndex = 14;
             // 
             // btnIniciarSesion
             // 
             btnIniciarSesion.BackColor = SystemColors.HotTrack;
             btnIniciarSesion.ForeColor = SystemColors.ButtonHighlight;
-            btnIniciarSesion.Location = new Point(407, 452);
-            btnIniciarSesion.Margin = new Padding(4, 5, 4, 5);
+            btnIniciarSesion.Location = new Point(285, 271);
             btnIniciarSesion.Name = "btnIniciarSesion";
-            btnIniciarSesion.Size = new Size(173, 38);
+            btnIniciarSesion.Size = new Size(121, 23);
             btnIniciarSesion.TabIndex = 13;
             btnIniciarSesion.Text = "Iniciar sesión";
             btnIniciarSesion.UseVisualStyleBackColor = false;
+            btnIniciarSesion.Click += IniciarSesion;
             // 
             // lblContrasenia
             // 
             lblContrasenia.AutoSize = true;
-            lblContrasenia.Location = new Point(244, 327);
-            lblContrasenia.Margin = new Padding(4, 0, 4, 0);
+            lblContrasenia.Location = new Point(171, 196);
             lblContrasenia.Name = "lblContrasenia";
-            lblContrasenia.Size = new Size(101, 25);
+            lblContrasenia.Size = new Size(67, 15);
             lblContrasenia.TabIndex = 12;
             lblContrasenia.Text = "Contraseña";
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(244, 177);
-            lblUsuario.Margin = new Padding(4, 0, 4, 0);
+            lblUsuario.Location = new Point(171, 106);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(72, 25);
+            lblUsuario.Size = new Size(47, 15);
             lblUsuario.TabIndex = 11;
             lblUsuario.Text = "Usuario";
             // 
-            // btnOlvideContrasenia
+            // btnRegistrarse
             // 
-            btnOlvideContrasenia.BackColor = SystemColors.Info;
-            btnOlvideContrasenia.Location = new Point(244, 692);
-            btnOlvideContrasenia.Margin = new Padding(4, 5, 4, 5);
-            btnOlvideContrasenia.Name = "btnOlvideContrasenia";
-            btnOlvideContrasenia.Size = new Size(216, 38);
-            btnOlvideContrasenia.TabIndex = 10;
-            btnOlvideContrasenia.Text = "Olvide mi contraseña";
-            btnOlvideContrasenia.UseVisualStyleBackColor = false;
-            // 
-            // btnCrearUsuario
-            // 
-            btnCrearUsuario.BackColor = SystemColors.Info;
-            btnCrearUsuario.ForeColor = SystemColors.ActiveCaptionText;
-            btnCrearUsuario.Location = new Point(16, 692);
-            btnCrearUsuario.Margin = new Padding(4, 5, 4, 5);
-            btnCrearUsuario.Name = "btnCrearUsuario";
-            btnCrearUsuario.Size = new Size(191, 38);
-            btnCrearUsuario.TabIndex = 9;
-            btnCrearUsuario.Text = "Crear usuario";
-            btnCrearUsuario.UseVisualStyleBackColor = false;
+            btnRegistrarse.BackColor = SystemColors.Info;
+            btnRegistrarse.ForeColor = SystemColors.ActiveCaptionText;
+            btnRegistrarse.Location = new Point(11, 414);
+            btnRegistrarse.Margin = new Padding(2);
+            btnRegistrarse.Name = "btnRegistrarse";
+            btnRegistrarse.Size = new Size(94, 25);
+            btnRegistrarse.TabIndex = 9;
+            btnRegistrarse.Text = "Registrarse";
+            btnRegistrarse.UseVisualStyleBackColor = false;
+            btnRegistrarse.Click += Registarse;
             // 
             // lblAcademia
             // 
             lblAcademia.AutoSize = true;
-            lblAcademia.Location = new Point(447, 58);
-            lblAcademia.Margin = new Padding(4, 0, 4, 0);
+            lblAcademia.Location = new Point(313, 35);
             lblAcademia.Name = "lblAcademia";
-            lblAcademia.Size = new Size(102, 25);
+            lblAcademia.Size = new Size(67, 15);
             lblAcademia.TabIndex = 8;
             lblAcademia.Text = "ACADEMIA";
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1143, 750);
+            ClientSize = new Size(800, 450);
             Controls.Add(txtbContrasenia);
             Controls.Add(txtbUsuario);
             Controls.Add(btnIniciarSesion);
             Controls.Add(lblContrasenia);
             Controls.Add(lblUsuario);
-            Controls.Add(btnOlvideContrasenia);
-            Controls.Add(btnCrearUsuario);
+            Controls.Add(btnRegistrarse);
             Controls.Add(lblAcademia);
-            Margin = new Padding(4, 5, 4, 5);
             Name = "Login";
             Text = "Login";
             ResumeLayout(false);
@@ -146,8 +129,7 @@
         private Button btnIniciarSesion;
         private Label lblContrasenia;
         private Label lblUsuario;
-        private Button btnOlvideContrasenia;
-        private Button btnCrearUsuario;
+        private Button btnRegistrarse;
         private Label lblAcademia;
     }
 }

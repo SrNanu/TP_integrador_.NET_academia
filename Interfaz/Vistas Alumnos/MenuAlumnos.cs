@@ -10,11 +10,25 @@ using System.Windows.Forms;
 
 namespace Interfaz
 {
-    public partial class MenuUsuario : Form
+    public partial class MenuAlumnos : Form
     {
-        public MenuUsuario()
+        public MenuAlumnos()
         {
             InitializeComponent();
         }
+
+
+        private void lknLogOut_Click(object sender, EventArgs e)
+        {
+            Login formLogin = new Login();
+
+            formLogin.Show();
+
+            formLogin.Activate();
+
+            this.Dispose();
+        }
+
+
     }
 }

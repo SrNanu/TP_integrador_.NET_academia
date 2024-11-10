@@ -71,7 +71,6 @@
             txtbIdPlan.Name = "txtbIdPlan";
             txtbIdPlan.Size = new Size(150, 31);
             txtbIdPlan.TabIndex = 4;
-            //txtbIdPlan.TextChanged += textBox1_TextChanged;
             // 
             // lblIdPlan
             // 
@@ -88,7 +87,6 @@
             txtbHsSemanales.Name = "txtbHsSemanales";
             txtbHsSemanales.Size = new Size(150, 31);
             txtbHsSemanales.TabIndex = 6;
-            //txtbHsSemanales.TextChanged += textBox1_TextChanged_1;
             // 
             // lblHsSemanales
             // 
@@ -123,6 +121,7 @@
             btnConfirmar.TabIndex = 9;
             btnConfirmar.Text = "Confirmar";
             btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += aceptarButton_Click;
             // 
             // btnCancelar
             // 
@@ -132,6 +131,7 @@
             btnCancelar.TabIndex = 10;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += cancelarButton_Click;
             // 
             // MateriaDetalle
             // 

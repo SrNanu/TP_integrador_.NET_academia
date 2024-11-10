@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Interfaz
 {
-    public partial class UsuarioDetalle : Form
+    public partial class AlumnosDetalle : Form
     {
         private Usuario usuario;
         private ErrorProvider errorProvider; // Add this line
@@ -27,7 +27,7 @@ namespace Interfaz
         }
 
         public bool EditMode { get; set; } = false;
-        public UsuarioDetalle()
+        public AlumnosDetalle()
         {
             InitializeComponent();
             errorProvider = new ErrorProvider(); // Add this line
@@ -39,6 +39,7 @@ namespace Interfaz
 
             if (this.ValidateUsuario())
             {
+
                 this.Usuario.Nombre = txtbNombre.Text;
                 this.Usuario.Apellido = txtbApellido.Text;
                 this.Usuario.FechaNacimiento = dtpFechaNacimiento.Value;

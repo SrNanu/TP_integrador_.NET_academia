@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 public enum TiposUsuarios
 {
     Alumno,         // 0
-    Docente        // 1
+    Profesor       // 1
 }
 
 public class Usuario : EntidadNegocio
 {
     [ForeignKey("Plan")]
     public int? IdPlan { get; set; }        //SE QUEDA? PORQUE CUANDO CREA UN USUARIO DE UN PROFESOR NO INTERESA EL PLAN.
+    //Se coloca "required" adelante de cada atributo para que no salte error, se lo deja hasta que se complete el constructor.
 
     [StringLength(100, ErrorMessage = "El nombre no puede tener más de 100 caracteres.")]
     [Required(ErrorMessage = "El nombre es obligatorio.")]
