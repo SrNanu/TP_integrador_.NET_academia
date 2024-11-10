@@ -47,10 +47,11 @@
             btnInscripcionMateria.Location = new Point(104, 71);
             btnInscripcionMateria.Margin = new Padding(3, 2, 3, 2);
             btnInscripcionMateria.Name = "btnInscripcionMateria";
-            btnInscripcionMateria.Size = new Size(82, 41);
+            btnInscripcionMateria.Size = new Size(148, 56);
             btnInscripcionMateria.TabIndex = 1;
-            btnInscripcionMateria.Text = "Inscribirse a materia";
+            btnInscripcionMateria.Text = "Inscribirse a Curso";
             btnInscripcionMateria.UseVisualStyleBackColor = true;
+            btnInscripcionMateria.Click += btnInscripcionMateria_Click;
             // 
             // lknLogOut
             // 

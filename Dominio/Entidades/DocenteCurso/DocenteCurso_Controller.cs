@@ -1,4 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Dominio.Entidades;
 
 public class DocenteCurso_Controller
 {
@@ -6,6 +13,10 @@ public class DocenteCurso_Controller
     {
 
         using var context = new AcademiaContext();
+
+        // Validaciones por separado
+        Validador.ValidarExistenciaCurso(docenteCurso.IdCurso, context);
+        Validador.ValidarDocenteTipo(docenteCurso.IdDocente, context);
 
         context.DocenteCursos.Add(docenteCurso);
         context.SaveChanges();
@@ -35,6 +46,11 @@ public class DocenteCurso_Controller
 
         if (docenteCursoToUpdate != null)
         {
+
+            // Validaciones por separado
+            Validador.ValidarExistenciaCurso(docenteCurso.IdCurso, context);
+            Validador.ValidarDocenteTipo(docenteCurso.IdDocente, context);
+
             docenteCursoToUpdate.IdCurso = docenteCurso.IdCurso;
             docenteCursoToUpdate.IdDocente = docenteCurso.IdDocente;
             docenteCursoToUpdate.Id = docenteCurso.Id;

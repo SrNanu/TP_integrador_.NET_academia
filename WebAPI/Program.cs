@@ -45,14 +45,30 @@ namespace WebAPI
             app.MapPost("/usuarios", (Usuario usuario) =>
             {
 
-                Usuario_Controller.AgregarUsuario(usuario);
+                try
+                {
+                    Usuario_Controller.AgregarUsuario(usuario);
+                    return Results.Ok(new { message = "Usuario creado exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("CrearUsuario");
 
             app.MapPut("/usuarios", (Usuario usuario) =>
             {
 
-                Usuario_Controller.ActualizarUsuario(usuario);
+                try
+                {
+                    Usuario_Controller.ActualizarUsuario(usuario);
+                    return Results.Ok(new { message = "Usuario actualizado exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("ActualizarUsuario");
 
@@ -79,13 +95,29 @@ namespace WebAPI
 
             app.MapPost("/planes", (Plan plan) =>
             {
-                Plan_Controller.CrearPlan(plan);
+                try
+                {
+                    Plan_Controller.CrearPlan(plan);
+                    return Results.Ok(new { message = "Plan creado exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("CrearPlan");
 
             app.MapPut("/planes", (Plan plan) =>
             {
-                Plan_Controller.ActualizarPlan(plan);
+                try
+                {
+                    Plan_Controller.ActualizarPlan(plan);
+                    return Results.Ok(new { message = "Plan actualizado exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("ActualizarPlan");
 
@@ -111,13 +143,29 @@ namespace WebAPI
 
             app.MapPost("/materias", (Materia materia) =>
             {
-                Materia_Controller.CrearMateria(materia);
+                try
+                {
+                    Materia_Controller.CrearMateria(materia);
+                    return Results.Ok(new { message = "Materia creada exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("CrearMateria");
 
             app.MapPut("/materias", (Materia materia) =>
             {
-                Materia_Controller.ActualizarMateria(materia);
+                try
+                {
+                    Materia_Controller.ActualizarMateria(materia);
+                    return Results.Ok(new { message = "Materia actualizada exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("ActualizarMateria");
 
@@ -143,13 +191,29 @@ namespace WebAPI
 
             app.MapPost("/especialidades", (Especialidad especialidad) =>
             {
-                Especialidad_Controller.CrearEspecialidad(especialidad);
+                try
+                {
+                    Especialidad_Controller.CrearEspecialidad(especialidad);
+                    return Results.Ok(new { message = "Especialidad creada exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("CrearEspecialidad");
 
             app.MapPut("/especialidades", (Especialidad especialidad) =>
             {
-                Especialidad_Controller.ActualizarEspecialidad(especialidad);
+                try
+                {
+                    Especialidad_Controller.ActualizarEspecialidad(especialidad);
+                    return Results.Ok(new { message = "Especialidad actualizada exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("ActualizarEspecialidad");
 
@@ -175,13 +239,29 @@ namespace WebAPI
 
             app.MapPost("/cursos", (Curso curso) =>
             {
-                Curso_Controller.CrearCurso(curso);
+                try
+                {
+                    Curso_Controller.CrearCurso(curso);
+                    return Results.Ok(new { message = "Curso creado exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("CrearCurso");
 
             app.MapPut("/cursos", (Curso curso) =>
             {
-                Curso_Controller.ActualizarCurso(curso);
+                try
+                {
+                    Curso_Controller.ActualizarCurso(curso);
+                    return Results.Ok(new { message = "Curso actualizado exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("ActualizarCurso");
 
@@ -207,13 +287,30 @@ namespace WebAPI
 
             app.MapPost("/comisiones", (Comision comision) =>
             {
+                
+                try { 
                 Comision_Controller.CrearComision(comision);
+                    return Results.Ok(new { message = "Comisión creada exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
+
             })
             .WithName("CrearComision");
 
             app.MapPut("/comisiones", (Comision comision) =>
             {
-                Comision_Controller.ActualizarComision(comision);
+                try
+                {
+                    Comision_Controller.ActualizarComision(comision);
+                    return Results.Ok(new { message = "Comisión actualizada exitosamente" });
+                }
+                catch (ArgumentException ex)
+                {
+                    return Results.BadRequest(ex.Message);
+                }
             })
             .WithName("ActualizarComision");
 
@@ -222,6 +319,45 @@ namespace WebAPI
                 Comision_Controller.EliminarComision(id);
             })
             .WithName("EliminarComision");
+
+
+            //CRUD Inscripciones
+
+            app.MapGet("/inscipciones/{id}", (int id) =>
+            {
+
+                return AlumnoInscripcion_Controller.GetOneAlumnoInscripcion(id);
+            })
+            .WithName("GetOneInscripcion");
+
+            app.MapGet("/inscipciones", () =>
+            {
+
+                return AlumnoInscripcion_Controller.GetAllAlumnoInscripcion();
+            })
+            .WithName("GetAllInscripciones");
+
+            app.MapPost("/inscipciones", (AlumnoInscripcion alumnoinscripcion) =>
+            {
+
+                AlumnoInscripcion_Controller.CrearAlumnoInscripcion(alumnoinscripcion);
+            })
+            .WithName("CrearInscripcion");
+
+            app.MapPut("/inscipciones", (AlumnoInscripcion alumnoinscripcion) =>
+            {
+
+                AlumnoInscripcion_Controller.ActualizarAlumnoInscripcion(alumnoinscripcion);
+            })
+            .WithName("ActualizarInscripcion");
+
+            app.MapDelete("/inscipciones/{id}", (int id) =>
+            {
+
+                AlumnoInscripcion_Controller.EliminarAlumnoInscripcion(id);
+            })
+            .WithName("EliminarInscripcion");
+
 
 
             app.UseStaticFiles();

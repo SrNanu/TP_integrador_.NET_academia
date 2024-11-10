@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Dominio.Entidades;
 
 public class Usuario_Controller
 {
@@ -11,7 +12,14 @@ public class Usuario_Controller
     {
         
         using var context = new AcademiaContext();
-        
+
+        // Llamadas a los métodos de validación
+        Validador.ValidarTextoNoVacio(usuario.Nombre, "Nombre");
+        Validador.ValidarTextoNoVacio(usuario.Apellido, "Apellido");
+        Validador.ValidarEmailUnico(usuario.Email, context);
+        Validador.ValidarLegajoUnico(usuario.Legajo, context);
+        Validador.ValidarUsernameUnico(usuario.Username, context);
+
         context.Usuarios.Add(usuario);
         context.SaveChanges();
         
@@ -64,6 +72,30 @@ public class Usuario_Controller
 
         if (usuarioToUpdate != null)
         {
+            // Validaciones
+            Validador.ValidarTextoNoVacio(usuario.Nombre, "Nombre");
+            Validador.ValidarTextoNoVacio(usuario.Apellido, "Apellido");
+            Validador.ValidarTextoNoVacio(usuario.Username, "Username");
+            Validador.ValidarTextoNoVacio(usuario.Email, "Email");
+
+            // Validar unicidad de Email (excluyendo el usuario actual)
+            if (usuario.Email != usuarioToUpdate.Email)
+            {
+                Validador.ValidarEmailUnico(usuario.Email, context);
+            }
+
+            // Validar unicidad de Legajo (excluyendo el usuario actual)
+            if (usuario.Legajo != usuarioToUpdate.Legajo)
+            {
+                Validador.ValidarLegajoUnico(usuario.Legajo, context);
+            }
+
+            // Validar unicidad de Username (excluyendo el usuario actual)
+            if (usuario.Username != usuarioToUpdate.Username)
+            {
+                Validador.ValidarUsernameUnico(usuario.Username, context);
+            }
+
             usuarioToUpdate.Nombre = usuario.Nombre;
             usuarioToUpdate.Apellido = usuario.Apellido;
             usuarioToUpdate.FechaNacimiento = usuario.FechaNacimiento;
@@ -76,6 +108,7 @@ public class Usuario_Controller
             usuarioToUpdate.Password = usuario.Password;
             usuarioToUpdate.Habilitado = usuario.Habilitado;
             usuarioToUpdate.Id = usuario.Id;
+
             context.SaveChanges();
         } 
     }

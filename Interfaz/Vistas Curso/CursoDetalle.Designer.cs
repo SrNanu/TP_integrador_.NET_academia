@@ -32,22 +32,23 @@
             btnCancelar = new Button();
             lblPlan = new Label();
             lblIdEspecialidad = new Label();
-            txtbIdMateria = new TextBox();
             lblDetalles = new Label();
-            txtbIdComision = new TextBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             txtbCupo = new TextBox();
             txtbAnioCalendario = new TextBox();
             txtbDescripcion = new TextBox();
+            cmbComisiones = new ComboBox();
+            cmbMaterias = new ComboBox();
             SuspendLayout();
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(583, 381);
+            btnAceptar.Location = new Point(408, 229);
+            btnAceptar.Margin = new Padding(2, 2, 2, 2);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(112, 34);
+            btnAceptar.Size = new Size(78, 20);
             btnAceptar.TabIndex = 13;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(433, 381);
+            btnCancelar.Location = new Point(303, 229);
+            btnCancelar.Margin = new Padding(2, 2, 2, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(112, 34);
+            btnCancelar.Size = new Size(78, 20);
             btnCancelar.TabIndex = 12;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -66,97 +68,114 @@
             // lblPlan
             // 
             lblPlan.AutoSize = true;
-            lblPlan.Location = new Point(342, 9);
+            lblPlan.Location = new Point(239, 5);
+            lblPlan.Margin = new Padding(2, 0, 2, 0);
             lblPlan.Name = "lblPlan";
-            lblPlan.Size = new Size(58, 25);
+            lblPlan.Size = new Size(38, 15);
             lblPlan.TabIndex = 11;
             lblPlan.Text = "Curso";
             // 
             // lblIdEspecialidad
             // 
             lblIdEspecialidad.AutoSize = true;
-            lblIdEspecialidad.Location = new Point(197, 129);
+            lblIdEspecialidad.Location = new Point(138, 77);
+            lblIdEspecialidad.Margin = new Padding(2, 0, 2, 0);
             lblIdEspecialidad.Name = "lblIdEspecialidad";
-            lblIdEspecialidad.Size = new Size(87, 25);
+            lblIdEspecialidad.Size = new Size(57, 15);
             lblIdEspecialidad.TabIndex = 10;
             lblIdEspecialidad.Text = "IdMateria";
-            // 
-            // txtbIdMateria
-            // 
-            txtbIdMateria.Location = new Point(443, 129);
-            txtbIdMateria.Name = "txtbIdMateria";
-            txtbIdMateria.Size = new Size(150, 31);
-            txtbIdMateria.TabIndex = 9;
             // 
             // lblDetalles
             // 
             lblDetalles.AutoSize = true;
-            lblDetalles.Location = new Point(197, 76);
+            lblDetalles.Location = new Point(138, 46);
+            lblDetalles.Margin = new Padding(2, 0, 2, 0);
             lblDetalles.Name = "lblDetalles";
-            lblDetalles.Size = new Size(103, 25);
+            lblDetalles.Size = new Size(68, 15);
             lblDetalles.TabIndex = 8;
             lblDetalles.Text = "IdComision";
-            // 
-            // txtbIdComision
-            // 
-            txtbIdComision.Location = new Point(443, 73);
-            txtbIdComision.Name = "txtbIdComision";
-            txtbIdComision.Size = new Size(150, 31);
-            txtbIdComision.TabIndex = 7;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(197, 185);
+            label1.Location = new Point(138, 111);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(55, 25);
+            label1.Size = new Size(36, 15);
             label1.TabIndex = 14;
             label1.Text = "Cupo";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(197, 252);
+            label2.Location = new Point(138, 151);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(138, 25);
+            label2.Size = new Size(92, 15);
             label2.TabIndex = 15;
             label2.Text = "Anio Calendario";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(197, 310);
+            label3.Location = new Point(138, 186);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(104, 25);
+            label3.Size = new Size(69, 15);
             label3.TabIndex = 16;
             label3.Text = "Descripcion";
             // 
             // txtbCupo
             // 
-            txtbCupo.Location = new Point(443, 185);
+            txtbCupo.Location = new Point(310, 111);
+            txtbCupo.Margin = new Padding(2, 2, 2, 2);
             txtbCupo.Name = "txtbCupo";
-            txtbCupo.Size = new Size(150, 31);
+            txtbCupo.Size = new Size(129, 23);
             txtbCupo.TabIndex = 17;
             // 
             // txtbAnioCalendario
             // 
-            txtbAnioCalendario.Location = new Point(443, 249);
+            txtbAnioCalendario.Location = new Point(310, 149);
+            txtbAnioCalendario.Margin = new Padding(2, 2, 2, 2);
             txtbAnioCalendario.Name = "txtbAnioCalendario";
-            txtbAnioCalendario.Size = new Size(150, 31);
+            txtbAnioCalendario.Size = new Size(129, 23);
             txtbAnioCalendario.TabIndex = 18;
             // 
             // txtbDescripcion
             // 
-            txtbDescripcion.Location = new Point(443, 304);
+            txtbDescripcion.Location = new Point(310, 182);
+            txtbDescripcion.Margin = new Padding(2, 2, 2, 2);
             txtbDescripcion.Name = "txtbDescripcion";
-            txtbDescripcion.Size = new Size(150, 31);
+            txtbDescripcion.Size = new Size(129, 23);
             txtbDescripcion.TabIndex = 19;
+            // 
+            // cmbComisiones
+            // 
+            cmbComisiones.FormattingEnabled = true;
+            cmbComisiones.Location = new Point(310, 41);
+            cmbComisiones.Margin = new Padding(2, 2, 2, 2);
+            cmbComisiones.Name = "cmbComisiones";
+            cmbComisiones.Size = new Size(129, 23);
+            cmbComisiones.TabIndex = 20;
+            // 
+            // cmbMaterias
+            // 
+            cmbMaterias.FormattingEnabled = true;
+            cmbMaterias.Location = new Point(310, 77);
+            cmbMaterias.Margin = new Padding(2, 2, 2, 2);
+            cmbMaterias.Name = "cmbMaterias";
+            cmbMaterias.Size = new Size(129, 23);
+            cmbMaterias.TabIndex = 21;
             // 
             // CursoDetalle
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AcceptButton = btnAceptar;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            CancelButton = btnCancelar;
+            ClientSize = new Size(560, 270);
+            Controls.Add(cmbMaterias);
+            Controls.Add(cmbComisiones);
             Controls.Add(txtbDescripcion);
             Controls.Add(txtbAnioCalendario);
             Controls.Add(txtbCupo);
@@ -167,9 +186,8 @@
             Controls.Add(btnCancelar);
             Controls.Add(lblPlan);
             Controls.Add(lblIdEspecialidad);
-            Controls.Add(txtbIdMateria);
             Controls.Add(lblDetalles);
-            Controls.Add(txtbIdComision);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "CursoDetalle";
             Text = "CursoDetalle";
             ResumeLayout(false);
@@ -182,14 +200,14 @@
         private Button btnCancelar;
         private Label lblPlan;
         private Label lblIdEspecialidad;
-        private TextBox txtbIdMateria;
         private Label lblDetalles;
-        private TextBox txtbIdComision;
         private Label label1;
         private Label label2;
         private Label label3;
         private TextBox txtbCupo;
         private TextBox txtbAnioCalendario;
         private TextBox txtbDescripcion;
+        private ComboBox cmbComisiones;
+        private ComboBox cmbMaterias;
     }
 }

@@ -11,7 +11,7 @@ public class DocenteCurso : EntidadNegocio
     [ForeignKey("Curso")]
     public int IdCurso { get; set; }
 
-    [ForeignKey("Docente")]
+    [ForeignKey("Usuario")]
     public int IdDocente { get; set; }
 
     public TiposCargos? Cargo { get; set; }

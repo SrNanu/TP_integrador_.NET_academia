@@ -43,8 +43,15 @@ namespace Interfaz.ApiClients
 
         public static async Task AddAsync(Curso curso)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("cursos", curso);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PostAsJsonAsync("cursos", curso);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al crear el curso: {ex.Message}");
+            }
         }
 
         public static async Task DeleteAsync(int id)
@@ -55,8 +62,15 @@ namespace Interfaz.ApiClients
 
         public static async Task UpdateAsync(Curso curso)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("cursos", curso);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync("cursos", curso);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al actualizar el curso: {ex.Message}");
+            }
         }
     }
 }

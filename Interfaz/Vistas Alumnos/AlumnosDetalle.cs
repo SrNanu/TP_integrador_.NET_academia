@@ -35,37 +35,50 @@ namespace Interfaz
 
         private async void aceptarButton_Click(object sender, EventArgs e)
         {
-            UsuarioApiClient client = new UsuarioApiClient();
-
-            if (this.ValidateUsuario())
+            try
             {
+                UsuarioApiClient client = new UsuarioApiClient();
 
-                this.Usuario.Nombre = txtbNombre.Text;
-                this.Usuario.Apellido = txtbApellido.Text;
-                this.Usuario.FechaNacimiento = dtpFechaNacimiento.Value;
-                this.Usuario.Direccion = txtbDireccion.Text;
-                this.Usuario.Telefono = txtbTelefono.Text;
-                this.Usuario.Email = txtbEmail.Text;
-                this.Usuario.Username = txtbUsuario.Text;
-                this.Usuario.Password = txtbContrasenia.Text;
 
-                // Asignar el tipo de usuario seleccionado en el ComboBox
-                this.Usuario.Tipo = (TiposUsuarios)Enum.Parse(typeof(TiposUsuarios), cmbTipo.SelectedItem.ToString());
-
-                //El Detalle se esta llevando la responsabilidad de llamar al servicio
-                //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
-                //en la Lista o tal vez en un Presenter o Controler
-
-                if (this.EditMode)
+                if (this.ValidateUsuario())
                 {
-                    await UsuarioApiClient.UpdateAsync(this.Usuario);
-                }
-                else
-                {
-                    await UsuarioApiClient.AddAsync(this.Usuario);
-                }
+                    if (this.Usuario == null)
+                    {
+                        this.Usuario = new Usuario();
+                    }
 
-                this.Close();
+                    this.Usuario.Nombre = txtbNombre.Text;
+                    this.Usuario.Apellido = txtbApellido.Text;
+                    this.Usuario.FechaNacimiento = dtpFechaNacimiento.Value;
+                    this.Usuario.Direccion = txtbDireccion.Text;
+                    this.Usuario.Telefono = txtbTelefono.Text;
+                    this.Usuario.Email = txtbEmail.Text;
+                    this.Usuario.Username = txtbUsuario.Text;
+                    this.usuario.Legajo = int.Parse(txtbLegajo.Text);
+                    this.Usuario.Password = txtbContrasenia.Text;
+
+                    // Asignar el tipo de usuario seleccionado en el ComboBox
+                    this.Usuario.Tipo = (TiposUsuarios)Enum.Parse(typeof(TiposUsuarios), cmbTipo.SelectedItem.ToString());
+
+                    //El Detalle se esta llevando la responsabilidad de llamar al servicio
+                    //pero tal vez deberia ser solo una vista y que esta responsabilidad quede
+                    //en la Lista o tal vez en un Presenter o Controler
+
+                    if (this.EditMode)
+                    {
+                        await UsuarioApiClient.UpdateAsync(this.Usuario);
+                    }
+                    else
+                    {
+                        await UsuarioApiClient.AddAsync(this.Usuario);
+                    }
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ha ocurrido un error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -83,6 +96,7 @@ namespace Interfaz
             this.txtbTelefono.Text = this.Usuario.Telefono;
             this.txtbEmail.Text = this.Usuario.Email;
             this.txtbUsuario.Text = this.Usuario.Username;
+            this.txtbLegajo.Text = this.Usuario.Legajo.ToString();
             this.txtbContrasenia.Text = this.Usuario.Password;
 
             // Marcar el tipo de usuario en el CheckedListBox
@@ -151,6 +165,12 @@ namespace Interfaz
             {
                 isValid = false;
                 errorProvider.SetError(txtbContrasenia, "La Contraseña es requerida y debe tener al menos 6 caracteres.");
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbContrasenia.Text))
+            {
+                isValid = false;
+                errorProvider.SetError(txtbContrasenia, "El Legajo es requerido.");
             }
 
             // Validar Tipo de Usuario (ComboBox)

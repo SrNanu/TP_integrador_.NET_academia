@@ -1,7 +1,6 @@
 using Interfaz.Vistas_Especialidad;
 using Interfaz.Vistas_Materia;
 using Interfaz.Vistas_Plan;
-using Interfaz.Vistas_Materia;
 using Interfaz.Vistas_Cursos;
 using Interfaz.Vistas_Comision;
 
@@ -17,14 +16,12 @@ namespace Interfaz
         static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+            // see https://aka.ms/applicationconfiguration
 
+            ApplicationConfiguration.Initialize();
 
             Login login = new Login();
             login.Show();
-
-
 
             Application.Run();
         }

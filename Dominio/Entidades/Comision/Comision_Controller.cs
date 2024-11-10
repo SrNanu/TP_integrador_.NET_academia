@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,7 +12,9 @@ public class Comision_Controller
     {
 
         using var context = new AcademiaContext();
-
+        // Validaciones por separado
+        Validador.ValidarIdPlan(comision.IdPlan, context);
+        Validador.ValidarDescripcionComisionUnica(comision.Descripcion, 0, context); // ponemos 0 porque esta creando la comision
         context.Comisiones.Add(comision);
         context.SaveChanges();
 
@@ -40,6 +43,10 @@ public class Comision_Controller
 
         if (comisionToUpdate != null)
         {
+            // Validaciones por separado
+            Validador.ValidarIdPlan(comision.IdPlan, context);
+            Validador.ValidarDescripcionComisionUnica(comision.Descripcion, 0, context); // ponemos 0 porque esta creando la comision
+
             comisionToUpdate.Descripcion = comision.Descripcion;
             comisionToUpdate.IdPlan = comision.IdPlan;
             comisionToUpdate.AnioEspecialidad = comision.AnioEspecialidad;

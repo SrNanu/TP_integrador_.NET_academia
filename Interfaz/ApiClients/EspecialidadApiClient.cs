@@ -43,8 +43,15 @@ namespace Interfaz.ApiClients
 
         public static async Task AddAsync(Especialidad especialidad)
         {
-            HttpResponseMessage response = await client.PostAsJsonAsync("especialidades", especialidad);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PostAsJsonAsync("especialidades", especialidad);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al crear la especialidad: {ex.Message}");
+            }
         }
 
         public static async Task DeleteAsync(int id)
@@ -55,8 +62,15 @@ namespace Interfaz.ApiClients
 
         public static async Task UpdateAsync(Especialidad especialidad)
         {
-            HttpResponseMessage response = await client.PutAsJsonAsync("especialidades", especialidad);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                HttpResponseMessage response = await client.PutAsJsonAsync("especialidades", especialidad);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception($"Error al actualizar la especialidad: {ex.Message}");
+            }
         }
     }
 }

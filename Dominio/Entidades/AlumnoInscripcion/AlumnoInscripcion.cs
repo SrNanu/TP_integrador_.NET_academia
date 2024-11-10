@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 public class AlumnoInscripcion : EntidadNegocio
 {
-    [ForeignKey("Alumno")]
+    [ForeignKey("Usuario")]
     public int IdAlumno { get; set; }
 
     [ForeignKey("Curso")]
     public int IdCurso { get; set; }
 
-    [Required]
     [StringLength(150)]
-    public required string Condicion { get; set; } = "Habilitado";
+    public required string Condicion { get; set; } = "Regular";
 
     public int? Nota { get; set; }
 

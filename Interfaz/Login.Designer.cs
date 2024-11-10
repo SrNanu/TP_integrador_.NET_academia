@@ -100,12 +100,13 @@
             lblAcademia.AutoSize = true;
             lblAcademia.Location = new Point(313, 35);
             lblAcademia.Name = "lblAcademia";
-            lblAcademia.Size = new Size(67, 15);
+            lblAcademia.Size = new Size(116, 15);
             lblAcademia.TabIndex = 8;
-            lblAcademia.Text = "ACADEMIA";
+            lblAcademia.Text = "SISTEMA ACADEMIA";
             // 
             // Login
             // 
+            AcceptButton = btnIniciarSesion;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
