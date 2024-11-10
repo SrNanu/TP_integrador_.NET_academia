@@ -112,15 +112,15 @@ namespace Web.ApiClients
                     }
                 }
 
-                foreach (var curso in cursosDeMateria)
+                foreach (var curso1 in cursosDeMateria)
                 {
                     var inscripciones = await AlumnoInscripcionApiClient
-                        .GetAlumnosInscripcionesByIdCurso(curso.IdMateria);
+                        .GetAlumnosInscripcionesByIdCurso(curso1.Id);
                     var cantidadInscriptos = inscripciones.Count();
 
-                    if (cantidadInscriptos > curso.Cupo)
+                    if (cantidadInscriptos < curso1.Cupo)
                     {
-                        return curso;
+                        return curso1;
                     }
                 }
             }
