@@ -1,0 +1,161 @@
+﻿@page "/InscripcionCursos"
+@using AcademiaWeb.Servicios
+@inject UsuarioContainer usuarioOnline
+@inject NavigationManager Navigation
+@using Microsoft.AspNetCore.Components.Forms
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+@using Web.ApiClients
+
+<h3>Inscripción a cursos</h3>
+
+<div class="container">
+    <p>Selecciona una materia para inscribirte:</p>
+
+    <select @bind="materiaSeleccionadaId" class="select-box">
+        <option value="0" disabled>Elige una materia</option>
+        @foreach (var materia in MateriasDisponibles)
+        {
+            <option value="@materia.Id">@materia.Descripcion</option>
+        }
+    </select>
+
+    <button class="btn-inscribir" @onclick="Inscribir">Inscribirse</button>
+
+    @if (noHayCursosDeMateria)
+    {
+        <p>No existen cursos de esa materia por el momento.</p>
+    }
+
+    @if (!string.IsNullOrEmpty(Message) && !noHayCursosDeMateria)
+    {
+        <p class="message">@Message</p>
+    }
+
+    <button class="btn btn-secondary" @onclick="RedirigirAMenu" style="background-color: red">
+        Cancelar
+    </button>
+</div>
+
+@code {
+    int materiaSeleccionadaId;
+    bool noHayCursosDeMateria = false;
+    List<Materia> MateriasDisponibles = new List<Materia>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        MateriasDisponibles = (await MateriaApiClient.GetAllAsync()).ToList();
+    }
+
+    public async void Inscribir()
+    {
+        noHayCursosDeMateria = false;
+
+        var materiaSeleccionada = await MateriaApiClient.GetAsync(materiaSeleccionadaId);
+        if (materiaSeleccionada != null)
+        {
+            var curso = await CursoApiClient.GetOneCursoByIdMateria(materiaSeleccionada.Id);
+
+            if (curso != null)
+            {
+                if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Alumno)
+                {
+                    AlumnoInscripcion alumnoInscripcion = new AlumnoInscripcion()
+                        {
+                            IdCurso = curso.Id,
+                            IdAlumno = usuarioOnline.UsuarioContenido.Id,
+                            Condicion = "Habilitado"
+                        };
+
+                    await AlumnoInscripcionApiClient.AddAsync(alumnoInscripcion);
+                }
+                else if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Profesor)
+                {
+                    DocenteCurso docenteInscripcion = new DocenteCurso()
+                        {
+                            IdCurso = curso.Id,
+                            IdDocente = usuarioOnline.UsuarioContenido.Id,
+                            Cargo = TiposCargos.ProfesorTeoria
+                        };
+
+                    await DocenteCursoApiClient.AddAsync(docenteInscripcion);
+                }
+
+                Message = $"Te has inscripto en {materiaSeleccionada.Descripcion}.";
+            }
+            else
+            {
+                noHayCursosDeMateria = true;
+            }
+        }
+        else
+        {
+            Message = $"No existe una materia con ese código.";
+        }
+    }
+
+    private void RedirigirAMenu()
+    {
+        if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Profesor)
+        {
+            Navigation.NavigateTo($"/MenuDocente");
+        }
+        else
+        {
+            Navigation.NavigateTo($"/MenuAlumno");
+        }
+    }
+
+    public string Message { get; set; }
+}
+
+<style>
+    .container {
+        width: 60%;
+        margin: 30px auto;
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+    }
+
+    .select-box {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    .btn-inscribir {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+        .btn-inscribir:hover {
+            background-color: #45a049;
+        }
+
+    .message {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #e7f7e7;
+        color: #4CAF50;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 16px;
+    }
+</style>

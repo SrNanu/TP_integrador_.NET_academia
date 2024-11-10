@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 public enum TiposCargos
 {
@@ -20,6 +14,6 @@ public class DocenteCurso : EntidadNegocio
     [ForeignKey("Usuario")]
     public int IdDocente { get; set; }
 
-    public TiposCargos Cargo { get; set; }
+    public TiposCargos? Cargo { get; set; }
 
 }

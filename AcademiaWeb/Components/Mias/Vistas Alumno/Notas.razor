@@ -1,0 +1,153 @@
+﻿@page "/Notas"
+@using AcademiaWeb.Servicios
+@using Microsoft.AspNetCore.Components.Forms
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+@inject UsuarioContainer usuarioOnline
+@using Web.ApiClients
+
+<h3>Notas</h3>
+
+<div>
+    @if (AlumnoInscripciones.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Curso</th>
+                    <th>Materia</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var inscripcion in AlumnoInscripciones)
+                {
+                    <tr>
+                        <td>@inscripcion.CursoAnioCalendario</td>
+                        <td>@inscripcion.MateriaDescripcion</td>
+                        <td>@inscripcion.Nota</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="message-container">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>No te has inscripto en ningún curso.</p>
+        </div>
+    }
+
+    <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Volver al menú de usuario" style="background-color: red">
+        Volver al menú de usuario
+    </NavLink>
+</div>
+
+@code {
+    public List<AlumnoInscripcionConDetalles> AlumnoInscripciones { get; set; } = new List<AlumnoInscripcionConDetalles>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var inscripciones = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
+        var inscripcionesConDetalles = new List<AlumnoInscripcionConDetalles>();
+
+        foreach (var inscripcion in inscripciones)
+        {
+            var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
+
+            if (curso != null)
+            {
+                var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
+
+                inscripcionesConDetalles.Add(new AlumnoInscripcionConDetalles
+                    {
+                        CursoAnioCalendario = curso.AnioCalendario,
+                        MateriaDescripcion = materia.Descripcion,
+                        Nota = inscripcion.Nota
+                    });
+            }
+        }
+
+        AlumnoInscripciones = inscripcionesConDetalles;
+    }
+
+    public class AlumnoInscripcionConDetalles
+    {
+        public int CursoAnioCalendario { get; set; }
+        public string MateriaDescripcion { get; set; }
+        public int? Nota { get; set; }
+    }
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+    }
+
+    .table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table td {
+            font-size: 16px;
+        }
+
+            .table td:nth-child(2) {
+                text-align: center;
+                font-weight: bold;
+                color: #4CAF50;
+            }
+
+    .message-container {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .message-container i {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .message-container p {
+            font-size: 18px;
+            margin: 0;
+            font-weight: bold;
+        }
+</style>

@@ -15,9 +15,8 @@ public class AlumnoInscripcion : EntidadNegocio
     public int IdCurso { get; set; }
 
     [StringLength(150)]
-    public  string Condicion { get; set; }
+    public required string Condicion { get; set; } = "Regular";
 
-
-    public int Nota { get; set; }
+    public int? Nota { get; set; }
 
 }

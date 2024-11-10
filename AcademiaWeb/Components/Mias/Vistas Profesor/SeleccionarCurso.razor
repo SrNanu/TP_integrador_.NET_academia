@@ -1,0 +1,98 @@
+﻿@page "/SeleccionarCursoProfesor"
+@using AcademiaWeb.Servicios
+@inject UsuarioContainer usuarioOnline
+@inject CursoContainer cursoContainer
+@inject NavigationManager Navigation
+@using Web.ApiClients
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+
+<h3>Cursos en los que estás inscripto</h3>
+
+<div class="cursos-list">
+    @if (InscripcionesConDetalles.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Año Curso</th>
+                    <th>Descripción Curso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detalle in InscripcionesConDetalles)
+                {
+                    <tr>
+                        <td>@detalle.Curso.AnioCalendario</td>
+                        <td>@detalle.Materia.Descripcion</td>
+                        <td>
+                            <button class="btn btn-primary" @onclick="() => RedirigirACargaNotas(detalle.Curso)">
+                                Cargar Notas
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="message-container">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>No estás inscripto en ningún curso.</p>
+        </div>
+    }
+
+    <button class="btn btn-secondary" @onclick="RedirigirAMenuProfesor" style="background-color: red">
+        Cancelar
+    </button>
+</div>
+
+@code {
+    public List<DetalleInscripcion> InscripcionesConDetalles = new List<DetalleInscripcion>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        InscripcionesConDetalles.Clear();
+        var inscripciones = await DocenteCursoApiClient.GetDocentesInscripcionesByIdDocente(usuarioOnline.UsuarioContenido.Id);
+
+        foreach (var inscripcion in inscripciones)
+        {
+            var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
+
+            if (curso != null)
+            {
+                var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
+
+                InscripcionesConDetalles.Add(new DetalleInscripcion
+                    {
+                        Curso = curso,
+                        Materia = materia
+                    });
+            }
+        }
+    }
+
+    private async void RedirigirACargaNotas(Curso cursoSeleccionado)
+    {
+        var alumno = await AlumnoInscripcionApiClient.GetOneAlumnoInscripcionByIdUsuario(cursoSeleccionado.Id);
+
+        if (alumno != null)
+        {
+            cursoContainer.CursoContenido = cursoSeleccionado;
+            Navigation.NavigateTo($"/CargarNotas");
+        }
+    }
+
+    private void RedirigirAMenuProfesor()
+    {
+        Navigation.NavigateTo($"/MenuDocente");
+    }
+
+    public class DetalleInscripcion
+    {
+        public Curso Curso { get; set; }
+        public Materia Materia { get; set; }
+    }
+}

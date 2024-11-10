@@ -4,6 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 using Dominio.Entidades;
 public class AlumnoInscripcion_Controller
 {
@@ -16,7 +18,7 @@ public class AlumnoInscripcion_Controller
         Validador.ValidarExistenciaCurso(alumnoInscripcion.IdCurso, context);
         Validador.ValidarExistenciaAlumno(alumnoInscripcion.IdAlumno, context);
         Validador.ValidarTextoNoVacio(alumnoInscripcion.Condicion, "Condición");
-        Validador.ValidarRangoNota(alumnoInscripcion.Nota);
+        //Validador.ValidarRangoNota(alumnoInscripcion.Nota);
 
         context.AlumnoInscripciones.Add(alumnoInscripcion);
         context.SaveChanges();
@@ -50,7 +52,7 @@ public class AlumnoInscripcion_Controller
             Validador.ValidarExistenciaCurso(alumnoInscripcion.IdCurso, context);
             Validador.ValidarExistenciaAlumno(alumnoInscripcion.IdAlumno, context);
             Validador.ValidarTextoNoVacio(alumnoInscripcion.Condicion, "Condición");
-            Validador.ValidarRangoNota(alumnoInscripcion.Nota);
+            //Validador.ValidarRangoNota(alumnoInscripcion.Nota);
 
             alumnoInscripcionToUpdate.IdCurso = alumnoInscripcion.IdCurso;
             alumnoInscripcionToUpdate.IdAlumno = alumnoInscripcion.IdAlumno;

@@ -1,0 +1,160 @@
+﻿@page "/CursosInscriptosAlumno"
+@using AcademiaWeb.Servicios
+@inject UsuarioContainer usuarioOnline
+@using Microsoft.AspNetCore.Components.Forms
+@inherits LayoutComponentBase
+@rendermode InteractiveServer
+@using Web.ApiClients
+
+<h3>Cursos en los que te has inscripto</h3>
+
+<div class="cursos-list">
+    @if (AlumnoInscripcionesConDetalles.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Año Curso</th>
+                    <th>Descripción Curso</th>
+                    <th>Docente</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var detalle in AlumnoInscripcionesConDetalles)
+                {
+                    foreach (var docente in detalle.Docentes)
+                    {
+                        @if (docente == null)
+                        {
+                            <tr>
+                                <td>@detalle.Curso.AnioCalendario</td>
+                                <td>@detalle.Materia.Descripcion</td>
+                                <td>-</td>
+                                <td>@detalle.Nota</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td>@detalle.Curso.AnioCalendario</td>
+                                <td>@detalle.Materia.Descripcion</td>
+                                <td>@docente.Nombre</td>
+                                <td>@detalle.Nota</td>
+                            </tr>
+                        }
+                        
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="message-container">
+            <i class="fas fa-exclamation-circle"></i>
+            <p>No te has inscripto en ningún curso.</p>
+        </div>
+    }
+
+    <NavLink href="/MenuAlumno" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
+        Volver al menú de usuario
+    </NavLink>
+</div>
+
+@code {
+    public List<DetalleInscripcion> AlumnoInscripcionesConDetalles = new List<DetalleInscripcion>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        AlumnoInscripcionesConDetalles.Clear();
+        var inscripciones = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdUsuario(usuarioOnline.UsuarioContenido.Id);
+
+        foreach (var inscripcion in inscripciones)
+        {
+            var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
+
+            if (curso != null)
+            {
+                var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
+                var idDocentesEnCurso = await DocenteCursoApiClient.GetDocentesDC(inscripcion.IdCurso);
+
+                List<Usuario> docentes = new List<Usuario>();
+
+                foreach (var idDocenteDeCurso in idDocentesEnCurso)
+                {
+                    var docente = await UsuarioApiClient.GetAsync(idDocenteDeCurso.IdDocente);
+                    docentes.Add(docente);
+                }
+
+                AlumnoInscripcionesConDetalles.Add(new DetalleInscripcion
+                    {
+                        Curso = curso,
+                        Materia = materia,
+                        Docentes = docentes,
+                        Nota = inscripcion.Nota
+                    });
+            }
+        }
+    }
+
+    public class DetalleInscripcion
+    {
+        public Curso Curso { get; set; }
+        public Materia Materia { get; set; }
+        public List<Usuario> Docentes { get; set; }
+        public int? Nota { get; set; }
+    }
+}
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+        margin-top: 20px;
+    }
+
+    .cursos-list {
+        width: 60%;
+        margin: 20px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .cursos-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .cursos-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+            .cursos-list li:last-child {
+                border-bottom: none;
+            }
+
+        .cursos-list .fecha-inscripcion {
+            font-size: 14px;
+            color: #888;
+            margin-left: 10px;
+        }
+
+        /* Mensaje si no hay cursos inscriptos */
+        .cursos-list p {
+            font-size: 16px;
+            text-align: center;
+            color: #f44336;
+        }
+</style>

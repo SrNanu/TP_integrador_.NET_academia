@@ -1,0 +1,86 @@
+﻿@page "/MenuDocente"
+@rendermode InteractiveServer
+@inject NavigationManager Navigation
+
+<h2>Menú de Docente</h2>
+
+<div class="menu-container">
+    <button class="menu-button" @onclick="IrPaginaCargarNotas">Cargar notas</button>
+    <button class="menu-button" @onclick="IrPaginaAltaCurso">Alta en curso</button>
+    <button class="menu-button" @onclick="IrPaginaVerCursos">Ver cursos en los que esta inscripto</button>
+    <button class="menu-button logout-button" @onclick="CerrarSesion">Cerrar sesión</button>
+</div>
+
+@code {
+    private void IrPaginaCargarNotas()
+    {
+        Navigation.NavigateTo("/SeleccionarCursoProfesor");
+    }
+
+    private void IrPaginaAltaCurso()
+    {
+        Navigation.NavigateTo("/InscripcionCursos");
+    }
+
+    private void IrPaginaVerCursos()
+    {
+        Navigation.NavigateTo("/CursosInscriptos");
+    }
+
+    private void CerrarSesion()
+    {
+        Navigation.NavigateTo("/Login", true);
+    }
+}
+
+<style>
+    h2 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+
+    .menu-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 25px;
+        border: 2px solid #e0e0e0;
+        border-radius: 10px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        background-color: #f8f9fa;
+    }
+
+    .menu-button {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #17a2b8;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .logout-button {
+        background-color: #dc3545;
+    }
+
+    .menu-button:hover {
+        background-color: #138496;
+    }
+
+    .logout-button:hover {
+        background-color: #c82333;
+    }
+
+    .menu-button:active {
+        transform: scale(0.97);
+    }
+</style>

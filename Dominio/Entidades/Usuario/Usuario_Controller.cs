@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Pomelo.EntityFrameworkCore.MySql;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -8,6 +7,7 @@ using Dominio.Entidades;
 
 public class Usuario_Controller
 {
+    //Metodos Normales
     public static void AgregarUsuario(Usuario usuario)
     {
         
@@ -37,7 +37,7 @@ public class Usuario_Controller
     {
         using var context = new AcademiaContext();
 
-        return context.Usuarios.FirstOrDefault(u => u.Username == username);
+        return  context.Usuarios.FirstOrDefault(u => u.Username == username);
 
     }
 
