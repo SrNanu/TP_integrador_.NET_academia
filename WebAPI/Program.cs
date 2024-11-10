@@ -358,6 +358,43 @@ namespace WebAPI
             })
             .WithName("EliminarInscripcion");
 
+            //CRUD DocenteCurso
+
+            app.MapGet("/docenteCursos/{id}", (int id) =>
+            {
+
+                return DocenteCurso_Controller.GetOneDocenteCurso(id);
+            })
+            .WithName("GetOneDocenteCurso");
+
+            app.MapGet("/docenteCursos", () =>
+            {
+
+                return DocenteCurso_Controller.GetAllDocenteCurso();
+            })
+            .WithName("GetAllDocenteCurso");
+
+            app.MapPost("/docenteCursos", (DocenteCurso docenteCurso) =>
+            {
+
+                DocenteCurso_Controller.CrearDocenteCurso(docenteCurso);
+            })
+            .WithName("CrearDocenteCurso");
+
+            app.MapPut("/docenteCursos", (DocenteCurso docenteCurso) =>
+            {
+
+                DocenteCurso_Controller.ActualizarDocenteCurso(docenteCurso);
+            })
+            .WithName("ActualizarDocenteCurso");
+
+            app.MapDelete("/docenteCursos/{id}", (int id) =>
+            {
+
+                DocenteCurso_Controller.EliminarDocenteCurso(id);
+            })
+            .WithName("EliminarDocenteCurso");
+
 
 
             app.UseStaticFiles();

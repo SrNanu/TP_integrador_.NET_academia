@@ -73,24 +73,28 @@
         foreach (var inscripcion in inscripciones)
         {
             var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
-            var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
-            var idDocentesEnCurso = await DocenteCursoApiClient.GetDocentesDC(inscripcion.IdCurso);
 
-            List<Usuario> docentes = new List<Usuario>();
-
-            foreach (var idDocenteDeCurso in idDocentesEnCurso)
+            if (curso != null)
             {
-                var docente = await UsuarioApiClient.GetAsync(idDocenteDeCurso.IdDocente);
-                docentes.Add(docente);
-            }
+                var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
+                var idDocentesEnCurso = await DocenteCursoApiClient.GetDocentesDC(inscripcion.IdCurso);
 
-            AlumnoInscripcionesConDetalles.Add(new DetalleInscripcion
+                List<Usuario> docentes = new List<Usuario>();
+
+                foreach (var idDocenteDeCurso in idDocentesEnCurso)
                 {
-                    Curso = curso,
-                    Materia = materia,
-                    Docentes = docentes,
-                    Nota = inscripcion.Nota
-                });
+                    var docente = await UsuarioApiClient.GetAsync(idDocenteDeCurso.IdDocente);
+                    docentes.Add(docente);
+                }
+
+                AlumnoInscripcionesConDetalles.Add(new DetalleInscripcion
+                    {
+                        Curso = curso,
+                        Materia = materia,
+                        Docentes = docentes,
+                        Nota = inscripcion.Nota
+                    });
+            }
         }
     }
 

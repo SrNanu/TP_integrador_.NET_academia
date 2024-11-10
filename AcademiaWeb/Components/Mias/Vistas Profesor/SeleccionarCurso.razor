@@ -74,10 +74,15 @@
         }
     }
 
-    private void RedirigirACargaNotas(Curso cursoSeleccionado)
+    private async void RedirigirACargaNotas(Curso cursoSeleccionado)
     {
-        cursoContainer.CursoContenido = cursoSeleccionado;
-        Navigation.NavigateTo($"/CargarNotas");
+        var alumno = await AlumnoInscripcionApiClient.GetOneAlumnoInscripcionByIdUsuario(cursoSeleccionado.Id);
+
+        if (alumno != null)
+        {
+            cursoContainer.CursoContenido = cursoSeleccionado;
+            Navigation.NavigateTo($"/CargarNotas");
+        }
     }
 
     private void RedirigirAMenuProfesor()

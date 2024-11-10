@@ -55,14 +55,18 @@
         foreach (var inscripcion in inscripciones)
         {
             var curso = await CursoApiClient.GetAsync(inscripcion.IdCurso);
-            var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
 
-            inscripcionesConDetalles.Add(new AlumnoInscripcionConDetalles
-                {
-                    CursoAnioCalendario = curso.AnioCalendario,
-                    MateriaDescripcion = materia.Descripcion,
-                    Nota = inscripcion.Nota
-                });
+            if (curso != null)
+            {
+                var materia = await MateriaApiClient.GetAsync(curso.IdMateria);
+
+                inscripcionesConDetalles.Add(new AlumnoInscripcionConDetalles
+                    {
+                        CursoAnioCalendario = curso.AnioCalendario,
+                        MateriaDescripcion = materia.Descripcion,
+                        Nota = inscripcion.Nota
+                    });
+            }
         }
 
         AlumnoInscripciones = inscripcionesConDetalles;

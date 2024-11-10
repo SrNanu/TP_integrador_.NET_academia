@@ -22,7 +22,12 @@
 
     <button class="btn-inscribir" @onclick="Inscribir">Inscribirse</button>
 
-    @if (!string.IsNullOrEmpty(Message))
+    @if (noHayCursosDeMateria)
+    {
+        <p>No existen cursos de esa materia por el momento.</p>
+    }
+
+    @if (!string.IsNullOrEmpty(Message) && !noHayCursosDeMateria)
     {
         <p class="message">@Message</p>
     }
@@ -34,7 +39,7 @@
 
 @code {
     int materiaSeleccionadaId;
-
+    bool noHayCursosDeMateria = false;
     List<Materia> MateriasDisponibles = new List<Materia>();
 
     protected override async Task OnInitializedAsync()
@@ -44,35 +49,44 @@
 
     public async void Inscribir()
     {
+        noHayCursosDeMateria = false;
+
         var materiaSeleccionada = await MateriaApiClient.GetAsync(materiaSeleccionadaId);
         if (materiaSeleccionada != null)
         {
             var curso = await CursoApiClient.GetOneCursoByIdMateria(materiaSeleccionada.Id);
 
-            if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Alumno)
+            if (curso != null)
             {
-                AlumnoInscripcion alumnoInscripcion = new AlumnoInscripcion()
-                    {
-                        IdCurso = curso.Id,
-                        IdAlumno = usuarioOnline.UsuarioContenido.Id,
-                        Condicion = "Habilitado"
-                    };
+                if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Alumno)
+                {
+                    AlumnoInscripcion alumnoInscripcion = new AlumnoInscripcion()
+                        {
+                            IdCurso = curso.Id,
+                            IdAlumno = usuarioOnline.UsuarioContenido.Id,
+                            Condicion = "Habilitado"
+                        };
 
-                await AlumnoInscripcionApiClient.AddAsync(alumnoInscripcion);
+                    await AlumnoInscripcionApiClient.AddAsync(alumnoInscripcion);
+                }
+                else if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Profesor)
+                {
+                    DocenteCurso docenteInscripcion = new DocenteCurso()
+                        {
+                            IdCurso = curso.Id,
+                            IdDocente = usuarioOnline.UsuarioContenido.Id,
+                            Cargo = TiposCargos.ProfesorTeoria
+                        };
+
+                    await DocenteCursoApiClient.AddAsync(docenteInscripcion);
+                }
+
+                Message = $"Te has inscripto en {materiaSeleccionada.Descripcion}.";
             }
-            else if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Docente)
+            else
             {
-                DocenteCurso docenteInscripcion = new DocenteCurso()
-                    {
-                        IdCurso = curso.Id,
-                        IdDocente = usuarioOnline.UsuarioContenido.Id,
-                        Cargo = TiposCargos.ProfesorTeoria
-                    };
-
-                await DocenteCursoApiClient.AddAsync(docenteInscripcion);
+                noHayCursosDeMateria = true;
             }
-
-            Message = $"Te has inscripto en {materiaSeleccionada.Descripcion}.";
         }
         else
         {
@@ -82,7 +96,7 @@
 
     private void RedirigirAMenu()
     {
-        if(usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Docente)
+        if (usuarioOnline.UsuarioContenido.Tipo == TiposUsuarios.Profesor)
         {
             Navigation.NavigateTo($"/MenuDocente");
         }
@@ -131,9 +145,9 @@
         border-radius: 4px;
     }
 
-    .btn-inscribir:hover {
-        background-color: #45a049;
-    }
+        .btn-inscribir:hover {
+            background-color: #45a049;
+        }
 
     .message {
         margin-top: 20px;

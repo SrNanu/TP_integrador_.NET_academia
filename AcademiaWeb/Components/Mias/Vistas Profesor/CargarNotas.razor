@@ -48,7 +48,6 @@
 </div>
 
 @code {
-    // public AlumnoInscripcionApiClient AlumnoInscripcionApiClient = new AlumnoInscripcionApiClient();
     public List<Usuario> AlumnosInscriptos { get; set; } = new List<Usuario>();
     public List<AlumnoInscripcion> AlumnosInscripcionConNotas { get; set; } = new List<AlumnoInscripcion>();
 
@@ -69,12 +68,15 @@
         {
             var alumnoRecuperado = await UsuarioApiClient.GetAsync(inscripcion.IdAlumno);
 
-            AlumnosInscripcionConNotas.Add(new AlumnoInscripcion
-                {
-                    IdAlumno = alumnoRecuperado.Id,
-                    NombreAlumno = string.Concat(alumnoRecuperado.Nombre, " ", alumnoRecuperado.Apellido),
-                    Nota = null
-                });
+            if (alumnoRecuperado != null)
+            {
+                AlumnosInscripcionConNotas.Add(new AlumnoInscripcion
+                    {
+                        IdAlumno = alumnoRecuperado.Id,
+                        NombreAlumno = string.Concat(alumnoRecuperado.Nombre, " ", alumnoRecuperado.Apellido),
+                        Nota = null
+                    });
+            }
         }
     }
 

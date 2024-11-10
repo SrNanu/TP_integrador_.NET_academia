@@ -25,7 +25,7 @@ public class AcademiaContext : DbContext
         
         //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6HBL1R6\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); JUAN CRUZ
 
-        optionsBuilder.UseSqlServer(@"Data Source=HPLAPTOP-LUCIO\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); //LUCIO
+        optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6HBL1R6\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); //LUCIO
 
 
     }
