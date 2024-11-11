@@ -71,7 +71,8 @@
         {
             var alumnoRecuperado = await UsuarioApiClient.GetAsync(inscripcion.IdAlumno);
 
-            if (alumnoRecuperado != null)
+            //if (alumnoRecuperado != null) // && alumnoRecuperado.Tipo == TiposUsuarios.Alumno)
+            if (alumnoRecuperado != null && alumnoRecuperado.Tipo == TiposUsuarios.Alumno)
             {
                 AlumnosInscripcionConNotas.Add(new AlumnoInscripcion
                     {
@@ -87,15 +88,11 @@
     {
         foreach (var inscripcion in alumnosInscripcionConNotas)
         {
-            // Obtén todas las inscripciones del alumno en el curso actual.
             var inscripcionesAlumno = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdUsuario(inscripcion.IdAlumno);
-
-            // Filtra las inscripciones que pertenezcan al curso actual.
             var inscripcionEnCurso = inscripcionesAlumno?.FirstOrDefault(i => i.IdCurso == cursoSeleccionado.CursoContenido.Id);
 
             if (inscripcionEnCurso != null)
             {
-                // Actualiza la nota de la inscripción específica de este curso.
                 inscripcionEnCurso.Nota = inscripcion.Nota;
                 await AlumnoInscripcionApiClient.UpdateAsync(inscripcionEnCurso);
             }
