@@ -39,6 +39,10 @@
     else
     {
         <p>No hay alumnos en este curso.</p>
+
+        <NavLink href="/MenuDocente" class="btn btn-secondary" active-class="active" aria-label="Crear nuevo usuario" style="background-color: red">
+            Volver al menú de usuario
+        </NavLink>
     }
 
     @if (!string.IsNullOrEmpty(Message))
@@ -62,7 +66,6 @@
     protected override async Task OnInitializedAsync()
     {
         var alumnosInsc = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdCurso(cursoSeleccionado.CursoContenido.Id);
-        List<Usuario> listaAlumnos = new List<Usuario>();
 
         foreach (var inscripcion in alumnosInsc)
         {
@@ -80,13 +83,22 @@
         }
     }
 
-    public async void GuardarNotas(List<AlumnoInscripcion> alumnosInscripcionConNotas)
+    public async Task GuardarNotas(List<AlumnoInscripcion> alumnosInscripcionConNotas)
     {
         foreach (var inscripcion in alumnosInscripcionConNotas)
         {
-            var inscripcionAlumno = await AlumnoInscripcionApiClient.GetOneAlumnoInscripcionByIdUsuario(inscripcion.IdAlumno);
-            inscripcionAlumno.Nota = inscripcion.Nota;
-            await AlumnoInscripcionApiClient.UpdateAsync(inscripcionAlumno);
+            // Obtén todas las inscripciones del alumno en el curso actual.
+            var inscripcionesAlumno = await AlumnoInscripcionApiClient.GetAlumnosInscripcionesByIdUsuario(inscripcion.IdAlumno);
+
+            // Filtra las inscripciones que pertenezcan al curso actual.
+            var inscripcionEnCurso = inscripcionesAlumno?.FirstOrDefault(i => i.IdCurso == cursoSeleccionado.CursoContenido.Id);
+
+            if (inscripcionEnCurso != null)
+            {
+                // Actualiza la nota de la inscripción específica de este curso.
+                inscripcionEnCurso.Nota = inscripcion.Nota;
+                await AlumnoInscripcionApiClient.UpdateAsync(inscripcionEnCurso);
+            }
         }
 
         Message = "Las notas han sido guardadas correctamente.";
