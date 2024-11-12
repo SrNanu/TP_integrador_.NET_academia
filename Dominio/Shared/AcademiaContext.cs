@@ -18,7 +18,6 @@ public class AcademiaContext : DbContext
     public DbSet<AlumnoInscripcion> AlumnoInscripciones { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-
     {
 
         //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=AcademiaDb"); //SANTINO
