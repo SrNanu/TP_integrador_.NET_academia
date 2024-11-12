@@ -23,9 +23,11 @@ public class AcademiaContext : DbContext
         //optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Initial Catalog=AcademiaDb"); //SANTINO
 
         //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6HBL1R6\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); // JUAN CRUZ - Notebook
-        optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-KD3CGEG\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); // JUAN CRUZ - Pc
+        //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-KD3CGEG\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); // JUAN CRUZ - Pc
 
         //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-6HBL1R6\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); //LUCIO
+        
+        optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=Academia;Integrated Security=True;Encrypt=False"); //universal
 
 
     }

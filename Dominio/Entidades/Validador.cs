@@ -189,9 +189,9 @@ namespace Dominio.Entidades
         }
 
         // Validación del rango de la Nota
-        public static void ValidarRangoNota(int nota)
+        public static void ValidarRangoNota(int? nota)
         {
-            if (nota < 0 || nota > 10)
+            if (nota != null && (nota < 0 || nota > 10))
             {
                 throw new ArgumentException("La nota debe estar entre 0 y 10.");
             }
